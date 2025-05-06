@@ -7,6 +7,8 @@ public class NavigationTest : MonoBehaviour
     public List<Transform> waypoints;
     public NavMeshAgent navMeshAgent;
     public int currentWPIndex = 0;
+    public NavTestMain ntm;
+    public int dmg = 3;
 
     void Start()
     {
@@ -31,11 +33,17 @@ public class NavigationTest : MonoBehaviour
         {
             if (currentWPIndex >= waypoints.Count - 1)
             {
-                Destroy(gameObject);
+                AttackMain();
             }
             currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
         }
 
-        navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
+            navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
+    }
+
+    private void AttackMain()
+    {
+        ntm.ReceiveDmg(dmg);
+        Destroy(gameObject);
     }
 }
