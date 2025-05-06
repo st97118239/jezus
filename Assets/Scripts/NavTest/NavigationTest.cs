@@ -31,7 +31,7 @@ public class NavigationTest : MonoBehaviour
         {
             if (currentWPIndex >= waypoints.Count - 1)
             {
-                //currentWPIndex = 0;
+                Destroy(gameObject);
             }
             currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
         }
