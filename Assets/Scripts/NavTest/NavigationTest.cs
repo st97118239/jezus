@@ -34,6 +34,7 @@ public class NavigationTest : MonoBehaviour
             if (currentWPIndex >= waypoints.Count - 1)
             {
                 AttackMain();
+                return;
             }
             currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
         }
