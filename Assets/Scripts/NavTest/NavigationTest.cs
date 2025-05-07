@@ -16,9 +16,7 @@ public class NavigationTest : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (!ntm.isDead)
-        {
             canMove = true;
-        }
     }
 
     void Update()
@@ -29,9 +27,7 @@ public class NavigationTest : MonoBehaviour
     void Moving()
     {
         if (waypoints.Count == 0)
-        {
             return;
-        }
 
         float distanceToWP = Vector3.Distance(waypoints[currentWPIndex].position, transform.position);
 

@@ -27,8 +27,6 @@ public class NavTestMain : MonoBehaviour
         isDead = true;
         pst.canSpawn = false;
         foreach (GameObject pawn in pst.activePawns)
-        {
             pawn.GetComponent<NavigationTest>().canMove = false;
-        }
     }
 }

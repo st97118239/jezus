@@ -25,9 +25,7 @@ public class PawnSpawnerTest : MonoBehaviour
                 newObject.SetActive(true);
             }
             else
-            {
                 spawnTimer -= Time.deltaTime;
-            }
         }
     }
 }
