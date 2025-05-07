@@ -1557,6 +1557,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4031879801880603417, guid: 724d65c20ba660145b3f8939d31d71d8,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4631857443630574751, guid: 724d65c20ba660145b3f8939d31d71d8,
         type: 3}
       propertyPath: m_Acceleration
@@ -1572,8 +1577,7 @@ PrefabInstance:
       propertyPath: m_ObstacleAvoidanceType
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4031879801880603417, guid: 724d65c20ba660145b3f8939d31d71d8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
