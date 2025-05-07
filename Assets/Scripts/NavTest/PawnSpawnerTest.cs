@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PawnSpawnerTest : MonoBehaviour
 {
+    public List<GameObject> activePawns = new();
     public GameObject pawn;
     public Vector3 spawnPos;
     public bool canSpawn = true;
@@ -18,6 +20,7 @@ public class PawnSpawnerTest : MonoBehaviour
                 spawnTimer = spawnTimerBase;
 
                 GameObject newObject = Instantiate(pawn, spawnPos, Quaternion.identity);
+                activePawns.Add(newObject);
 
                 newObject.SetActive(true);
             }

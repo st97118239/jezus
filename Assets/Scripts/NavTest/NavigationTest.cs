@@ -6,13 +6,19 @@ public class NavigationTest : MonoBehaviour
 {
     public List<Transform> waypoints;
     public NavMeshAgent navMeshAgent;
+    public bool canMove;
     public int currentWPIndex = 0;
     public NavTestMain ntm;
+    public PawnSpawnerTest pst;
     public int dmg = 3;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        if (!ntm.isDead)
+        {
+            canMove = true;
+        }
     }
 
     void Update()
@@ -38,13 +44,23 @@ public class NavigationTest : MonoBehaviour
             }
             currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
         }
-
+        if (canMove)
             navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
+        else
+            navMeshAgent.SetDestination(transform.position);
+
     }
 
     private void AttackMain()
     {
         ntm.ReceiveDmg(dmg);
+        Destroy();
+    }
+
+    private void Destroy()
+    {
+        print(gameObject);
+        pst.activePawns.Remove(gameObject);
         Destroy(gameObject);
     }
 }
