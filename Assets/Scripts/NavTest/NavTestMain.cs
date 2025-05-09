@@ -6,6 +6,7 @@ public class NavTestMain : MonoBehaviour
     public int health = 100;
     public TMP_Text healthText;
     public PawnSpawnerTest pst;
+    public GameObject gameoverText;
     public bool isDead = false;
 
     public void ReceiveDmg(int dmg)
@@ -25,6 +26,7 @@ public class NavTestMain : MonoBehaviour
     {
         print("ded");
         isDead = true;
+        gameoverText.SetActive(true);
         pst.canSpawn = false;
         foreach (GameObject pawn in pst.activePawns)
             pawn.GetComponent<NavigationTest>().canMove = false;
