@@ -29,9 +29,9 @@ public class NavigationTest : MonoBehaviour
         if (waypoints.Count == 0)
             return;
 
-        float distanceToWP = Vector3.Distance(waypoints[currentWPIndex].position, transform.position);
+        float distanceToWP = Vector3.Distance(new Vector3(waypoints[currentWPIndex].position.x, 0, waypoints[currentWPIndex].position.z), new Vector3(transform.position.x, 0, transform.position.z));
 
-        if (distanceToWP <= 1)
+        if (distanceToWP <= 0.25)
         {
             if (currentWPIndex >= waypoints.Count - 1)
             {
