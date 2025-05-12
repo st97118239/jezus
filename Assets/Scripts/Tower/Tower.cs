@@ -7,7 +7,6 @@ public class Tower : MonoBehaviour
     public float reloadSpeed;
     public float range;
 
-
     [SerializeField] private int damage;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private int upgradePrice;
@@ -19,6 +18,4 @@ public class Tower : MonoBehaviour
         shooter = transform.Find("Shooter").GetComponent<Shooter>();
         print(shooter);
     }
-
-   
 }

@@ -34,6 +34,11 @@ public class Shooter : MonoBehaviour
         }
         else
             Shoot();
+        if (shootableEnemies.Count == 1)
+        {
+            transform.LookAt(shootableEnemies.First().transform);
+        }
+        
     }
 
     private void FindEnemiesInRange()
