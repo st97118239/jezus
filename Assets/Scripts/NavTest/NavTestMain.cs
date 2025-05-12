@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class NavTestMain : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class NavTestMain : MonoBehaviour
         gameoverText.SetActive(true);
         pst.canSpawn = false;
         foreach (GameObject pawn in pst.activePawns)
+        {
             pawn.GetComponent<NavigationTest>().canMove = false;
+            pawn.GetComponent<NavMeshAgent>().enabled = false;
+        }
     }
 }

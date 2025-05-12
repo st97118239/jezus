@@ -42,8 +42,6 @@ public class NavigationTest : MonoBehaviour
         }
         if (canMove)
             navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
-        else
-            navMeshAgent.SetDestination(transform.position);
 
     }
 
