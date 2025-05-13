@@ -5,8 +5,9 @@ using UnityEngine.AI;
 public class PawnSpawnerTest : MonoBehaviour
 {
     public List<GameObject> activePawns = new();
+    public List<Transform> waypoints;
     public GameObject pawn;
-    public Vector3 spawnPos;
+    [SerializeField] private Vector3 spawnPos;
     public bool canSpawn = true;
     public float spawnTimer = 1;
     public float spawnTimerBase = 1;

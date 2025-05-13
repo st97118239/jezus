@@ -1,14 +1,21 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class NavTestMain : MonoBehaviour
 {
     public int health = 100;
-    public TMP_Text healthText;
-    public PawnSpawnerTest pst;
-    public GameObject gameoverText;
     public bool isDead = false;
+
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private PawnSpawnerTest pst;
+    [SerializeField] private GameObject gameoverText;
+
+    private void Start()
+    {
+        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
+    }
 
     public void ReceiveDmg(int dmg)
     {

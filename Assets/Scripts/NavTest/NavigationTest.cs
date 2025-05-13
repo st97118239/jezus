@@ -1,22 +1,31 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NavigationTest : MonoBehaviour
 {
-    public List<Transform> waypoints;
-    public NavMeshAgent navMeshAgent;
     public bool canMove;
-    public int currentWPIndex = 0;
-    public NavTestMain ntm;
-    public PawnSpawnerTest pst;
-    public int dmg = 3;
+
+    [SerializeField] private int dmg = 3;
+
+    private List<Transform> waypoints;
+    private NavMeshAgent navMeshAgent;
+    private NavTestMain ntm;
+    private PawnSpawnerTest pst;
+    private int currentWPIndex = 0;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
+        ntm = FindObjectOfType(typeof(NavTestMain)).GetComponent<NavTestMain>();
+
+        waypoints = pst.waypoints;
+
         if (!ntm.isDead)
             canMove = true;
+        
     }
 
     void Update()
