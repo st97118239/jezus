@@ -4,8 +4,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
     public int coins;
+    public float health;
 
     [SerializeField] private int damage;
     [SerializeField] private float speed;

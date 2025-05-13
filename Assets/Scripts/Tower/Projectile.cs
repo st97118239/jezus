@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private bool canMove;
     private Vector3 target;
     private float speed;
     private float damage;
+    private bool canMove;
 
     public void Move(Vector3 predictedPosition, float givenSpeed, float givenDamage)
     {
