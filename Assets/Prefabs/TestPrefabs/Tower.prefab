@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6327633165700319295}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   price: 0
+  health: 100
   reloadSpeed: 2
   range: 5
   projectileSpeed: 10
