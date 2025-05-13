@@ -7,10 +7,12 @@ public class PawnSpawnerTest : MonoBehaviour
     public List<GameObject> activePawns = new();
     public List<Transform> waypoints;
     public GameObject pawn;
-    [SerializeField] private Vector3 spawnPos;
-    public bool canSpawn = true;
-    public float spawnTimer = 1;
     public float spawnTimerBase = 1;
+    public bool canSpawn = true;
+
+    [SerializeField] private Vector3 spawnPos;
+
+    private float spawnTimer = 1;
 
     private void Update()
     {

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public float health;
     public int price;
+    public float health;
     public float reloadSpeed;
     public float range;
     public float projectileSpeed;

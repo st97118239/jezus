@@ -1,20 +1,20 @@
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> shootableEnemies = new();
+    [SerializeField] private float rotationSpeed;
+
     private PawnSpawnerTest pst;
     private Tower tower;
-    [SerializeField] private List<GameObject> shootableEnemies = new();
+    private GameObject currentTarget;
     private float reloadSpeed;
     private float reloadTimer;
-    private bool reloading;
     private float range;
-    private GameObject currentTarget;
-    [SerializeField] private float rotationSpeed;
+    private bool reloading;
 
     private void Start()
     {
