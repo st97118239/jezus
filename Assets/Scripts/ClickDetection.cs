@@ -23,6 +23,11 @@ public class ClickDetection : MonoBehaviour
         {
             clickPosition = hit.point;
 
+            if (selectedObject != null && selectedObject.CompareTag("Tower"))
+            {
+                selectedObject.GetComponent<Tower>().Deselect();
+            }
+
             if (hit.collider.gameObject.CompareTag("Tower"))
             {
                 selectedObject = hit.collider.gameObject;
@@ -30,10 +35,6 @@ public class ClickDetection : MonoBehaviour
             }
             else
             {
-                if (selectedObject.CompareTag("Tower"))
-                {
-                    selectedObject.GetComponent<Tower>().Deselect();
-                }
                 selectedObject = null;
             }
         }

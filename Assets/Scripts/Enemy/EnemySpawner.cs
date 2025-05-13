@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class PawnSpawnerTest : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> activePawns = new();
     public List<Transform> waypoints;
@@ -12,7 +12,13 @@ public class PawnSpawnerTest : MonoBehaviour
 
     [SerializeField] private Vector3 spawnPos;
 
+    private Main main;
     private float spawnTimer = 1;
+
+    private void Start()
+    {
+        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+    }
 
     private void Update()
     {
@@ -30,5 +36,11 @@ public class PawnSpawnerTest : MonoBehaviour
             else
                 spawnTimer -= Time.deltaTime;
         }
+    }
+
+    public void EnemyKilled(int coinsToReceive, GameObject enemyToRemove)
+    {
+        main.coinsAmount = main.coinsAmount + coinsToReceive;
+        activePawns.Remove(enemyToRemove);
     }
 }

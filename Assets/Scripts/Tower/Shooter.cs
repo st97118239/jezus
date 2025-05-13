@@ -8,7 +8,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private List<GameObject> shootableEnemies = new();
     [SerializeField] private float rotationSpeed;
 
-    private PawnSpawnerTest pst;
+    private EnemySpawner es;
     private Tower tower;
     private GameObject currentTarget;
     private float reloadSpeed;
@@ -18,7 +18,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
+        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
         reloadSpeed = tower.reloadSpeed;
         range = tower.range;
@@ -61,7 +61,7 @@ public class Shooter : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 
-        foreach (GameObject enemy in pst.activePawns)
+        foreach (GameObject enemy in es.activePawns)
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {

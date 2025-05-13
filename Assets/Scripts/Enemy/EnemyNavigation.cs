@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavigationTest : MonoBehaviour
+public class EnemyNavigation : MonoBehaviour
 {
     public bool canMove;
 
@@ -11,19 +11,19 @@ public class NavigationTest : MonoBehaviour
 
     private List<Transform> waypoints;
     private NavMeshAgent navMeshAgent;
-    private NavTestMain ntm;
-    private PawnSpawnerTest pst;
+    private Main main;
+    private EnemySpawner es;
     private int currentWPIndex = 0;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
-        ntm = FindObjectOfType(typeof(NavTestMain)).GetComponent<NavTestMain>();
+        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
-        waypoints = pst.waypoints;
+        waypoints = es.waypoints;
 
-        if (!ntm.isDead)
+        if (!main.isDead)
             canMove = true;
         
     }
@@ -56,14 +56,13 @@ public class NavigationTest : MonoBehaviour
 
     private void AttackMain()
     {
-        ntm.ReceiveDmg(dmg);
+        main.ReceiveDmg(dmg);
         Destroy();
     }
 
     private void Destroy()
     {
-        print(gameObject);
-        pst.activePawns.Remove(gameObject);
+        es.activePawns.Remove(gameObject);
         Destroy(gameObject);
     }
 }

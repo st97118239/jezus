@@ -12,11 +12,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
 
-    private PawnSpawnerTest pst;
+    private EnemySpawner es;
 
     private void Start()
     {
-        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
+        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         GetComponent<NavMeshAgent>().speed = speed;
     }
 
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         health = health - damage;
         if (health <= 0)
         {
-            pst.activePawns.Remove(gameObject);
+            es.EnemyKilled(coins, gameObject);
             Destroy(gameObject);
         }
     }

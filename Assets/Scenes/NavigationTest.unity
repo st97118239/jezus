@@ -637,6 +637,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4497950216515135233, guid: 21f485e4d21937a47975efc321d95dee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6106026181487999268, guid: 21f485e4d21937a47975efc321d95dee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -808,10 +813,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895f1d61f9da594c80cd180c70c63d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  coinsAmount: 0
+  defaultCoinsAmount: 50
+  health: 0
+  defaultHealth: 100
   isDead: 0
   healthText: {fileID: 847592004}
-  pst: {fileID: 1941436794}
+  es: {fileID: 0}
   gameoverText: {fileID: 2090456414}
 --- !u!1 &662247800 stripped
 GameObject:
@@ -1025,7 +1033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

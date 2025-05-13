@@ -118,18 +118,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101461527309712411}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   price: 0
+  upgradePrice: 0
   health: 100
   reloadSpeed: 2
   range: 5
   projectileSpeed: 10
   damage: 50
-  upgradePrice: 0
 --- !u!114 &6327633165700319295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,12 +280,12 @@ GameObject:
   - component: {fileID: 5292956757589434440}
   - component: {fileID: 6230396710171170273}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &368171594474263408
 Transform:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2300a9fa85db07b4aa4ce46bd3a5096f, type: 2}
+  - {fileID: 2100000, guid: 51fbd07248af1f346844c0d54a9ff80d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -3,18 +3,24 @@ using TMPro;
 using UnityEngine.AI;
 using Unity.VisualScripting;
 
-public class NavTestMain : MonoBehaviour
+public class Main : MonoBehaviour
 {
-    public int health = 100;
+    public int coinsAmount;
+    public int defaultCoinsAmount = 50;
+    public int health;
+    public int defaultHealth = 100;
     public bool isDead = false;
 
     [SerializeField] private TMP_Text healthText;
-    [SerializeField] private PawnSpawnerTest pst;
+    [SerializeField] private EnemySpawner es;
     [SerializeField] private GameObject gameoverText;
 
     private void Start()
     {
-        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
+        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        coinsAmount = defaultCoinsAmount;
+        health = defaultHealth;
+        RedrawHealthBar();
     }
 
     public void ReceiveDmg(int dmg)
@@ -27,6 +33,11 @@ public class NavTestMain : MonoBehaviour
             GameOver();
         }
 
+        RedrawHealthBar();
+    }
+
+    public void RedrawHealthBar()
+    {
         healthText.text = "" + health.ToString();
     }
 
@@ -35,10 +46,10 @@ public class NavTestMain : MonoBehaviour
         print("ded");
         isDead = true;
         gameoverText.SetActive(true);
-        pst.canSpawn = false;
-        foreach (GameObject pawn in pst.activePawns)
+        es.canSpawn = false;
+        foreach (GameObject pawn in es.activePawns)
         {
-            pawn.GetComponent<NavigationTest>().canMove = false;
+            pawn.GetComponent<EnemyNavigation>().canMove = false;
             pawn.GetComponent<NavMeshAgent>().enabled = false;
         }
     }
