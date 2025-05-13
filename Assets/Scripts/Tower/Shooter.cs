@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class Shooter : MonoBehaviour
     private float reloadTimer;
     private bool reloading;
     private float range;
+    private GameObject currentTarget;
+    [SerializeField] private float rotationSpeed;
 
     private void Start()
     {
@@ -33,12 +36,23 @@ public class Shooter : MonoBehaviour
                 reloading = false;
         }
         else
-            Shoot();
-        if (shootableEnemies.Count == 1)
         {
-            transform.LookAt(shootableEnemies.First().transform);
+            FindEnemiesInRange();
+            if (shootableEnemies.Count > 0)
+            {
+                currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
+                Shoot();
+            }
         }
-        
+
+        if (currentTarget != null)
+        {
+            Vector3 targetDirection = currentTarget.transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+        else
+            currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
     }
 
     private void FindEnemiesInRange()
@@ -58,6 +72,33 @@ public class Shooter : MonoBehaviour
 
     private void Shoot()
     {
-        FindEnemiesInRange();
+        float damage = tower.damage;
+        
+        GameObject closest = GetClosestEnemy(shootableEnemies, transform.position);
+        tower.GetComponent<Predict>().Shoot(closest.transform, damage);
+
+        shootableEnemies.Clear();
+        reloadTimer = reloadSpeed;
+        reloading = true;
+    }
+
+    GameObject GetClosestEnemy(List<GameObject> enemies, Vector3 towerPosition)
+    {
+        GameObject closestEnemy = null;
+        float closestDistanceSqr = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy == null) continue;
+
+            float distanceSqr = (enemy.transform.position - towerPosition).sqrMagnitude;
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
     }
 }

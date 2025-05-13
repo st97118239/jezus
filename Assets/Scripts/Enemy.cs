@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int coins;
 
     [SerializeField] private int damage;
@@ -11,8 +12,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
 
+    private PawnSpawnerTest pst;
+
     private void Start()
     {
+        pst = FindObjectOfType(typeof(PawnSpawnerTest)).GetComponent<PawnSpawnerTest>();
         GetComponent<NavMeshAgent>().speed = speed;
+    }
+
+    public void GotHit(float damage)
+    {
+        health = health - damage;
+        if (health <= 0)
+        {
+            pst.activePawns.Remove(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

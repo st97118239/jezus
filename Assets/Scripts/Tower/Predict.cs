@@ -3,55 +3,69 @@ using UnityEngine;
 
 public class Predict : MonoBehaviour
 {
-    public float timeAhead = 1f; // How far ahead we predict the enemy's position
-    public Transform target; // Enemy's transform
-    public float projectileSpeed = 10f; // Speed of the projectile
     public GameObject projectilePrefab;
-    public bool hasShot = false;
 
-    void Update()
+    public void Shoot(Transform target, float damage)
     {
-        if (target != null && !hasShot)
+        if (target != null)
         {
-            // Predict the enemy's future position
             Vector3 predictedPosition = PredictEnemyPosition(target);
 
-            // Calculate direction to the predicted position
             Vector3 direction = (predictedPosition - transform.position).normalized;
-            
-            // Fire the projectile
-            FireProjectile(direction, predictedPosition);
+
+            FireProjectile(direction, predictedPosition, damage);
         }
     }
 
-    // Method to predict the enemy's position
     Vector3 PredictEnemyPosition(Transform enemy)
     {
-        // Get enemy's current position and velocity (assuming the enemy has a Rigidbody)
-        Vector3 enemyPosition = enemy.position;
-        Vector3 enemyVelocity = enemy.GetComponent<Rigidbody>().velocity; // Adjust this if your movement is custom
+        Vector3 enemyPos = enemy.position;
 
-        // Predict the future position
-        Vector3 predictedPosition = enemyPosition + enemyVelocity * timeAhead;
+        EnemyVelocityTracker tracker = enemy.GetComponent<EnemyVelocityTracker>();
+        if (tracker == null)
+        {
+            Debug.LogWarning("EnemyVelocityTracker not found on target.");
+            return enemyPos;
+        }
 
-        print(predictedPosition);
-        return predictedPosition;
+        Vector3 enemyVel = tracker.Velocity;
+
+        Vector3 shooterPos = transform.position;
+        float projectileSpeed = GetComponent<Tower>().projectileSpeed;
+
+        Vector3 toEnemy = enemyPos - shooterPos;
+
+        float a = Vector3.Dot(enemyVel, enemyVel) - projectileSpeed * projectileSpeed;
+        float b = 2 * Vector3.Dot(enemyVel, toEnemy);
+        float c = Vector3.Dot(toEnemy, toEnemy);
+
+        float discriminant = b * b - 4 * a * c;
+
+        if (discriminant < 0 || Mathf.Abs(a) < 0.001f)
+            return enemyPos;
+
+        float sqrtDiscriminant = Mathf.Sqrt(discriminant);
+        float t1 = (-b + sqrtDiscriminant) / (2 * a);
+        float t2 = (-b - sqrtDiscriminant) / (2 * a);
+
+        float interceptTime = Mathf.Min(t1, t2);
+        if (interceptTime < 0)
+            interceptTime = Mathf.Max(t1, t2);
+
+        if (interceptTime < 0)
+            return enemyPos;
+
+        return enemyPos + enemyVel * interceptTime;
     }
 
-    // Method to fire a projectile (simplified example)
-    void FireProjectile(Vector3 direction, Vector3 predictedPosition)
+    void FireProjectile(Vector3 direction, Vector3 predictedPosition, float damage)
     {
-        hasShot = true;
-        // Here you would instantiate and shoot a projectile towards the predicted direction
-        // This is just a placeholder for whatever projectile logic you have
         Transform spawnLocation = transform.Find("Shooter").transform.Find("ProjSpawn").GetComponent<Transform>();
         GameObject projectile = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
-        //Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        //rb.velocity = direction * projectileSpeed;
-        projectile.GetComponent<Projectile>().Move(predictedPosition);
-        
 
-        //GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        float projectileSpeed = GetComponent<Tower>().projectileSpeed;
+        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage);
+
         projectile.SetActive(true);
     }
 }

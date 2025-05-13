@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int price;
     public float reloadSpeed;
     public float range;
+    public float projectileSpeed;
+    public float damage;
 
-    [SerializeField] private int damage;
-    [SerializeField] private float projectileSpeed;
     [SerializeField] private int upgradePrice;
 
     private Shooter shooter;
