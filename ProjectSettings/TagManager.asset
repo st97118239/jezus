@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tower
   - Ground
+  - Path
   layers:
   - Default
   - TransparentFX
