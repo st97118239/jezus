@@ -26,9 +26,14 @@ public class ClickDetection : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Tower"))
             {
                 selectedObject = hit.collider.gameObject;
+                selectedObject.GetComponent<Tower>().Select();
             }
             else
             {
+                if (selectedObject.CompareTag("Tower"))
+                {
+                    selectedObject.GetComponent<Tower>().Deselect();
+                }
                 selectedObject = null;
             }
         }

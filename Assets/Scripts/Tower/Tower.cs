@@ -18,4 +18,14 @@ public class Tower : MonoBehaviour
         shooter = transform.Find("Shooter").GetComponent<Shooter>();
         print(shooter);
     }
+
+    public void Select()
+    {
+
+    }
+
+    public void Deselect()
+    {
+
+    }
 }
