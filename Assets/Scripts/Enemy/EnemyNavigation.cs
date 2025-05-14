@@ -7,8 +7,6 @@ public class EnemyNavigation : MonoBehaviour
 {
     public bool canMove;
 
-    [SerializeField] private int dmg = 3;
-
     private List<Transform> waypoints;
     private NavMeshAgent navMeshAgent;
     private Main main;
@@ -25,7 +23,6 @@ public class EnemyNavigation : MonoBehaviour
 
         if (!main.isDead)
             canMove = true;
-        
     }
 
     void Update()
@@ -44,7 +41,7 @@ public class EnemyNavigation : MonoBehaviour
         {
             if (currentWPIndex >= waypoints.Count - 1)
             {
-                AttackMain();
+                GetComponent<Enemy>().ReachedCastle();
                 return;
             }
             currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
@@ -52,17 +49,5 @@ public class EnemyNavigation : MonoBehaviour
         if (canMove)
             navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
 
-    }
-
-    private void AttackMain()
-    {
-        main.ReceiveDmg(dmg);
-        Destroy();
-    }
-
-    private void Destroy()
-    {
-        es.activePawns.Remove(gameObject);
-        Destroy(gameObject);
     }
 }

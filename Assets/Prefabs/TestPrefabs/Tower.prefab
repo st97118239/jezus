@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 0
+  price: 25
   upgradePrice: 0
   health: 100
   reloadSpeed: 2

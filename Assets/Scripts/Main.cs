@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using Unity.VisualScripting;
+using TMPro.EditorUtilities;
 
 public class Main : MonoBehaviour
 {
@@ -11,14 +12,19 @@ public class Main : MonoBehaviour
     public int defaultHealth = 100;
     public bool isDead = false;
 
-    [SerializeField] private TMP_Text healthText;
-    [SerializeField] private EnemySpawner es;
-    [SerializeField] private GameObject gameoverText;
+    private TMP_Text healthText;
+    private TMP_Text coinText;
+    private GameObject gameoverPanel;
+    private EnemySpawner es;
 
     private void Start()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        gameoverPanel = transform.Find("GameOverPanel").gameObject;
+        healthText = transform.Find("HPText").GetComponent<TMP_Text>();
+        coinText = transform.Find("CoinText").GetComponent<TMP_Text>();
         coinsAmount = defaultCoinsAmount;
+        RedrawCoinText();
         health = defaultHealth;
         RedrawHealthBar();
     }
@@ -36,16 +42,33 @@ public class Main : MonoBehaviour
         RedrawHealthBar();
     }
 
+    public void ChangeCoinAmount(int coinsToReceive)
+    {
+        coinsAmount += coinsToReceive;
+
+        if (coinsAmount < 0)
+        {
+            coinsAmount = 0;
+        }
+
+        RedrawCoinText();
+    }
+
     public void RedrawHealthBar()
     {
         healthText.text = "" + health.ToString();
+    }
+
+    public void RedrawCoinText()
+    {
+        coinText.text = "" + coinsAmount.ToString();
     }
 
     private void GameOver()
     {
         print("ded");
         isDead = true;
-        gameoverText.SetActive(true);
+        gameoverPanel.SetActive(true);
         es.canSpawn = false;
         foreach (GameObject pawn in es.activePawns)
         {

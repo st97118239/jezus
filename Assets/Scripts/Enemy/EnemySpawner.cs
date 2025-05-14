@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void EnemyKilled(int coinsToReceive, GameObject enemyToRemove)
     {
-        main.coinsAmount = main.coinsAmount + coinsToReceive;
+        main.ChangeCoinAmount(coinsToReceive);
         activePawns.Remove(enemyToRemove);
     }
 }
