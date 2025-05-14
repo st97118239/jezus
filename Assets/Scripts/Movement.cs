@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public bool cursorLock;
-    public Vector3 moveDir;
-    public float speed;
-    public float zoomSpeed;
-    public Vector3 velocity;
-    public float zoomTime;
+    [SerializeField] private bool cursorLock;
+    [SerializeField] private Vector3 moveDir;
+    [SerializeField] private float speed;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private float zoomTime;
+    [SerializeField] private Vector3 lowestZoomPos;
+    [SerializeField] private Vector3 highestZoomPos;
 
     private void Start()
     {
@@ -34,5 +36,10 @@ public class Movement : MonoBehaviour
         Vector3 desiredPosition = transform.position - (Vector3.up * moveDir.y * zoomSpeed);
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, zoomTime);
         moveDir.y = 0;
+
+        if (transform.position.y < lowestZoomPos.y)
+            transform.position = new Vector3 (transform.position.x, lowestZoomPos.y, transform.position.z);
+        else if (transform.position.y > highestZoomPos.y)
+            transform.position = new Vector3(transform.position.x, highestZoomPos.y, transform.position.z);
     }
 }

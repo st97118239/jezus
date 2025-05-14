@@ -26,8 +26,6 @@ public class TowerPlacement : MonoBehaviour
             CheckIfCanBuyTower(tower3);
         else if (Input.GetKeyDown(KeyCode.Alpha4))
             CheckIfCanBuyTower(tower4);
-
-        
     }
 
     private void CheckIfCanBuyTower(Tower towerToBuy)
