@@ -7,6 +7,7 @@ TagManager:
   - Tower
   - Ground
   - Path
+  - Selectable
   layers:
   - Default
   - TransparentFX

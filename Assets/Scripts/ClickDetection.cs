@@ -23,12 +23,12 @@ public class ClickDetection : MonoBehaviour
         {
             clickPosition = hit.point;
 
-            if (selectedObject != null && selectedObject.CompareTag("Tower"))
+            if (selectedObject != null && selectedObject.GetComponent<Tower>())
             {
                 selectedObject.GetComponent<Tower>().Deselect();
             }
 
-            if (hit.collider.gameObject.CompareTag("Tower"))
+            if (hit.collider.gameObject.GetComponent<Tower>())
             {
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<Tower>().Select();
