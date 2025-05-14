@@ -28,7 +28,7 @@ public class ClickDetection : MonoBehaviour
                 selectedObject.GetComponent<Tower>().Deselect();
             }
 
-            if (hit.collider.gameObject.GetComponent<Tower>())
+            if (hit.collider.gameObject.GetComponent<Tower>() && !hit.collider.gameObject.GetComponent<Tower>().recentlyBuilt)
             {
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<Tower>().Select();

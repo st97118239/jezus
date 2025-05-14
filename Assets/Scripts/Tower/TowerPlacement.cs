@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
+    //[SerializeField] private GameObject[] towers = new GameObject[] { tower1, tower2, tower3, tower4 };
+
     [SerializeField] private Tower tower1;
     [SerializeField] private Tower tower2;
     [SerializeField] private Tower tower3;
@@ -33,9 +35,20 @@ public class TowerPlacement : MonoBehaviour
         towerToPlace = towerToBuy;
 
         if (main.coinsAmount >= towerToPlace.price)
-            BuyTower();
+            FindPlaceLocation();
         else
             return;
+    }
+
+    private void FindPlaceLocation()
+    {
+        GetComponent<WhereToPlace>().needsToFindLocation = true;
+    }
+
+    public void PlaceTower(Vector3 whereToPlace)
+    {
+        GameObject newTower = Instantiate(towerToPlace.gameObject, whereToPlace, Quaternion.identity);
+        BuyTower();
     }
 
     private void BuyTower()

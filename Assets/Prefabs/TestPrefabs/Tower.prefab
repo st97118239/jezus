@@ -130,6 +130,8 @@ MonoBehaviour:
   range: 5
   projectileSpeed: 10
   damage: 50
+  recentlyBuilt: 1
+  timeToBuild: 1
 --- !u!114 &6327633165700319295
 MonoBehaviour:
   m_ObjectHideFlags: 0
