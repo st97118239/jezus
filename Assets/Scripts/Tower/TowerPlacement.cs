@@ -36,6 +36,9 @@ public class TowerPlacement : MonoBehaviour
 
     private void CheckIfCanBuyTower(Tower towerToBuy)
     {
+        if (towerToBuy == null)
+            return;
+
         towerToPlace = towerToBuy;
 
         if (main.coinsAmount >= towerToPlace.price)

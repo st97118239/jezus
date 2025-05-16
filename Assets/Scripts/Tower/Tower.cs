@@ -10,7 +10,7 @@ public class Tower : MonoBehaviour
     public float reloadSpeed;
     public float range;
     public float projectileSpeed;
-    public float projectileDespawnTime = 0.5f;
+    public float projectileDespawnTime = 0.1f;
     public float damage;
     public bool recentlyBuilt = true;
 
