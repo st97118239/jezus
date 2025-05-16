@@ -118,12 +118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: a346b5fcd74c28844849f1630445f2f1, type: 2}
+  transparentMaterial: {fileID: 0}
   price: 1
   upgradePrice: 0
   health: 100
   reloadSpeed: 1
   range: 100
   projectileSpeed: 1
+  projectileDespawnTime: 0.1
   damage: 10
   recentlyBuilt: 1
   timeToBuild: 1
