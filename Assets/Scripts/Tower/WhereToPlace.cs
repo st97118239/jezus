@@ -32,6 +32,7 @@ public class WhereToPlace : MonoBehaviour
                 {
                     tower.GetComponent<Tower>().enabled = true;
                     ChangeMaterialOfAllDescendants(tower.transform, tower.GetComponent<Tower>().defaultMaterial);
+                    tower.GetComponent<BoxCollider>().enabled = true;
 
                     tower = null;
                     cursorLocation = new Vector3(0, 0, 0);
