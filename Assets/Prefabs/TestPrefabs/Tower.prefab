@@ -127,7 +127,7 @@ MonoBehaviour:
   upgradePrice: 0
   health: 100
   reloadSpeed: 2
-  range: 50
+  range: 10
   projectileSpeed: 10
   projectileDespawnTime: 0.1
   damage: 50

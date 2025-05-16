@@ -42,6 +42,13 @@ public class WhereToPlace : MonoBehaviour
                     needsToFindLocation = false;
                 }
             }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(tower);
+                tower = null;
+                cursorLocation = new Vector3(0, 0, 0);
+                needsToFindLocation = false;
+            }
         }
     }
 
