@@ -15,7 +15,10 @@ public class WhereToPlace : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                cursorLocation = hit.point;
+                if (hit.collider.gameObject.CompareTag("Ground"))
+                {
+                    cursorLocation = hit.point;
+                }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -24,5 +27,11 @@ public class WhereToPlace : MonoBehaviour
                 needsToFindLocation = false;
             }
         }
+    }
+
+    public void StartSearch()
+    {
+        cursorLocation = new Vector3(0, 0, 0);
+        needsToFindLocation = true;
     }
 }

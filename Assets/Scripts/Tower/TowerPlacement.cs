@@ -1,9 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerPlacement : MonoBehaviour
 {
     [SerializeField] private Tower[] towers;
+    [SerializeField] private Button[] buttons;
 
     private Main main;
     private Tower towerToPlace;
@@ -11,25 +13,21 @@ public class TowerPlacement : MonoBehaviour
     private void Start()
     {
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+
+        for (int i = 0; i < towers.Length; i++)
+        {
+            int index = i;
+            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[index]));
+        }
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //    CheckIfCanBuyTower(tower1);
-        //else if (Input.GetKeyDown(KeyCode.Alpha2))
-        //    CheckIfCanBuyTower(tower2);
-        //else if (Input.GetKeyDown(KeyCode.Alpha3))
-        //    CheckIfCanBuyTower(tower3);
-        //else if (Input.GetKeyDown(KeyCode.Alpha4))
-        //    CheckIfCanBuyTower(tower4);
-
         for (var idx = 0; idx < towers.Length; idx++)
         {
             if (Input.GetKeyDown((KeyCode)(KeyCode.Alpha1 + idx)))
             {
-                towerToPlace = towers[idx];
-                CheckIfCanBuyTower(towerToPlace);
+                CheckIfCanBuyTower(towers[idx]);
                 break;
             }
         }
@@ -37,6 +35,8 @@ public class TowerPlacement : MonoBehaviour
 
     private void CheckIfCanBuyTower(Tower towerToBuy)
     {
+        towerToPlace = towerToBuy;
+
         if (main.coinsAmount >= towerToPlace.price)
             FindPlaceLocation();
         else
@@ -45,7 +45,7 @@ public class TowerPlacement : MonoBehaviour
 
     private void FindPlaceLocation()
     {
-        GetComponent<WhereToPlace>().needsToFindLocation = true;
+        GetComponent<WhereToPlace>().StartSearch();
     }
 
     public void PlaceTower(Vector3 whereToPlace)
