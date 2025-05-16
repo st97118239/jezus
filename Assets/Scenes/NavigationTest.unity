@@ -1272,6 +1272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2101461527309712411, guid: 21f485e4d21937a47975efc321d95dee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3637511385812148781, guid: 21f485e4d21937a47975efc321d95dee,
         type: 3}
       propertyPath: m_Enabled
@@ -4432,7 +4437,7 @@ MonoBehaviour:
   - {fileID: 1417930695}
   - {fileID: 1961809056}
   - {fileID: 1212455246}
-  pawn: {fileID: 3677092718262609189, guid: 724d65c20ba660145b3f8939d31d71d8, type: 3}
+  pawn: {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
   spawnTimerBase: 1
   canSpawn: 1
   spawnPos: {x: 0, y: 0.75, z: -5.5}
@@ -4737,6 +4742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101461527309712411, guid: 21f485e4d21937a47975efc321d95dee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3637511385812148781, guid: 21f485e4d21937a47975efc321d95dee,
         type: 3}
