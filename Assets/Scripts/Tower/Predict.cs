@@ -63,7 +63,7 @@ public class Predict : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         float projectileSpeed = GetComponent<Tower>().projectileSpeed;
-        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage);
+        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage, GetComponent<Tower>().projectileDespawnTime);
 
         projectile.SetActive(true);
     }
