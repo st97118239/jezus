@@ -31,7 +31,8 @@ public class WhereToPlace : MonoBehaviour
                 if (IsFurtherThanTwoMetersFromPath())
                 {
                     tower.GetComponent<Tower>().enabled = true;
-                    ChangeMaterialOfAllDescendants(tower.transform, tower.GetComponent<Tower>().defaultMaterial);
+                    tower.GetComponent<Renderer>().material = tower.GetComponent<Tower>().defaultMaterial;
+                    ChangeMaterialOfAllDescendants(tower.transform, true);
                     tower.GetComponent<BoxCollider>().enabled = true;
                     tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
 
@@ -46,8 +47,11 @@ public class WhereToPlace : MonoBehaviour
 
     public void StartSearch(GameObject towerToPlace)
     {
+        Destroy(tower);
+
         tower = towerToPlace;
-        ChangeMaterialOfAllDescendants(tower.transform, tower.GetComponent<Tower>().transparentMaterial);
+        tower.GetComponent<Renderer>().material = tower.GetComponent<Tower>().transparentMaterial;
+        ChangeMaterialOfAllDescendants(tower.transform, false);
 
         cursorLocation = new Vector3(0, 0, 0);
         needsToFindLocation = true;
@@ -100,19 +104,19 @@ public class WhereToPlace : MonoBehaviour
         return true;
     }
 
-    public static void ChangeMaterialOfAllDescendants(Transform parentTransform, Material newMaterial)
+    public static void ChangeMaterialOfAllDescendants(Transform tf, bool toggle)
     {
         // Change the material of the current object
-        Renderer renderer = parentTransform.GetComponent<Renderer>();
-        if (renderer != null)
+        MeshRenderer mr = tf.GetComponent<MeshRenderer>();
+        if (mr != null && !tf.GetComponent<Tower>())
         {
-            renderer.material = newMaterial; // Set the new material
+            mr.enabled = toggle;
         }
 
         // Recursively change material for all children
-        foreach (Transform child in parentTransform)
+        foreach (Transform child in tf)
         {
-            ChangeMaterialOfAllDescendants(child, newMaterial); // Recurse into each child
+            ChangeMaterialOfAllDescendants(child, toggle); // Recurse into each child
         }
     }
 }
