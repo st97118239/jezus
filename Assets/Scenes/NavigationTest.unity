@@ -268,6 +268,12 @@ MonoBehaviour:
   - {fileID: 3659962739621025268, guid: 98c4d951b9621f2418c3a920836d6899, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  buttons:
+  - {fileID: 376498945}
+  - {fileID: 470797486}
+  - {fileID: 216057725}
+  - {fileID: 952184923}
+  towerDefaultSpawn: {x: 0, y: 0, z: 0}
 --- !u!4 &81872062
 Transform:
   m_ObjectHideFlags: 0
@@ -296,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsToFindLocation: 0
+  distanceThreshold: 1
 --- !u!1 &90930355
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class TowerPlacement : MonoBehaviour
 {
     [SerializeField] private Tower[] towers;
     [SerializeField] private Button[] buttons;
+    [SerializeField] private Vector3 towerDefaultSpawn;
 
     private Main main;
     private Tower towerToPlace;
@@ -45,12 +46,12 @@ public class TowerPlacement : MonoBehaviour
 
     private void FindPlaceLocation()
     {
-        GetComponent<WhereToPlace>().StartSearch();
+        GameObject newTower = Instantiate(towerToPlace.gameObject, towerDefaultSpawn, Quaternion.identity);
+        GetComponent<WhereToPlace>().StartSearch(newTower);
     }
 
     public void PlaceTower(Vector3 whereToPlace)
     {
-        GameObject newTower = Instantiate(towerToPlace.gameObject, whereToPlace, Quaternion.identity);
         BuyTower();
     }
 

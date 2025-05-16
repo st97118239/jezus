@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public Material defaultMaterial;
+    public Material transparentMaterial;
     public int price;
     public int upgradePrice;
     public float health;
