@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
-    //[SerializeField] private GameObject[] towers = new GameObject[] { tower1, tower2, tower3, tower4 };
-
-    [SerializeField] private Tower tower1;
-    [SerializeField] private Tower tower2;
-    [SerializeField] private Tower tower3;
-    [SerializeField] private Tower tower4;
+    [SerializeField] private Tower[] towers;
 
     private Main main;
     private Tower towerToPlace;
@@ -20,20 +15,28 @@ public class TowerPlacement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            CheckIfCanBuyTower(tower1);
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            CheckIfCanBuyTower(tower2);
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            CheckIfCanBuyTower(tower3);
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-            CheckIfCanBuyTower(tower4);
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    CheckIfCanBuyTower(tower1);
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    CheckIfCanBuyTower(tower2);
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    CheckIfCanBuyTower(tower3);
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    CheckIfCanBuyTower(tower4);
+
+        for (var idx = 0; idx < towers.Length; idx++)
+        {
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Alpha1 + idx)))
+            {
+                towerToPlace = towers[idx];
+                CheckIfCanBuyTower(towerToPlace);
+                break;
+            }
+        }
     }
 
     private void CheckIfCanBuyTower(Tower towerToBuy)
     {
-        towerToPlace = towerToBuy;
-
         if (main.coinsAmount >= towerToPlace.price)
             FindPlaceLocation();
         else
