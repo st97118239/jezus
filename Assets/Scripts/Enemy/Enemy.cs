@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public int coins;
     public float health;
+    public float tempHealth;
 
     [SerializeField] private EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
     [SerializeField] private int damage;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
         GetComponent<NavMeshAgent>().speed = speed;
+        tempHealth = health;
     }
 
     public void GotHit(float damage)

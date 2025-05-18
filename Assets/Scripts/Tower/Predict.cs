@@ -8,11 +8,16 @@ public class Predict : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 predictedPosition = PredictEnemyPosition(target);
+            if (target.GetComponent<Enemy>().tempHealth > 0)
+            {
+                target.GetComponent<Enemy>().tempHealth -= damage;
 
-            Vector3 direction = (predictedPosition - transform.position).normalized;
+                Vector3 predictedPosition = PredictEnemyPosition(target);
 
-            FireProjectile(direction, predictedPosition, damage);
+                Vector3 direction = (predictedPosition - transform.position).normalized;
+
+                FireProjectile(direction, predictedPosition, damage);
+            }
         }
     }
 
@@ -63,7 +68,7 @@ public class Predict : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         float projectileSpeed = GetComponent<Tower>().projectileSpeed;
-        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage, GetComponent<Tower>().projectileDespawnTime);
+        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage, GetComponent<Tower>().projectileDespawnTime, GetComponent<Tower>().shooter);
 
         projectile.SetActive(true);
     }
