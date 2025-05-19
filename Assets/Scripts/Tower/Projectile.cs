@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private Shooter shooter;
     private Vector3 target;
     private float speed;
     private float damage;
     private float despawnTimer;
     private bool canMove;
 
-    public void Move(Vector3 predictedPosition, float givenSpeed, float givenDamage, float despawnTimerAmount)
+    public void Move(Vector3 predictedPosition, float givenSpeed, float givenDamage, float despawnTimerAmount, Shooter attacker)
     {
         target = predictedPosition;
         transform.LookAt(target);
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
         canMove = true;
         damage = givenDamage;
         despawnTimer = despawnTimerAmount;
+        shooter = attacker;
     }
 
     private void Update()
@@ -43,6 +45,8 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<Enemy>().GotHit(damage);
         }
+        else
+            shooter.Missed();
 
         Destroy(gameObject);
     }

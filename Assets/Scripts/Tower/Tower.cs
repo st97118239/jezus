@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public Shooter shooter;
     public Material defaultMaterial;
     public Material transparentMaterial;
     public int price;
@@ -22,6 +23,7 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         rangeObject = transform.Find("Range").gameObject;
+        shooter = transform.Find("Shooter").GetComponent<Shooter>();
         buildTimer = timeToBuild;
     }
 

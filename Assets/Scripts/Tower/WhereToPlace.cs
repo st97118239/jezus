@@ -6,8 +6,14 @@ public class WhereToPlace : MonoBehaviour
 
     [SerializeField] private float distanceThreshold = 1f;
 
-    private Vector3 cursorLocation;
+    private TransparencyScript transparentScript;
     private GameObject tower;
+    private Vector3 cursorLocation;
+
+    private void Start()
+    {
+        transparentScript = GetComponent<TransparencyScript>();
+    }
 
     void Update()
     {
@@ -31,7 +37,7 @@ public class WhereToPlace : MonoBehaviour
                 if (IsFurtherThanTwoMetersFromPath())
                 {
                     tower.GetComponent<Tower>().enabled = true;
-                    tower.GetComponent<Renderer>().material = tower.GetComponent<Tower>().defaultMaterial;
+                    transparentScript.NewObject(tower, 1f);
                     ChangeMaterialOfAllDescendants(tower.transform, true);
                     tower.GetComponent<BoxCollider>().enabled = true;
                     tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
@@ -57,7 +63,7 @@ public class WhereToPlace : MonoBehaviour
         Destroy(tower);
 
         tower = towerToPlace;
-        tower.GetComponent<Renderer>().material = tower.GetComponent<Tower>().transparentMaterial;
+        transparentScript.NewObject(tower, 0.5f);
         ChangeMaterialOfAllDescendants(tower.transform, false);
 
         cursorLocation = new Vector3(0, 0, 0);

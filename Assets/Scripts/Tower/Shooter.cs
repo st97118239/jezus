@@ -10,7 +10,7 @@ public class Shooter : MonoBehaviour
 
     private EnemySpawner es;
     private Tower tower;
-    private GameObject currentTarget;
+    [SerializeField] private GameObject currentTarget;
     private float reloadSpeed;
     private float reloadTimer;
     private float range;
@@ -100,5 +100,10 @@ public class Shooter : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    public void Missed()
+    {
+        currentTarget.GetComponent<Enemy>().tempHealth += tower.damage;
     }
 }
