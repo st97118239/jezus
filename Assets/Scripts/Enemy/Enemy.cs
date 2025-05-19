@@ -68,5 +68,6 @@ public class Enemy : MonoBehaviour
     {
         gotShotAt = true;
         projectileThatShot = projectile;
+        projectileDamage = damage;
     }
 }
