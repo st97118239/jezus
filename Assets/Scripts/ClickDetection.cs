@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ClickDetection : MonoBehaviour
 {
-    private Vector3 clickPosition;
     public GameObject selectedObject;
 
     void Update()
@@ -21,8 +20,6 @@ public class ClickDetection : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            clickPosition = hit.point;
-
             if (selectedObject != null && selectedObject.GetComponent<Tower>())
             {
                 selectedObject.GetComponent<Tower>().Deselect();
