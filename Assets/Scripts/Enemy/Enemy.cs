@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public float health;
     public float tempHealth;
 
-    [SerializeField] private EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
+    public EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
+    public int startingWave = 1;
     [SerializeField] private int damage;
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
     {
         if (gotShotAt && projectileThatShot == null)
         {
-            health -= projectileDamage;
+            GotHit(projectileDamage);
             Debug.Log("projectile is gone, removed " + projectileDamage + " from health. Health is now " + health);
         }
     }
