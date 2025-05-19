@@ -57,7 +57,6 @@ public class EnemySpawner : MonoBehaviour
                 if (activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
                 {
                     nextWave = true;
-                    //waveText.text = "Wave " + (currentWave + 1).ToString();
                 }
                 else if (enemiesToSpawn.Count > 0)
                 {
@@ -69,10 +68,9 @@ public class EnemySpawner : MonoBehaviour
                     GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos,
                         Quaternion.Euler(spawnRotation));
 
-                    // Stel health, damage en speed in!
                     Enemy newEnemy = newObject.GetComponent<Enemy>();
                     newEnemy.health = (int)enemyToSpawn.health;
-                    newEnemy.damage = (int)enemyToSpawn.damage;
+                    newEnemy.damage = enemyToSpawn.damage;
 
                     activeEnemies.Add(newObject);
                     newObject.SetActive(true);
