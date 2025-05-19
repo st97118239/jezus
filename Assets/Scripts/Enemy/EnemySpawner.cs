@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -108,13 +108,16 @@ public class EnemySpawner : MonoBehaviour
 
             int enemyUsedInWavesCount = enemiesUsedInWavesAmount[index];
 
-            int amountOfEnemyType = (int)Mathf.Floor(enemyType.enemyAmount + enemyType.amountFactor * enemyUsedInWavesCount);
+            int amountOfEnemyType = (int)Math.Floor(enemyType.enemyAmount + enemyType.amountFactor * enemyUsedInWavesCount);
+            int health = (int)Math.Floor(enemyType.health + enemyType.healthFactor * enemyUsedInWavesCount);
+            int damage = (int)Math.Floor(enemyType.damage + enemyType.damageFactor * enemyUsedInWavesCount);
+
             enemiesUsedInWavesAmount[index]++;
-            Debug.Log(amountOfEnemyType + " " + enemyType + " spawned with " + enemyType.health + " HP and " + enemyType.damage + " damage.");
+            Debug.Log(amountOfEnemyType + " " + enemyType + " spawned with " + health + " HP and " + damage + " damage.");
 
             for (int i = 0; i < amountOfEnemyType; i++)
             {
-                enemiesToSpawn.Enqueue(new EnemyToSpawn(enemyType.enemyType, enemyType.health, enemyType.damage));
+                enemiesToSpawn.Enqueue(new EnemyToSpawn(enemyType.enemyType, health, damage));
             }
 
             index++;

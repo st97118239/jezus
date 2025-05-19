@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     public int startingWave = 1;
     public int waveModulo = 1;
     public int enemyAmount = 1;
-    public float amountFactor = 1;
     public int coins;
     public int damage;
+    public float amountFactor = 1;
+    public float healthFactor = 1;
+    public float damageFactor = 1;
     public float health;
     public float tempHealth;
 
