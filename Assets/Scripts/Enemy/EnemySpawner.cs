@@ -78,11 +78,6 @@ public class EnemySpawner : MonoBehaviour
 
 
                 spawnTimer = spawnTimerBase;
-
-                //GameObject newObject = Instantiate(pawn, spawnPos, Quaternion.identity);
-                //activeEnemies.Add(newObject);
-
-                //newObject.SetActive(true);
             }
             else
                 spawnTimer -= Time.deltaTime;
@@ -115,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
 
             int amountOfEnemyType = (int)Mathf.Floor(enemyType.enemyAmount + enemyType.amountFactor * enemyUsedInWavesCount);
             enemiesUsedInWavesAmount[index]++;
-            Debug.Log("amount of " + enemyType + ": " + amountOfEnemyType);
+            Debug.Log(amountOfEnemyType + " " + enemyType + " spawned with " + enemyType.health + " HP and " + enemyType.damage + " damage.");
 
             for (int i = 0; i < amountOfEnemyType; i++)
             {

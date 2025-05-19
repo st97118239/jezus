@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         if (gotShotAt && projectileThatShot == null)
         {
             GotHit(projectileDamage);
-            Debug.Log("projectile is gone, removed " + projectileDamage + " from health. Health is now " + health);
+            Debug.Log("The projectile that was aiming for " + enemyType + " is gone, removed " + projectileDamage + " from health. Health is now " + health);
         }
     }
 

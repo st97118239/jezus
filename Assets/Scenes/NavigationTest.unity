@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towers:
-  - {fileID: 4497950216515135233, guid: 21f485e4d21937a47975efc321d95dee, type: 3}
+  - {fileID: 8360802504999729515, guid: ef6b857efff359f439dff7a236650806, type: 3}
   - {fileID: 3659962739621025268, guid: 98c4d951b9621f2418c3a920836d6899, type: 3}
   - {fileID: 0}
   - {fileID: 0}
