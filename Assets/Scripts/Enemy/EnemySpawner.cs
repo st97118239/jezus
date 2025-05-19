@@ -6,24 +6,23 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> activeEnemies = new();
-    public Queue<EnemyToSpawn> enemiesToSpawn = new();
-    public List<GameObject> toSpawn;
-    public List<GameObject> enemyList;
     public List<int> enemiesUsedInWavesAmount;
+    public List<GameObject> toSpawn;
     public List<Transform> waypoints;
-    public GameObject pawn;
-    public int currentWave = 0;
-    public float spawnTimerBase = 1;
-    public float nextWaveTimer;
-    public float nextWaveTimerBase = 10;
     public bool canSpawn = true;
-    public bool nextWave;
 
+    [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Vector3 spawnPos;
     [SerializeField] private Vector3 spawnRotation;
+    [SerializeField] private int currentWave = 0;
+    [SerializeField] private float spawnTimerBase = 1;
+    [SerializeField] private float nextWaveTimerBase = 10;
 
+    private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Main main;
+    private float nextWaveTimer;
     private float spawnTimer = 1;
+    private bool nextWave;
 
     private void Start()
     {
@@ -37,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             enemiesUsedInWavesAmount.Add(0);
         }
 
-        GenerateWave(++currentWave);
+        nextWave = true;
     }
 
     private void Update()
@@ -45,15 +44,9 @@ public class EnemySpawner : MonoBehaviour
         if (nextWave)
         {
             if (nextWaveTimer <= 0)
-            {
                 GenerateWave(++currentWave);
-                nextWaveTimer = nextWaveTimerBase;
-                nextWave = false;
-            }
             else
-            {
                 nextWaveTimer -= Time.deltaTime;
-            }
         }
 
 
@@ -133,5 +126,9 @@ public class EnemySpawner : MonoBehaviour
 
             index++;
         }
+
+        nextWaveTimer = nextWaveTimerBase;
+        nextWave = false;
+        main.RedrawWaveText(wave);
     }
 }

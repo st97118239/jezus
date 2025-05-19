@@ -4,16 +4,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int coins;
-    public float health;
-    public float tempHealth;
-
     public EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
     public int startingWave = 1;
     public int waveModulo = 1;
     public int enemyAmount = 1;
     public float amountFactor = 1;
+    public int coins;
     public int damage;
+    public float health;
+    public float tempHealth;
+
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     public void GotHit(float damage)
     {
-        health = health - damage;
+        health -= damage;
 
         if (health <= 0)
         {

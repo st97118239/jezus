@@ -6,11 +6,11 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] private List<GameObject> shootableEnemies = new();
+    [SerializeField] private GameObject currentTarget;
     [SerializeField] private float rotationSpeed;
 
     private EnemySpawner es;
     private Tower tower;
-    [SerializeField] private GameObject currentTarget;
     private float reloadSpeed;
     private float reloadTimer;
     private float range;
