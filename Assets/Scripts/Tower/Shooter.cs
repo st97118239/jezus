@@ -61,7 +61,7 @@ public class Shooter : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 
-        foreach (GameObject enemy in es.activePawns)
+        foreach (GameObject enemy in es.activeEnemies)
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {

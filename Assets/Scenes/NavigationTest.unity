@@ -7716,7 +7716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c314f74ee167a4b98828d92c4e508e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePawns: []
+  activeEnemies: []
+  toSpawn: []
+  enemyList:
+  - {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
+  enemiesUsedInWavesAmount: 
   waypoints:
   - {fileID: 725477608}
   - {fileID: 1417930695}
@@ -7732,9 +7736,14 @@ MonoBehaviour:
   - {fileID: 1506537128}
   - {fileID: 604119543}
   pawn: {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
+  currentWave: 0
   spawnTimerBase: 1
+  nextWaveTimer: 0
+  nextWaveTimerBase: 1
   canSpawn: 1
+  nextWave: 0
   spawnPos: {x: 0, y: 0.75, z: -5.5}
+  spawnRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1959328729
 PrefabInstance:
   m_ObjectHideFlags: 0

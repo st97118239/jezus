@@ -10,7 +10,10 @@ public class Enemy : MonoBehaviour
 
     public EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
     public int startingWave = 1;
-    [SerializeField] private int damage;
+    public int waveModulo = 1;
+    public int enemyAmount = 1;
+    public float amountFactor = 1;
+    public int damage;
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
@@ -61,7 +64,7 @@ public class Enemy : MonoBehaviour
         else
             main.ReceiveDmg(damage);
 
-        es.activePawns.Remove(gameObject);
+        es.activeEnemies.Remove(gameObject);
         Destroy(gameObject);
     }
 

@@ -70,7 +70,7 @@ public class Main : MonoBehaviour
         isDead = true;
         gameoverPanel.SetActive(true);
         es.canSpawn = false;
-        foreach (GameObject pawn in es.activePawns)
+        foreach (GameObject pawn in es.activeEnemies)
         {
             pawn.GetComponent<EnemyNavigation>().canMove = false;
             pawn.GetComponent<NavMeshAgent>().enabled = false;
