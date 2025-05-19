@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private bool gotShotAt;
     [SerializeField] private GameObject projectileThatShot;
+    [SerializeField] private float projectileDamage;
 
     private EnemySpawner es;
     private Main main;
@@ -25,6 +26,15 @@ public class Enemy : MonoBehaviour
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
         GetComponent<NavMeshAgent>().speed = speed;
         tempHealth = health;
+    }
+
+    private void Update()
+    {
+        if (gotShotAt && projectileThatShot == null)
+        {
+            health -= projectileDamage;
+            Debug.Log("projectile is gone, removed " + projectileDamage + " from health. Health is now " + health);
+        }
     }
 
     public void GotHit(float damage)
@@ -54,7 +64,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TowerHasShot(GameObject projectile)
+    public void TowerHasShot(GameObject projectile, float damage)
     {
         gotShotAt = true;
         projectileThatShot = projectile;

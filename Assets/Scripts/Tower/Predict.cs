@@ -72,6 +72,6 @@ public class Predict : MonoBehaviour
 
         projectile.SetActive(true);
 
-        target.GetComponent<Enemy>().TowerHasShot(projectile);
+        target.GetComponent<Enemy>().TowerHasShot(projectile, damage);
     }
 }
