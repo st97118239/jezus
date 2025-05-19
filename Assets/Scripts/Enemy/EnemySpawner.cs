@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> activePawns = new();
+    public List<GameObject> toSpawn;
     public List<Transform> waypoints;
     public GameObject pawn;
+    public int currentWave = 0;
     public float spawnTimerBase = 1;
     public bool canSpawn = true;
+    public bool nextWave;
 
     [SerializeField] private Vector3 spawnPos;
 

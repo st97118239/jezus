@@ -16,7 +16,7 @@ public class Predict : MonoBehaviour
 
                 Vector3 direction = (predictedPosition - transform.position).normalized;
 
-                FireProjectile(direction, predictedPosition, damage);
+                FireProjectile(direction, predictedPosition, damage, target.gameObject);
             }
         }
     }
@@ -62,7 +62,7 @@ public class Predict : MonoBehaviour
         return enemyPos + enemyVel * interceptTime;
     }
 
-    void FireProjectile(Vector3 direction, Vector3 predictedPosition, float damage)
+    void FireProjectile(Vector3 direction, Vector3 predictedPosition, float damage, GameObject target)
     {
         Transform spawnLocation = transform.Find("Shooter").transform.Find("ProjSpawn").GetComponent<Transform>();
         GameObject projectile = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
@@ -71,5 +71,7 @@ public class Predict : MonoBehaviour
         projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage, GetComponent<Tower>().projectileDespawnTime, GetComponent<Tower>().shooter);
 
         projectile.SetActive(true);
+
+        target.GetComponent<Enemy>().TowerHasShot(projectile);
     }
 }

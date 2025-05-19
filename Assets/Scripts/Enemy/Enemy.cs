@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private bool gotShotAt;
+    [SerializeField] private GameObject projectileThatShot;
 
     private EnemySpawner es;
     private Main main;
@@ -28,11 +30,14 @@ public class Enemy : MonoBehaviour
     public void GotHit(float damage)
     {
         health = health - damage;
+
         if (health <= 0)
         {
             es.EnemyKilled(coins, gameObject);
             Destroy(gameObject);
         }
+
+        gotShotAt = false;
     }
 
     public void ReachedCastle()
@@ -47,5 +52,11 @@ public class Enemy : MonoBehaviour
 
         es.activePawns.Remove(gameObject);
         Destroy(gameObject);
+    }
+
+    public void TowerHasShot(GameObject projectile)
+    {
+        gotShotAt = true;
+        projectileThatShot = projectile;
     }
 }
