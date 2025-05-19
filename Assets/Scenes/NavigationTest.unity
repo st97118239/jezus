@@ -8512,7 +8512,7 @@ PrefabInstance:
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: shiftSpeedFactor
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6917775054583139923, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
