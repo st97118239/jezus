@@ -777,6 +777,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d1f787bb815674e9b5476c53fedce0, type: 3}
+--- !u!1001 &6429986868164419045
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 46.515408
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.30414253
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.319738
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965757541667798671, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773361663308932149, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_Name
+      value: ArcherCrossbow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e003b2ee85c649348b239d5ea0b761ef, type: 3}
 --- !u!1001 &6676155733235636827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -927,3 +995,4 @@ SceneRoots:
   - {fileID: 6676155733235636827}
   - {fileID: 2321130064078525459}
   - {fileID: 5472127633360789125}
+  - {fileID: 6429986868164419045}
