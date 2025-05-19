@@ -38,28 +38,24 @@ public class TransparencyScript : MonoBehaviour
         Material objMaterial = obj.GetComponent<Renderer>().material;
         
 
-        // Save BaseMap (Albedo)
         if (objMaterial.HasProperty("_BaseMap"))
         {
             Texture baseMapOG = objMaterial.GetTexture("_BaseMap");
             baseMap = baseMapOG as Texture2D;
         }
 
-        // Save NormalMap
         if (objMaterial.HasProperty("_BumpMap"))
         {
             Texture normalMapOG = objMaterial.GetTexture("_BumpMap");
             normalMap = normalMapOG as Texture2D;
         }
 
-        // Save MetallicMap
         if (objMaterial.HasProperty("_MetallicGlossMap"))
         {
             Texture metallicMapOG = objMaterial.GetTexture("_MetallicGlossMap");
             metallicMap = metallicMapOG as Texture2D;
         }
 
-        // Save EmissionMap
         if (objMaterial.HasProperty("_EmissionMap"))
         {
             Texture emissionMapOG = objMaterial.GetTexture("_EmissionMap");
