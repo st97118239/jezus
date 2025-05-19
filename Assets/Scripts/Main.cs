@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using Unity.VisualScripting;
-using TMPro.EditorUtilities;
 
 public class Main : MonoBehaviour
 {
@@ -14,6 +13,7 @@ public class Main : MonoBehaviour
 
     private TMP_Text healthText;
     private TMP_Text coinText;
+    private TMP_Text waveText;
     private GameObject gameoverPanel;
     private EnemySpawner es;
 
@@ -23,10 +23,12 @@ public class Main : MonoBehaviour
         gameoverPanel = transform.Find("GameOverPanel").gameObject;
         healthText = transform.Find("HPText").GetComponent<TMP_Text>();
         coinText = transform.Find("CoinText").GetComponent<TMP_Text>();
+        waveText = transform.Find("WaveText").GetComponent<TMP_Text>();
         coinsAmount = defaultCoinsAmount;
         RedrawCoinText();
         health = defaultHealth;
         RedrawHealthBar();
+        RedrawWaveText(0);
     }
 
     public void ReceiveDmg(int dmg)
@@ -62,6 +64,11 @@ public class Main : MonoBehaviour
     public void RedrawCoinText()
     {
         coinText.text = "" + coinsAmount.ToString();
+    }
+
+    public void RedrawWaveText(int wave)
+    {
+        waveText.text = "" + wave.ToString();
     }
 
     private void GameOver()
