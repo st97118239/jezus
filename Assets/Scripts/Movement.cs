@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float zoomTime;
     [SerializeField] private Vector3 lowestZoomPos;
     [SerializeField] private Vector3 highestZoomPos;
+    [SerializeField] private float shiftSpeedFactor = 2;
 
     private void Start()
     {
@@ -21,6 +22,18 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed *= shiftSpeedFactor;
+            zoomSpeed *= shiftSpeedFactor;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed /= shiftSpeedFactor;
+            zoomSpeed /= shiftSpeedFactor;
+        }
+
+
         moveDir.z = Input.GetAxis("Horizontal");
         moveDir.x = -Input.GetAxis("Vertical");
         transform.Translate(moveDir * Time.deltaTime * speed);
