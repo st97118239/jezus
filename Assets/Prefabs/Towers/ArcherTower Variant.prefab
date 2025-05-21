@@ -357,7 +357,7 @@ MonoBehaviour:
   projectileDespawnTime: 0.1
   damage: 50
   recentlyBuilt: 1
-  timeToBuild: 1
+  timeToBuild: 0.1
 --- !u!114 &5534954059781436812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,9 +370,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8809416e6008345bec07b471a3753c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade1: 0
-  upgrade2: 1
-  upgrade3: 2
+  upgrade: 010000000000000002000000
+  upgradeCount: 000000000000000000000000
+  upgradeMax: 030000000600000009000000
+  upgradeFactor:
+  - 1.1
+  - 1.05
+  - 1.075
+  upgradeBaseCost: 0e0000000c00000011000000
+  upgradeCostFactor:
+  - 1.2
+  - 1.4
+  - 1.3
+  upgradeCost: 000000000000000000000000
 --- !u!114 &5394186764435166062
 MonoBehaviour:
   m_ObjectHideFlags: 0

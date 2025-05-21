@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickDetection : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class ClickDetection : MonoBehaviour
 
     void DetectClick()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
@@ -25,7 +31,7 @@ public class ClickDetection : MonoBehaviour
                 selectedObject.GetComponent<Tower>().Deselect();
             }
 
-            if (hit.collider.gameObject.GetComponent<Tower>() && !hit.collider.gameObject.GetComponent<Tower>().recentlyBuilt)
+            if (hit.collider.gameObject.GetComponent<Tower>())
             {
                 if (hit.collider.gameObject.GetComponent<Tower>().enabled)
                 {

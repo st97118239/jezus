@@ -1,23 +1,36 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerUpgrades : MonoBehaviour
 {
-    public Upgrades upgrade1;
-    public int upgrade1Count;
-    public int upgrade1Max;
-    public float upgrade1Factor;
-    public int upgrade1BaseCost;
-    public float upgrade1CostFactor;
-    public Upgrades upgrade2;
-    public int upgrade2Count;
-    public int upgrade2Max;
-    public float upgrade2Factor;
-    public int upgrade2BaseCost;
-    public float upgrade2CostFactor;
-    public Upgrades upgrade3;
-    public int upgrade3Count;
-    public int upgrade3Max;
-    public float upgrade3Factor;
-    public int upgrade3BaseCost;
-    public float upgrade3CostFactor;
+    public List<Upgrades> upgrade; // ReloadSpeed, AttackDamage, Range, ProjectileSpeed
+    public List<int> upgradeCount;
+    public List<int> upgradeMax;
+    [SerializeField] private List<float> upgradeFactor;
+    [SerializeField] private List<int> upgradeBaseCost;
+    [SerializeField] private List<float> upgradeCostFactor;
+    public List<int> upgradeCost;
+
+    public void RecalculatePrice(int upgrade)
+    {
+        upgradeCost[upgrade] = (int)Math.Floor(upgradeBaseCost[upgrade] + upgradeCostFactor[upgrade] * upgradeCount[upgrade]);
+    }
+
+    public void GetStat(int upgradeStat, out float statToSend)
+    {
+        Upgrades upgradeToCheck = upgrade[upgradeStat - 1];
+
+        if ((int)upgradeToCheck == 0)
+            statToSend = GetComponent<Tower>().reloadSpeed;
+        else if ((int)upgradeToCheck == 1)
+            statToSend = GetComponent<Tower>().damage;
+        else if ((int)upgradeToCheck == 2)
+            statToSend = GetComponent<Tower>().range;
+        else if ((int)upgradeToCheck == 3)
+            statToSend = GetComponent<Tower>().projectileSpeed;
+        else
+            statToSend = 0f;
+
+    }
 }

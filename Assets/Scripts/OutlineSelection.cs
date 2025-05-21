@@ -38,6 +38,11 @@ public class OutlineSelection : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (highlight)
             {
                 if (selection != null)

@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -45,8 +46,11 @@ public class Tower : MonoBehaviour
 
     public void Select()
     {
-        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-        rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        if (!recentlyBuilt)
+        {
+            rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        }
         main.tus.NewTowerSelected(this);
     }
 
