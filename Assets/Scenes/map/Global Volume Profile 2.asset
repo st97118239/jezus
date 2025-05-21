@@ -103,10 +103,10 @@ MonoBehaviour:
     m_Value: 512
   baseHeight:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 23.2
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 5643.7
+    m_Value: 65.2
   enableGround:
     m_OverrideState: 0
     m_Value: 1
@@ -115,22 +115,22 @@ MonoBehaviour:
     m_Value: 0
   density:
     m_OverrideState: 1
-    m_Value: 0.154
+    m_Value: 0.261
   attenuationDistance:
     m_OverrideState: 1
-    m_Value: 142.72
+    m_Value: 42.9
   enableMainLightContribution:
     m_OverrideState: 1
     m_Value: 1
   anisotropy:
     m_OverrideState: 1
-    m_Value: 0.21
+    m_Value: 0.09
   scattering:
     m_OverrideState: 1
-    m_Value: 0.111
+    m_Value: 0.445
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.8113208, g: 0.52896935, b: 0.2946778, a: 1}
+    m_Value: {r: 0.3207547, g: 0.26398718, b: 0.21938412, a: 1}
   enableAdditionalLightsContribution:
     m_OverrideState: 1
     m_Value: 1
