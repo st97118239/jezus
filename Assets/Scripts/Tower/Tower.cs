@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -17,11 +18,13 @@ public class Tower : MonoBehaviour
 
     [SerializeField] private float timeToBuild = 1;
 
+    private Main main;
     private GameObject rangeObject;
     private float buildTimer;
 
     private void Start()
     {
+        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
         rangeObject = transform.Find("Range").gameObject;
         shooter = transform.Find("Shooter").GetComponent<Shooter>();
         buildTimer = timeToBuild;
@@ -44,11 +47,13 @@ public class Tower : MonoBehaviour
     {
         rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
         rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        main.tus.NewTowerSelected(this);
     }
 
     public void Deselect()
     {
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
+        main.tus.TowerDeselected();
     }
 }

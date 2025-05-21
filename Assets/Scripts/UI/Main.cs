@@ -1,37 +1,34 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.AI;
 using Unity.VisualScripting;
 
 public class Main : MonoBehaviour
 {
+    public InfoPanel ip;
+    public TowerUpgradeSystem tus;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
     public bool isDead = false;
 
-    private GameObject upgradePanel;
-    private TMP_Text healthText;
-    private TMP_Text coinText;
-    private TMP_Text waveText;
-    private GameObject gameoverPanel;
     private EnemySpawner es;
+    private GameObject gameoverPanel;
 
     private void Start()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
-        upgradePanel = transform.Find("UpgradePanel").gameObject;
+        tus = FindObjectOfType(typeof(TowerUpgradeSystem)).GetComponent<TowerUpgradeSystem>();
+        GameObject upgradePanel = transform.Find("UpgradePanel").gameObject;
         upgradePanel.SetActive(false);
+        tus.FindUpgradePanel(upgradePanel);
+        ip = transform.Find("InfoPanel").GetComponent<InfoPanel>();
         gameoverPanel = transform.Find("GameOverPanel").gameObject;
-        healthText = transform.Find("HPText").GetComponent<TMP_Text>();
-        coinText = transform.Find("CoinText").GetComponent<TMP_Text>();
-        waveText = transform.Find("WaveText").GetComponent<TMP_Text>();
         coinsAmount = defaultCoinsAmount;
-        RedrawCoinText();
+        ip.RedrawCoinText(coinsAmount);
         health = defaultHealth;
-        RedrawHealthBar();
-        RedrawWaveText(0);
+        ip.RedrawHealthBar(health);
+        ip.RedrawWaveText(0, 0, 0);
     }
 
     public void ReceiveDmg(int dmg)
@@ -44,7 +41,7 @@ public class Main : MonoBehaviour
             GameOver();
         }
 
-        RedrawHealthBar();
+        ip.RedrawHealthBar(health);
     }
 
     public void ChangeCoinAmount(int coinsToReceive)
@@ -56,23 +53,10 @@ public class Main : MonoBehaviour
             coinsAmount = 0;
         }
 
-        RedrawCoinText();
+        ip.RedrawCoinText(coinsAmount);
     }
 
-    public void RedrawHealthBar()
-    {
-        healthText.text = "" + health.ToString();
-    }
-
-    public void RedrawCoinText()
-    {
-        coinText.text = "" + coinsAmount.ToString();
-    }
-
-    public void RedrawWaveText(int wave)
-    {
-        waveText.text = "" + wave.ToString();
-    }
+    
 
     private void GameOver()
     {

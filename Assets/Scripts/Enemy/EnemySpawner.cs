@@ -74,6 +74,8 @@ public class EnemySpawner : MonoBehaviour
 
                     activeEnemies.Add(newObject);
                     newObject.SetActive(true);
+
+                    main.ip.RedrawWaveText(currentWave, activeEnemies.Count, enemiesToSpawn.Count);
                 }
 
 
@@ -88,6 +90,7 @@ public class EnemySpawner : MonoBehaviour
     {
         main.ChangeCoinAmount(coinsToReceive);
         activeEnemies.Remove(enemyToRemove);
+        main.ip.RedrawWaveText(currentWave, activeEnemies.Count, enemiesToSpawn.Count);
     }
 
     public void GenerateWave(int wave)
@@ -125,6 +128,6 @@ public class EnemySpawner : MonoBehaviour
 
         nextWaveTimer = nextWaveTimerBase;
         nextWave = false;
-        main.RedrawWaveText(wave);
+        main.ip.RedrawWaveText(wave, activeEnemies.Count, enemiesToSpawn.Count);
     }
 }
