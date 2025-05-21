@@ -11,6 +11,7 @@ public class Main : MonoBehaviour
     public int defaultHealth = 100;
     public bool isDead = false;
 
+    private GameObject upgradePanel;
     private TMP_Text healthText;
     private TMP_Text coinText;
     private TMP_Text waveText;
@@ -20,6 +21,8 @@ public class Main : MonoBehaviour
     private void Start()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        upgradePanel = transform.Find("UpgradePanel").gameObject;
+        upgradePanel.SetActive(false);
         gameoverPanel = transform.Find("GameOverPanel").gameObject;
         healthText = transform.Find("HPText").GetComponent<TMP_Text>();
         coinText = transform.Find("CoinText").GetComponent<TMP_Text>();
