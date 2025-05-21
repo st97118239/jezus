@@ -194,7 +194,7 @@ MonoBehaviour:
   startingWave: 1
   waveModulo: 1
   enemyAmount: 20
-  coins: 1
+  coins: 2
   damage: 0
   amountFactor: 10
   healthFactor: 3
