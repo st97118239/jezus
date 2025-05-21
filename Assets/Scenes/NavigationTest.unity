@@ -6419,7 +6419,7 @@ GameObject:
   - component: {fileID: 1063454020}
   - component: {fileID: 1063454019}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: UpgradeButtonText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7441,7 +7441,7 @@ GameObject:
   - component: {fileID: 1421768310}
   - component: {fileID: 1421768309}
   m_Layer: 5
-  m_Name: UpgradeText2
+  m_Name: UpgradeTextName2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7974,7 +7974,7 @@ GameObject:
   - component: {fileID: 1547507077}
   - component: {fileID: 1547507076}
   m_Layer: 5
-  m_Name: UpgradeText3
+  m_Name: UpgradeTextName3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8385,7 +8385,7 @@ GameObject:
   - component: {fileID: 1725043723}
   - component: {fileID: 1725043722}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: UpgradeButtonText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10214,7 +10214,7 @@ GameObject:
   - component: {fileID: 2022458628}
   - component: {fileID: 2022458627}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: UpgradeButtonText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10432,7 +10432,7 @@ GameObject:
   - component: {fileID: 2068504824}
   - component: {fileID: 2068504823}
   m_Layer: 5
-  m_Name: UpgradeText1
+  m_Name: UpgradeTextName1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
