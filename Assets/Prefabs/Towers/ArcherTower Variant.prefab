@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   shooter: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: d4486ed9cf8dd314c8f5ed03e87aaaed, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrade: 010000000000000002000000
   upgradeCount: 000000000000000000000000
-  upgradeMax: 030000000600000009000000
+  upgradeMax: 0a0000000a0000000a000000
   upgradeFactor:
   - 1.1
   - 1.05

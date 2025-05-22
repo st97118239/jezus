@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public TowerTypes type;
     public Shooter shooter;
     public Material defaultMaterial;
     public Material transparentMaterial;

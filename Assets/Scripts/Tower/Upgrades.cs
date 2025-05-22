@@ -5,3 +5,4 @@ public enum Upgrades
     Range,
     ProjectileSpeed
 }
+
