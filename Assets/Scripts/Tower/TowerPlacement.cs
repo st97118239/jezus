@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,16 @@ public class TowerPlacement : MonoBehaviour
         {
             int index = i;
             buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[index]));
+        }
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            Button buttonToUse = buttons[i];
+            TMP_Text buttonText = buttonToUse.transform.Find("Text").GetComponent<TMP_Text>();
+            if (towers[i] != null)
+                buttonText.text = towers[i].type.ToReadableString() + "\n$" + towers[i].price;
+            else
+                Destroy(buttonToUse.gameObject);
         }
     }
 
@@ -53,7 +64,7 @@ public class TowerPlacement : MonoBehaviour
         GetComponent<WhereToPlace>().StartSearch(newTower);
     }
 
-    public void PlaceTower(Vector3 whereToPlace)
+    public void PlaceTower()
     {
         BuyTower();
     }

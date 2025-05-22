@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 2051730654832576476}
   - component: {fileID: 4045662048845619535}
   - component: {fileID: 3659962739621025268}
+  - component: {fileID: -4426283129554708358}
   - component: {fileID: 178582652915330967}
   m_Layer: 0
   m_Name: Autism Cube 1
@@ -360,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186843a1a6036064b9e9782c64d02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 4
   shooter: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: a346b5fcd74c28844849f1630445f2f1, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
@@ -367,12 +369,37 @@ MonoBehaviour:
   upgradePrice: 0
   health: 100
   reloadSpeed: 1
-  range: 100
+  range: 25
   projectileSpeed: 100
   projectileDespawnTime: 0.1
-  damage: 100
+  damage: 70
   recentlyBuilt: 1
   timeToBuild: 1
+--- !u!114 &-4426283129554708358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4600889023511833561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8809416e6008345bec07b471a3753c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade: 010000000200000000000000
+  upgradeCount: 000000000000000000000000
+  upgradeMax: 640000006400000064000000
+  upgradeFactor:
+  - 2
+  - 2
+  - 2
+  upgradeBaseCost: 050000000500000005000000
+  upgradeCostFactor:
+  - 1.1
+  - 1.1
+  - 1.1
+  upgradeCost: 000000000000000000000000
 --- !u!114 &178582652915330967
 MonoBehaviour:
   m_ObjectHideFlags: 0

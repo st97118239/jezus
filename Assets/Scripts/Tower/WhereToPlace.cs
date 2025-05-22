@@ -21,9 +21,7 @@ public class WhereToPlace : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
@@ -44,7 +42,7 @@ public class WhereToPlace : MonoBehaviour
 
                     tower = null;
                     cursorLocation = new Vector3(0, 0, 0);
-                    GetComponent<TowerPlacement>().PlaceTower(cursorLocation);
+                    GetComponent<TowerPlacement>().PlaceTower();
                     needsToFindLocation = false;
                 }
             }
@@ -76,8 +74,7 @@ public class WhereToPlace : MonoBehaviour
 
         foreach (GameObject path in pathObjects)
         {
-            Collider pathCollider = path.GetComponent<Collider>();
-            if (pathCollider != null)
+            if (path.TryGetComponent<Collider>(out var pathCollider))
             {
                 Vector3 closestPoint = pathCollider.ClosestPoint(tower.transform.position);
 

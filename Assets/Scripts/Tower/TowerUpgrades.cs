@@ -5,12 +5,12 @@ using UnityEngine;
 public class TowerUpgrades : MonoBehaviour
 {
     public List<Upgrades> upgrade; // ReloadSpeed, AttackDamage, Range, ProjectileSpeed
-    public List<int> upgradeCount;
-    public List<int> upgradeMax;
-    [SerializeField] private List<float> upgradeFactor;
-    [SerializeField] private List<int> upgradeBaseCost;
-    [SerializeField] private List<float> upgradeCostFactor;
-    public List<int> upgradeCost;
+    public List<int> upgradeCount; // times it has been upgraded (keep at 0)
+    public List<int> upgradeMax; // max amount of times it can be upgraded
+    [SerializeField] private List<float> upgradeFactor; // multiplier for upgrading
+    [SerializeField] private List<int> upgradeBaseCost; // the standard cost of the upgrade
+    [SerializeField] private List<float> upgradeCostFactor; // multiplier for the cost of the upgrade
+    public List<int> upgradeCost; // the price of the upgrade (keep at 0)
 
     public void RecalculatePrice(int upgrade)
     {
