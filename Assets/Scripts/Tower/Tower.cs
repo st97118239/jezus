@@ -1,4 +1,3 @@
-using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,10 +11,14 @@ public class Tower : MonoBehaviour
     public int upgradePrice;
     public float health;
     public float reloadSpeed;
+    public float reloadSpeedBase;
     public float range;
+    public float rangeBase;
     public float projectileSpeed;
+    public float projectileSpeedBase;
     public float projectileDespawnTime = 0.1f;
     public float damage;
+    public float damageBase;
     public bool recentlyBuilt = true;
 
     [SerializeField] private float timeToBuild = 1;
@@ -26,6 +29,10 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
+        reloadSpeedBase = reloadSpeed;
+        rangeBase = range;
+        projectileSpeedBase = projectileSpeed;
+        damageBase = damage;
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
         rangeObject = transform.Find("Range").gameObject;
         shooter = transform.Find("Shooter").GetComponent<Shooter>();

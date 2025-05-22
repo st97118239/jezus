@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class TowerUpgrades : MonoBehaviour
@@ -21,16 +22,63 @@ public class TowerUpgrades : MonoBehaviour
     {
         Upgrades upgradeToCheck = upgrade[upgradeStat - 1];
 
-        if ((int)upgradeToCheck == 0)
-            statToSend = GetComponent<Tower>().reloadSpeed;
-        else if ((int)upgradeToCheck == 1)
-            statToSend = GetComponent<Tower>().damage;
-        else if ((int)upgradeToCheck == 2)
-            statToSend = GetComponent<Tower>().range;
-        else if ((int)upgradeToCheck == 3)
-            statToSend = GetComponent<Tower>().projectileSpeed;
-        else
-            statToSend = 0f;
+        statToSend = 0f;
 
+        switch (upgradeToCheck)
+        {
+            case Upgrades.ReloadSpeed:
+                statToSend = GetComponent<Tower>().reloadSpeed;
+                break;
+            case Upgrades.AttackDamage:
+                statToSend = GetComponent<Tower>().damage;
+                break;
+            case Upgrades.Range:
+                statToSend = GetComponent<Tower>().range;
+                break;
+            case Upgrades.ProjectileSpeed:
+                statToSend = GetComponent<Tower>().projectileSpeed;
+                break;
+        }   
+    }
+
+    public int Upgrade(int indexToUpgrade, int coins)
+    {
+        int baseCost = upgradeBaseCost[indexToUpgrade];
+        int cost = upgradeCost[indexToUpgrade];
+
+        if (coins < cost)
+            return -1;
+
+        int max = upgradeMax[indexToUpgrade];
+        int count = upgradeCount[indexToUpgrade];
+
+        if (count >= max)
+            return -1;
+
+        upgradeCount[indexToUpgrade]++;
+        count++;
+        float factor = upgradeFactor[indexToUpgrade];
+
+        Upgrades upgradeToCheck = upgrade[indexToUpgrade];
+        Tower tower = GetComponent<Tower>();
+        switch (upgradeToCheck)
+        {
+            case Upgrades.ReloadSpeed:
+                tower.reloadSpeed = tower.reloadSpeedBase - factor * count;
+                break;
+            case Upgrades.AttackDamage:
+                tower.damage = tower.damageBase + factor * count;
+                break;
+            case Upgrades.Range:
+                tower.range = tower.rangeBase + factor * count;
+                break;
+            case Upgrades.ProjectileSpeed:
+                tower.projectileSpeed = tower.projectileSpeedBase + factor * count;
+                break;
+        }
+
+        RecalculatePrice(indexToUpgrade);
+
+        return upgradeCost[indexToUpgrade];
     }
 }

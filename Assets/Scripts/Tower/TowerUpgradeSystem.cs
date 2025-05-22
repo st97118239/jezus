@@ -1,14 +1,42 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerUpgradeSystem : MonoBehaviour
 {
     [SerializeField] private List<GameObject> upgradeButtons;
 
+    private Main main;
     private GameObject upgradePanel;
+    private Button[] buttons;
     private Tower selectedTower;
     private TowerUpgrades selectedTowerUpgrades;
+
+    private void Start()
+    {
+        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+
+        buttons = upgradeButtons.Select((b, i) =>
+        {
+            Button btn = b.transform.Find($"UpgradeButton{i + 1}").GetComponent<Button>();
+            btn.onClick.AddListener(() => BuyUpgrade(i));
+            return btn;
+        }).ToArray();
+    }
+
+    private void BuyUpgrade(int upgradeIndex)
+    {
+        int upgradeCost = selectedTowerUpgrades.Upgrade(upgradeIndex, main.coinsAmount);
+        if (upgradeCost > 0)
+        {
+            FillUpgradeText(upgradeIndex);
+            main.coinsAmount -= upgradeCost;
+            main.ip.RedrawCoinText(main.coinsAmount);
+        }
+    }
 
     public void FindUpgradePanel(GameObject panel)
     {
@@ -24,12 +52,10 @@ public class TowerUpgradeSystem : MonoBehaviour
         
 
         for (int i = 0; i < 3; i++)
-        {
-            FillUpgrades(i);
-        }
+            FillUpgradeText(i);
     }
 
-    private void FillUpgrades(int buttonCount)
+    private void FillUpgradeText(int buttonCount)
     {
         buttonCount++;
         GameObject selectedButton = upgradeButtons[buttonCount - 1];
@@ -43,7 +69,7 @@ public class TowerUpgradeSystem : MonoBehaviour
         upgradeButtonText.text = "Upgrade:\n$" + selectedTowerUpgrades.upgradeCost[buttonCount - 1];
         upgradeTextName.text = selectedTowerUpgrades.upgrade[buttonCount - 1].ToReadableString() + ":";
         selectedTowerUpgrades.GetStat(buttonCount, out float stat);
-        upgradeTextAmount.text = stat.ToString();
+        upgradeTextAmount.text = stat.ToString("#.#");
         upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount - 1] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount - 1]).ToString();
     }
 

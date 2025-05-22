@@ -17,19 +17,15 @@ public class TowerPlacement : MonoBehaviour
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
         for (int i = 0; i < towers.Length; i++)
-        {
-            int index = i;
-            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[index]));
-        }
+            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[i]));
 
         for (int i = 0; i < buttons.Length; i++)
         {
-            Button buttonToUse = buttons[i];
-            TMP_Text buttonText = buttonToUse.transform.Find("Text").GetComponent<TMP_Text>();
+            TMP_Text buttonText = buttons[i].transform.Find("Text").GetComponent<TMP_Text>();
             if (towers[i] != null)
-                buttonText.text = towers[i].type.ToReadableString() + "\n$" + towers[i].price;
+                buttonText.text = towers[i].type.ToReadableString() + "\n$." + towers[i].price;
             else
-                Destroy(buttonToUse.gameObject);
+                Destroy(buttons[i].gameObject);
         }
     }
 

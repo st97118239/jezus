@@ -353,10 +353,14 @@ MonoBehaviour:
   upgradePrice: 0
   health: 100
   reloadSpeed: 2
+  reloadSpeedBase: 0
   range: 10
+  rangeBase: 0
   projectileSpeed: 10
+  projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 50
+  damageBase: 0
   recentlyBuilt: 1
   timeToBuild: 0.1
 --- !u!114 &5534954059781436812
@@ -373,10 +377,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrade: 010000000000000002000000
   upgradeCount: 000000000000000000000000
-  upgradeMax: 0a0000000a0000000a000000
+  upgradeMax: 190000001900000019000000
   upgradeFactor:
   - 1.1
-  - 1.05
+  - 0.05
   - 1.075
   upgradeBaseCost: 0e0000000c00000011000000
   upgradeCostFactor:

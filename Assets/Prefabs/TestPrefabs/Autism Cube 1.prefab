@@ -365,7 +365,7 @@ MonoBehaviour:
   shooter: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: a346b5fcd74c28844849f1630445f2f1, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
-  price: 1
+  price: 25
   upgradePrice: 0
   health: 100
   reloadSpeed: 1
