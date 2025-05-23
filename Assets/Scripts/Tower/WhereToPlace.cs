@@ -80,33 +80,6 @@ public class WhereToPlace : MonoBehaviour
         needsToFindLocation = true;
     }
 
-    private bool IsFurtherThanTwoMetersFromPath()
-    {
-        GameObject[] pathObjects = GameObject.FindGameObjectsWithTag("Path");
-
-        foreach (GameObject path in pathObjects)
-        {
-            if (path.TryGetComponent<Collider>(out var pathCollider))
-            {
-                Vector3 closestPoint = pathCollider.ClosestPoint(tower.transform.position);
-
-                float distance = Vector3.Distance(tower.transform.position, closestPoint);
-
-                if (distance < distanceThreshold)
-                    return false;
-            }
-            else
-            {
-                float distanceToOrigin = Vector3.Distance(tower.transform.position, path.transform.position);
-
-                if (distanceToOrigin < distanceThreshold)
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
     private bool IsCloseToObjects()
     {
         return Physics.OverlapSphere(tower.transform.position, distanceThreshold).Any(h => !h.gameObject.CompareTag("Ground"));
