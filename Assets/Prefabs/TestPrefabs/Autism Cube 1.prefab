@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729a7abe812abb847b7d591b8739a18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canShoot: 0
   shootableEnemies: []
   currentTarget: {fileID: 0}
   rotationSpeed: 100
@@ -366,13 +367,15 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a346b5fcd74c28844849f1630445f2f1, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
   price: 25
-  upgradePrice: 0
-  health: 100
   reloadSpeed: 1
+  reloadSpeedBase: 0
   range: 25
+  rangeBase: 0
   projectileSpeed: 100
+  projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 70
+  damageBase: 0
   recentlyBuilt: 1
   timeToBuild: 1
 --- !u!114 &-4426283129554708358
@@ -396,9 +399,9 @@ MonoBehaviour:
   - 2
   upgradeBaseCost: 050000000500000005000000
   upgradeCostFactor:
-  - 1.1
-  - 1.1
-  - 1.1
+  - 2.13
+  - 3.35
+  - 9.678
   upgradeCost: 000000000000000000000000
 --- !u!114 &178582652915330967
 MonoBehaviour:

@@ -5,6 +5,8 @@ public class WhereToPlace : MonoBehaviour
     public bool needsToFindLocation = false;
 
     [SerializeField] private float distanceThreshold = 1f;
+    [SerializeField] private Color baseColor;
+    [SerializeField] private Color warningColor;
 
     private TransparencyScript transparentScript;
     private GameObject tower;
@@ -27,6 +29,11 @@ public class WhereToPlace : MonoBehaviour
                 {
                     cursorLocation = hit.point;
                     tower.transform.position = cursorLocation;
+
+                    if (!IsFurtherThanTwoMetersFromPath())
+                        tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
+                    else
+                        tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
                 }
             }
 
