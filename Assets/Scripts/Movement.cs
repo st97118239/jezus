@@ -22,6 +22,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed *= shiftSpeedFactor;
