@@ -350,8 +350,6 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: d4486ed9cf8dd314c8f5ed03e87aaaed, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
   price: 100
-  upgradePrice: 0
-  health: 100
   reloadSpeed: 2
   reloadSpeedBase: 0
   range: 10
@@ -380,8 +378,8 @@ MonoBehaviour:
   upgradeMax: 190000001900000019000000
   upgradeFactor:
   - 1.1
-  - 0.05
-  - 1.075
+  - 0.1
+  - 1.25
   upgradeBaseCost: 0e0000000c00000011000000
   upgradeCostFactor:
   - 1.2
