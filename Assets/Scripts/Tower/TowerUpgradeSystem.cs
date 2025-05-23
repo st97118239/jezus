@@ -63,6 +63,7 @@ public class TowerUpgradeSystem : MonoBehaviour
         TMP_Text upgradeTextName = selectedButton.transform.Find("UpgradeTextName" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextAmount = selectedButton.transform.Find("UpgradeTextAmount" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextMax = selectedButton.transform.Find("UpgradeTextMax" + buttonCount).GetComponent<TMP_Text>();
+        TMP_Text towerTextName = upgradePanel.transform.Find("TowerName").GetComponent<TMP_Text>();
 
         selectedTowerUpgrades.RecalculatePrice(buttonCount - 1);
         upgradeButtonText.text = "Upgrade:\n$" + selectedTowerUpgrades.upgradeCost[buttonCount - 1];
@@ -70,6 +71,7 @@ public class TowerUpgradeSystem : MonoBehaviour
         selectedTowerUpgrades.GetStat(buttonCount, out float stat);
         upgradeTextAmount.text = stat.ToString("0.##");
         upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount - 1] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount - 1]).ToString();
+        towerTextName.text = selectedTower.type.ToReadableString();
     }
 
     public void TowerDeselected()
