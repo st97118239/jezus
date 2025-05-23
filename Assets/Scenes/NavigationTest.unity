@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsToFindLocation: 0
-  distanceThreshold: 1
+  distanceThreshold: 3
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &81872064

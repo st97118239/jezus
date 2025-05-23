@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WhereToPlace : MonoBehaviour
@@ -31,7 +33,7 @@ public class WhereToPlace : MonoBehaviour
                     cursorLocation = hit.point;
                     tower.transform.position = cursorLocation;
 
-                    if (!IsFurtherThanTwoMetersFromPath())
+                    if (!IsAwayFromObjects())
                         tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
                     else
                         tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
@@ -40,7 +42,7 @@ public class WhereToPlace : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (IsFurtherThanTwoMetersFromPath())
+                if (IsAwayFromObjects())
                 {
                     tower.GetComponent<Tower>().enabled = true;
                     transparentScript.NewObject(tower, 1f);
@@ -91,22 +93,39 @@ public class WhereToPlace : MonoBehaviour
                 float distance = Vector3.Distance(tower.transform.position, closestPoint);
 
                 if (distance < distanceThreshold)
-                {
                     return false;
-                }
             }
             else
             {
                 float distanceToOrigin = Vector3.Distance(tower.transform.position, path.transform.position);
 
                 if (distanceToOrigin < distanceThreshold)
-                {
                     return false;
-                }
             }
         }
 
         return true;
+    }
+
+    private bool IsAwayFromObjects()
+    {
+        List<Collider> hitColliders = Physics.OverlapSphere(tower.transform.position, distanceThreshold).ToList();
+
+        foreach (Collider coll in hitColliders)
+        {
+            if (coll.gameObject.CompareTag("Ground"))
+            {
+                hitColliders.Remove(coll);
+                break;
+            }
+
+            Debug.Log(coll);
+        }
+
+        if (hitColliders.Count > 0)
+            return false;
+        else
+            return true;
     }
 
     public static void ChangeMaterialOfAllDescendants(Transform tf, bool toggle)
