@@ -27,6 +27,7 @@ public class WhereToPlace : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
+                    tower.GetComponent<Tower>().RedrawRange();
                     cursorLocation = hit.point;
                     tower.transform.position = cursorLocation;
 
@@ -47,6 +48,7 @@ public class WhereToPlace : MonoBehaviour
                     tower.GetComponent<BoxCollider>().enabled = true;
                     tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
                     GetComponent<TowerPlacement>().PlaceTower(tower.GetComponent<Tower>());
+                    tower.GetComponent<Tower>().WhenPlaced();
 
                     tower = null;
                     cursorLocation = new Vector3(0, 0, 0);
@@ -55,6 +57,7 @@ public class WhereToPlace : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(1))
             {
+                tower.GetComponent<Tower>().WhenPlaced();
                 Destroy(tower);
                 tower = null;
                 cursorLocation = new Vector3(0, 0, 0);

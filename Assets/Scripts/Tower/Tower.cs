@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private float timeToBuild = 1;
 
     private Main main;
-    private GameObject rangeObject;
+    private Range rangeObject;
     private float buildTimer;
 
     private void Start()
@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
         projectileSpeedBase = projectileSpeed;
         damageBase = damage;
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
-        rangeObject = transform.Find("Range").gameObject;
+        rangeObject = FindObjectOfType(typeof(Range)).GetComponent<Range>();
         shooter = transform.Find("Shooter").GetComponent<Shooter>();
         buildTimer = timeToBuild;
     }
@@ -54,6 +54,7 @@ public class Tower : MonoBehaviour
     {
         if (!recentlyBuilt)
         {
+            rangeObject.transform.position = transform.position;
             rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
             rangeObject.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -62,8 +63,19 @@ public class Tower : MonoBehaviour
 
     public void RedrawRange()
     {
-        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-        rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        if (rangeObject != null)
+        {
+            rangeObject.transform.position = transform.position;
+            rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+            rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        }
+        else
+            rangeObject = FindObjectOfType(typeof(Range)).GetComponent<Range>();
+    }
+
+    public void WhenPlaced()
+    {
+        rangeObject.GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void Deselect()
