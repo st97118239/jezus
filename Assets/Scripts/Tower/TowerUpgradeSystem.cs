@@ -35,6 +35,7 @@ public class TowerUpgradeSystem : MonoBehaviour
             FillUpgradeText(upgradeIndex);
             main.coinsAmount -= upgradeCost;
             main.ip.RedrawCoinText(main.coinsAmount);
+            selectedTowerUpgrades.RecalculatePrice(upgradeIndex);
         }
     }
 
