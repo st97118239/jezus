@@ -25,11 +25,13 @@ public class Enemy : MonoBehaviour
 
     private EnemySpawner es;
     private Main main;
+    private bool isSelected = false;
 
     private void Start()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+
         GetComponent<NavMeshAgent>().speed = speed;
         tempHealth = health;
     }
@@ -49,6 +51,9 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            if (isSelected)
+                Deselect();
+
             es.EnemyKilled(coins, gameObject);
             Destroy(gameObject);
         }
@@ -66,6 +71,9 @@ public class Enemy : MonoBehaviour
         else
             main.ReceiveDmg(damage);
 
+        if (isSelected)
+            Deselect();
+
         es.activeEnemies.Remove(gameObject);
         Destroy(gameObject);
     }
@@ -75,5 +83,17 @@ public class Enemy : MonoBehaviour
         gotShotAt = true;
         projectileThatShot = projectile;
         projectileDamage = damage;
+    }
+
+    public void Select()
+    {
+        main.ep.Activate(enemyType, (int)health);
+        isSelected = true;
+    }
+
+    public void Deselect()
+    {
+        main.ep.Deactivate();
+        isSelected = false;
     }
 }
