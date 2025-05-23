@@ -80,7 +80,6 @@ public class TowerUpgrades : MonoBehaviour
                 break;
         }
 
-        Debug.Log(upgradeCost[indexToUpgrade]);
         return upgradeCost[indexToUpgrade];
     }
 }

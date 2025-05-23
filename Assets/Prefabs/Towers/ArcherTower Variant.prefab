@@ -375,16 +375,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrade: 010000000000000003000000
   upgradeCount: 000000000000000000000000
-  upgradeMax: 190000001900000019000000
+  upgradeMax: 190000000f0000000a000000
   upgradeFactor:
   - 1.1
   - 0.1
   - 1.1
   upgradeBaseCost: 0e0000000c00000011000000
   upgradeCostFactor:
-  - 1.2
-  - 1.4
-  - 1.3
+  - 1.61
+  - 1.76
+  - 1.83
   upgradeCost: 000000000000000000000000
 --- !u!114 &5394186764435166062
 MonoBehaviour:
