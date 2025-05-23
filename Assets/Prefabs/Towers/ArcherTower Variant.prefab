@@ -373,13 +373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8809416e6008345bec07b471a3753c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrade: 010000000000000002000000
+  upgrade: 010000000000000003000000
   upgradeCount: 000000000000000000000000
   upgradeMax: 190000001900000019000000
   upgradeFactor:
   - 1.1
   - 0.1
-  - 1.25
+  - 1.1
   upgradeBaseCost: 0e0000000c00000011000000
   upgradeCostFactor:
   - 1.2
@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729a7abe812abb847b7d591b8739a18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canShoot: 0
   shootableEnemies: []
   currentTarget: {fileID: 0}
   rotationSpeed: 10
