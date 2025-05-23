@@ -69,7 +69,7 @@ public class TowerUpgradeSystem : MonoBehaviour
         upgradeButtonText.text = "Upgrade:\n$" + selectedTowerUpgrades.upgradeCost[buttonCount - 1];
         upgradeTextName.text = selectedTowerUpgrades.upgrade[buttonCount - 1].ToReadableString() + ":";
         selectedTowerUpgrades.GetStat(buttonCount, out float stat);
-        upgradeTextAmount.text = stat.ToString("#.#");
+        upgradeTextAmount.text = stat.ToString("0.##");
         upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount - 1] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount - 1]).ToString();
     }
 
