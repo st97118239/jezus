@@ -15,7 +15,7 @@ public class TowerUpgrades : MonoBehaviour
 
     public void RecalculatePrice(int upgrade)
     {
-        upgradeCost[upgrade] = (int)Math.Floor(upgradeBaseCost[upgrade] + upgradeCostFactor[upgrade] * upgradeCount[upgrade]);
+        upgradeCost[upgrade] = (int)Math.Floor(upgradeBaseCost[upgrade] * upgradeCostFactor[upgrade] * (upgradeCount[upgrade] + 1));
     }
 
     public void GetStat(int upgradeStat, out float statToSend)
@@ -67,8 +67,12 @@ public class TowerUpgrades : MonoBehaviour
         switch (upgradeToCheck)
         {
             case Upgrades.ReloadSpeed:
-                tower.reloadSpeed = tower.reloadSpeedBase - factor * count;
-                break;
+                {
+                    tower.reloadSpeed = tower.reloadSpeedBase - factor * count;
+                    if (tower.reloadSpeed < 0)
+                        tower.reloadSpeed = 0;
+                    break;
+                }
             case Upgrades.AttackDamage:
                 tower.damage = tower.damageBase + factor * count;
                 break;
