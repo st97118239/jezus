@@ -6,7 +6,7 @@ public class EnemyPanel : MonoBehaviour
     private TMP_Text enemyNameText;
     private TMP_Text enemyHealthText;
 
-    private void Start()
+    private void Awake()
     {
         enemyNameText = transform.Find("EnemyName").GetComponent<TMP_Text>();
         enemyHealthText = transform.Find("EnemyHP").GetComponent<TMP_Text>();
