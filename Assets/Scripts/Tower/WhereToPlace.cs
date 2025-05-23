@@ -33,7 +33,7 @@ public class WhereToPlace : MonoBehaviour
                     cursorLocation = hit.point;
                     tower.transform.position = cursorLocation;
 
-                    if (!IsAwayFromObjects())
+                    if (IsCloseToObjects())
                         tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
                     else
                         tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
@@ -42,7 +42,7 @@ public class WhereToPlace : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (IsAwayFromObjects())
+                if (!IsCloseToObjects())
                 {
                     tower.GetComponent<Tower>().enabled = true;
                     transparentScript.NewObject(tower, 1f);
@@ -107,25 +107,9 @@ public class WhereToPlace : MonoBehaviour
         return true;
     }
 
-    private bool IsAwayFromObjects()
+    private bool IsCloseToObjects()
     {
-        List<Collider> hitColliders = Physics.OverlapSphere(tower.transform.position, distanceThreshold).ToList();
-
-        foreach (Collider coll in hitColliders)
-        {
-            if (coll.gameObject.CompareTag("Ground"))
-            {
-                hitColliders.Remove(coll);
-                break;
-            }
-
-            Debug.Log(coll);
-        }
-
-        if (hitColliders.Count > 0)
-            return false;
-        else
-            return true;
+        return Physics.OverlapSphere(tower.transform.position, distanceThreshold).Any(h => !h.gameObject.CompareTag("Ground"));
     }
 
     public static void ChangeMaterialOfAllDescendants(Transform tf, bool toggle)
