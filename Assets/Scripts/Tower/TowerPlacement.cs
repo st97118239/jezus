@@ -17,7 +17,10 @@ public class TowerPlacement : MonoBehaviour
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
         for (int i = 0; i < towers.Length; i++)
-            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[i]));
+        {
+            int index = i;
+            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[index]));
+        }
 
         for (int i = 0; i < buttons.Length; i++)
         {
