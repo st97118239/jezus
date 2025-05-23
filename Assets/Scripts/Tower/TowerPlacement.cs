@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class TowerPlacement : MonoBehaviour
 {
+    public List<Tower> towersPlaced;
+
     [SerializeField] private Tower[] towers;
     [SerializeField] private Button[] buttons;
     [SerializeField] private Vector3 towerDefaultSpawn;
@@ -63,13 +66,9 @@ public class TowerPlacement : MonoBehaviour
         GetComponent<WhereToPlace>().StartSearch(newTower);
     }
 
-    public void PlaceTower()
-    {
-        BuyTower();
-    }
-
-    private void BuyTower()
+    public void PlaceTower(Tower tower)
     {
         main.ChangeCoinAmount(-towerToPlace.price);
+        towersPlaced.Add(tower);
     }
 }

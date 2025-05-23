@@ -39,10 +39,10 @@ public class WhereToPlace : MonoBehaviour
                     ChangeMaterialOfAllDescendants(tower.transform, true);
                     tower.GetComponent<BoxCollider>().enabled = true;
                     tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
+                    GetComponent<TowerPlacement>().PlaceTower(tower.GetComponent<Tower>());
 
                     tower = null;
                     cursorLocation = new Vector3(0, 0, 0);
-                    GetComponent<TowerPlacement>().PlaceTower();
                     needsToFindLocation = false;
                 }
             }

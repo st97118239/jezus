@@ -13,12 +13,14 @@ public class Main : MonoBehaviour
     public bool isDead = false;
 
     private EnemySpawner es;
+    private TowerPlacement tp;
     private GameObject gameoverPanel;
 
     private void Start()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         tus = FindObjectOfType(typeof(TowerUpgradeSystem)).GetComponent<TowerUpgradeSystem>();
+        tp = FindObjectOfType(typeof(TowerPlacement)).GetComponent<TowerPlacement>();
         GameObject upgradePanel = transform.Find("UpgradePanel").gameObject;
         upgradePanel.SetActive(false);
         tus.FindUpgradePanel(upgradePanel);
@@ -68,6 +70,11 @@ public class Main : MonoBehaviour
         {
             pawn.GetComponent<EnemyNavigation>().canMove = false;
             pawn.GetComponent<NavMeshAgent>().enabled = false;
+        }
+
+        foreach (Tower tower in tp.towersPlaced)
+        {
+            tower.shooter.canShoot = false;
         }
     }
 }

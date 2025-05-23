@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    public bool canShoot = false;
+
     [SerializeField] private List<GameObject> shootableEnemies = new();
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private float rotationSpeed;
@@ -26,6 +28,7 @@ public class Shooter : MonoBehaviour
 
     private void Update()
     {
+
         if (reloading)
         {
             if (reloadTimer > 0)
@@ -37,11 +40,14 @@ public class Shooter : MonoBehaviour
         }
         else
         {
-            FindEnemiesInRange();
-            if (shootableEnemies.Count > 0)
+            if (canShoot)
             {
-                currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
-                Shoot();
+                FindEnemiesInRange();
+                if (shootableEnemies.Count > 0)
+                {
+                    currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
+                    Shoot();
+                }
             }
         }
 
