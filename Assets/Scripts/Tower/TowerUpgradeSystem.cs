@@ -49,8 +49,6 @@ public class TowerUpgradeSystem : MonoBehaviour
         selectedTower = newTower;
         selectedTowerUpgrades = selectedTower.GetComponent<TowerUpgrades>();
 
-        
-
         for (int i = 0; i < 3; i++)
             FillUpgradeText(i);
     }
