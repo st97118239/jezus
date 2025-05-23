@@ -29,7 +29,7 @@ public class TowerPlacement : MonoBehaviour
         {
             TMP_Text buttonText = buttons[i].transform.Find("Text").GetComponent<TMP_Text>();
             if (towers[i] != null)
-                buttonText.text = towers[i].type.ToReadableString() + "\n$." + towers[i].price;
+                buttonText.text = towers[i].type.ToReadableString() + "\n$" + towers[i].price;
             else
                 Destroy(buttons[i].gameObject);
         }
