@@ -33,8 +33,11 @@ public class TowerUpgrades : MonoBehaviour
                 statToSend = GetComponent<Tower>().damage;
                 break;
             case Upgrades.Range:
-                statToSend = GetComponent<Tower>().range;
-                break;
+                {
+                    statToSend = GetComponent<Tower>().range;
+                    GetComponent<Tower>().RedrawRange();
+                    break;
+                }
             case Upgrades.ProjectileSpeed:
                 statToSend = GetComponent<Tower>().projectileSpeed;
                 break;

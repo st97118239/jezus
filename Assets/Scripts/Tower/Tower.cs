@@ -60,6 +60,12 @@ public class Tower : MonoBehaviour
         main.tus.NewTowerSelected(this);
     }
 
+    public void RedrawRange()
+    {
+        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+        rangeObject.GetComponent<MeshRenderer>().enabled = true;
+    }
+
     public void Deselect()
     {
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
