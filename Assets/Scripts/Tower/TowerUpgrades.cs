@@ -15,7 +15,10 @@ public class TowerUpgrades : MonoBehaviour
 
     public void RecalculatePrice(int upgrade)
     {
-        upgradeCost[upgrade] = (int)Math.Floor(upgradeBaseCost[upgrade] * upgradeCostFactor[upgrade] * (upgradeCount[upgrade] + 1));
+        if (upgradeCount[upgrade] > 0)
+            upgradeCost[upgrade] = (int)Math.Floor(upgradeBaseCost[upgrade] * upgradeCostFactor[upgrade] * upgradeCount[upgrade]);
+        else
+            upgradeCost[upgrade] = upgradeBaseCost[upgrade];
     }
 
     public void GetStat(int upgradeStat, out float statToSend)
