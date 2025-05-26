@@ -176,6 +176,8 @@ MonoBehaviour:
   gotShotAt: 0
   projectileThatShot: {fileID: 0}
   projectileDamage: 0
+  isAttacking: 0
+  attackTimer: 0
 --- !u!114 &961114241591283893
 MonoBehaviour:
   m_ObjectHideFlags: 0

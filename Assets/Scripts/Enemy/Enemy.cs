@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     private EnemySpawner es;
     private Main main;
     private bool isSelected = false;
+    [SerializeField] private bool isAttacking = false;
+    [SerializeField] private float attackTimer;
 
     private void Start()
     {
@@ -34,6 +36,8 @@ public class Enemy : MonoBehaviour
 
         GetComponent<NavMeshAgent>().speed = speed;
         tempHealth = health;
+
+        attackTimer = attackSpeed;
     }
 
     private void Update()
@@ -42,6 +46,20 @@ public class Enemy : MonoBehaviour
         {
             GotHit(projectileDamage);
             Debug.Log("The projectile that was aiming for " + enemyType + " is gone, removed " + projectileDamage + " from health. Health is now " + health);
+        }
+
+        if (isAttacking)
+        {
+            Debug.Log(attackTimer);
+
+            if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+            else
+            {
+                Attack();
+            }
         }
     }
 
@@ -68,14 +86,15 @@ public class Enemy : MonoBehaviour
             int dmgToDo = (int)health;
             main.ReceiveDmg(dmgToDo);
         }
-        else
-            main.ReceiveDmg(damage);
+        else if (!isAttacking)
+            Attack();
 
         if (isSelected)
             Deselect();
 
         es.activeEnemies.Remove(gameObject);
-        Destroy(gameObject);
+        if (enemyType == 0)
+            Destroy(gameObject);
     }
 
     public void TowerHasShot(GameObject projectile, float damage)
@@ -95,5 +114,12 @@ public class Enemy : MonoBehaviour
     {
         main.ep.Deactivate();
         isSelected = false;
+    }
+
+    private void Attack()
+    {
+        main.ReceiveDmg(damage);
+        attackTimer = attackSpeed;
+        isAttacking = true;
     }
 }

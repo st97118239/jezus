@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     spawnTimer = spawnTimerBase;
 
-                    EnemyToSpawn enemyToSpawn= enemiesToSpawn.Dequeue();
+                    EnemyToSpawn enemyToSpawn = enemiesToSpawn.Dequeue();
                     GameObject gameObjectToSpawn = enemyList[(int)enemyToSpawn.type];
 
                     GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos,
