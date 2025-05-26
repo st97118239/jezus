@@ -4694,7 +4694,7 @@ PrefabInstance:
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: maxBoundsZoomedIn.x
-      value: 1
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
@@ -4704,17 +4704,17 @@ PrefabInstance:
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: minBoundsZoomedIn.x
-      value: 300
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: minBoundsZoomedIn.z
-      value: -300
+      value: -350
       objectReference: {fileID: 0}
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: maxBoundsZoomedOut.x
-      value: 75
+      value: 310
       objectReference: {fileID: 0}
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
@@ -4724,12 +4724,12 @@ PrefabInstance:
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: minBoundsZoomedOut.x
-      value: 310
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2419996502645772680, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}
       propertyPath: minBoundsZoomedOut.z
-      value: -220
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 3045128679407010679, guid: 4c30e1b6ade53a945a83fa6f18096796,
         type: 3}

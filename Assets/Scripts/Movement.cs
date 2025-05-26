@@ -30,8 +30,7 @@ public class Movement : MonoBehaviour
         {
             Application.Quit();
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        else if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed *= shiftSpeedFactor;
             zoomSpeed *= shiftSpeedFactor;
@@ -41,7 +40,6 @@ public class Movement : MonoBehaviour
             speed /= shiftSpeedFactor;
             zoomSpeed /= shiftSpeedFactor;
         }
-
 
         moveDir.z = Input.GetAxis("Vertical");
         moveDir.x = Input.GetAxis("Horizontal");
@@ -64,15 +62,15 @@ public class Movement : MonoBehaviour
         else if (transform.position.y > highestZoomPos.y)
             transform.position = new Vector3(transform.position.x, highestZoomPos.y, transform.position.z);
 
-        //Vector3 clampedPosition = transform.position;
+        Vector3 clampedPosition = transform.position;
 
-        //float zoomFactor = Mathf.InverseLerp(lowestZoomPos.y, highestZoomPos.y, transform.position.y);
-        //Vector3 minBounds = Vector3.Lerp(minBoundsZoomedIn, minBoundsZoomedOut, zoomFactor);
-        //Vector3 maxBounds = Vector3.Lerp(maxBoundsZoomedIn, maxBoundsZoomedOut, zoomFactor);
+        float zoomFactor = Mathf.InverseLerp(lowestZoomPos.y, highestZoomPos.y, transform.position.y);
+        Vector3 minBounds = Vector3.Lerp(minBoundsZoomedIn, minBoundsZoomedOut, zoomFactor);
+        Vector3 maxBounds = Vector3.Lerp(maxBoundsZoomedIn, maxBoundsZoomedOut, zoomFactor);
 
-        //clampedPosition.x = Mathf.Clamp(clampedPosition.x, minBounds.x, maxBounds.x);
-        //clampedPosition.z = Mathf.Clamp(clampedPosition.z, minBounds.z, maxBounds.z);
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minBounds.x, maxBounds.x);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, minBounds.z, maxBounds.z);
 
-        //transform.position = clampedPosition;
+        transform.position = clampedPosition;
     }
 }
