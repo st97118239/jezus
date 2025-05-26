@@ -204,3 +204,4 @@ MonoBehaviour:
   zoomTime: 0.5
   lowestZoomPos: {x: 0, y: 8.5, z: 0}
   highestZoomPos: {x: 0, y: 100, z: 0}
+  shiftSpeedFactor: 5

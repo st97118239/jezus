@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private Vector3 minBoundsZoomedIn;
+    [SerializeField] private Vector3 maxBoundsZoomedIn;
+    [SerializeField] private Vector3 minBoundsZoomedOut;
+    [SerializeField] private Vector3 maxBoundsZoomedOut;
     [SerializeField] private bool cursorLock;
     [SerializeField] private Vector3 moveDir;
     [SerializeField] private float speed;
@@ -39,8 +43,8 @@ public class Movement : MonoBehaviour
         }
 
 
-        moveDir.z = Input.GetAxis("Horizontal");
-        moveDir.x = -Input.GetAxis("Vertical");
+        moveDir.z = Input.GetAxis("Vertical");
+        moveDir.x = Input.GetAxis("Horizontal");
         transform.Translate(moveDir * Time.deltaTime * speed);
 
         moveDir.z = 0;
@@ -59,5 +63,16 @@ public class Movement : MonoBehaviour
             transform.position = new Vector3 (transform.position.x, lowestZoomPos.y, transform.position.z);
         else if (transform.position.y > highestZoomPos.y)
             transform.position = new Vector3(transform.position.x, highestZoomPos.y, transform.position.z);
+
+        //Vector3 clampedPosition = transform.position;
+
+        //float zoomFactor = Mathf.InverseLerp(lowestZoomPos.y, highestZoomPos.y, transform.position.y);
+        //Vector3 minBounds = Vector3.Lerp(minBoundsZoomedIn, minBoundsZoomedOut, zoomFactor);
+        //Vector3 maxBounds = Vector3.Lerp(maxBoundsZoomedIn, maxBoundsZoomedOut, zoomFactor);
+
+        //clampedPosition.x = Mathf.Clamp(clampedPosition.x, minBounds.x, maxBounds.x);
+        //clampedPosition.z = Mathf.Clamp(clampedPosition.z, minBounds.z, maxBounds.z);
+
+        //transform.position = clampedPosition;
     }
 }

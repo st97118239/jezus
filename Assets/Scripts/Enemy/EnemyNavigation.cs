@@ -7,11 +7,11 @@ public class EnemyNavigation : MonoBehaviour
 {
     public bool canMove;
 
-    private List<Transform> waypoints;
+    public List<Transform> waypoints;
     private NavMeshAgent navMeshAgent;
     private Main main;
     private EnemySpawner es;
-    private int currentWPIndex = 0;
+    public int currentWPIndex = 0;
 
     void Start()
     {

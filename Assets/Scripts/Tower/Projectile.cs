@@ -39,15 +39,29 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<Enemy>())
+    //    {
+    //        collision.gameObject.GetComponent<Enemy>().GotHit(damage);
+    //    }
+    //    else
+    //        shooter.Missed();
+
+    //    Destroy(gameObject);
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponent<Enemy>())
+        if (other.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().GotHit(damage);
+            other.GetComponent<Enemy>().GotHit(damage);
+            Destroy(gameObject);
         }
         else
+        {
             shooter.Missed();
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

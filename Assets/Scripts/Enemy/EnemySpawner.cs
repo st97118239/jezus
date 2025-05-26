@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,11 +10,11 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> activeEnemies = new();
     public List<int> enemiesUsedInWavesAmount;
     public List<GameObject> toSpawn;
-    public List<Transform> waypoints;
+    public Transform waypointParent;
+    public List<Transform> waypoints = new List<Transform>();
     public bool canSpawn = true;
 
     [SerializeField] private List<GameObject> enemyList;
-    [SerializeField] private Vector3 spawnPos;
     [SerializeField] private Vector3 spawnRotation;
     [SerializeField] private int currentWave = 0;
     [SerializeField] private float spawnTimerBase = 1;
@@ -20,12 +22,37 @@ public class EnemySpawner : MonoBehaviour
 
     private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Main main;
+    private Vector3 spawnPos;
     private float nextWaveTimer;
     private float spawnTimer = 1;
     private bool nextWave;
 
+    void Awake()
+    {
+        if (waypointParent != null)
+        {
+            waypoints.Clear();
+            foreach (Transform child in waypointParent)
+            {
+                waypoints.Add(child);
+            }
+
+            waypoints = waypointParent
+            .GetComponentsInChildren<Transform>()
+            .Where(t => t != waypointParent)
+            .OrderBy(t =>
+            {
+                Match match = Regex.Match(t.name, @"\d+");
+                return match.Success ? int.Parse(match.Value) : 0;
+            })
+            .ToList();
+        }
+    }
+
     private void Start()
     {
+        spawnPos = waypoints[0].transform.position;
+
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
         spawnTimer = spawnTimerBase;

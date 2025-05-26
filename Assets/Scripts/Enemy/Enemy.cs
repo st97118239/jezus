@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
     public float damageFactor = 1;
     public float health;
     public float tempHealth;
+    public float speed;
 
-    [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private bool gotShotAt;

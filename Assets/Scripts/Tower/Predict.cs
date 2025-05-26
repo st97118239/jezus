@@ -12,13 +12,23 @@ public class Predict : MonoBehaviour
             {
                 target.GetComponent<Enemy>().tempHealth -= damage;
 
-                Vector3 predictedPosition = PredictEnemyPosition(target);
+                Vector3 predictedPosition = NewPredictEnemyPosition(target);
 
                 Vector3 direction = (predictedPosition - transform.position).normalized;
 
                 FireProjectile(direction, predictedPosition, damage, target.gameObject);
             }
         }
+    }
+
+    Vector3 NewPredictEnemyPosition(Transform enemy)
+    {
+        float projectileSpeed = GetComponent<Tower>().projectileSpeed;
+        float distance = Vector3.Distance(transform.position, enemy.position);
+
+        float estimatedInterceptTime = distance / projectileSpeed;
+
+        return enemy.GetComponent<EnemyVelocityTracker>().PredictFuturePosition(estimatedInterceptTime);
     }
 
     Vector3 PredictEnemyPosition(Transform enemy)
@@ -59,7 +69,7 @@ public class Predict : MonoBehaviour
         if (interceptTime < 0)
             return enemyPos;
 
-        return enemyPos + enemyVel * interceptTime;
+        return enemy.GetComponent<EnemyVelocityTracker>().PredictFuturePosition(interceptTime);
     }
 
     void FireProjectile(Vector3 direction, Vector3 predictedPosition, float damage, GameObject target)

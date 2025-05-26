@@ -7,7 +7,7 @@ public class InfoPanel : MonoBehaviour
     private TMP_Text coinText;
     private TMP_Text waveText;
 
-    private void Start()
+    private void Awake()
     {
         healthText = transform.Find("HPTextHolder").transform.Find("HPText").GetComponent<TMP_Text>();
         coinText = transform.Find("CoinTextHolder").transform.Find("CoinText").GetComponent<TMP_Text>();
