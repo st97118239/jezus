@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   color:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
@@ -61,7 +61,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.138
+    m_Value: 0.414
   smoothness:
     m_OverrideState: 1
     m_Value: 0.2
@@ -103,10 +103,10 @@ MonoBehaviour:
     m_Value: 512
   baseHeight:
     m_OverrideState: 1
-    m_Value: 23.2
+    m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 85.8
+    m_Value: 138.6
   enableGround:
     m_OverrideState: 0
     m_Value: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Value: 0
   density:
     m_OverrideState: 1
-    m_Value: 0.261
+    m_Value: 0.462
   attenuationDistance:
     m_OverrideState: 1
     m_Value: 42.9
@@ -124,13 +124,13 @@ MonoBehaviour:
     m_Value: 1
   anisotropy:
     m_OverrideState: 1
-    m_Value: 0.14
+    m_Value: 0
   scattering:
     m_OverrideState: 1
-    m_Value: 0.89
+    m_Value: 0.965
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.18867922, g: 0.14811593, b: 0.11836951, a: 1}
+    m_Value: {r: 0.23584908, g: 0.19196731, b: 0.15686189, a: 1}
   enableAdditionalLightsContribution:
     m_OverrideState: 1
     m_Value: 1
@@ -175,7 +175,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 65472
   tint:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
