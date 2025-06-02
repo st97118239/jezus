@@ -3,6 +3,7 @@ using UnityEngine;
 public class Predict : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    private Enemy currentTarget;
 
     public void ShootVelocity(GameObject enemy, Vector3 velocity, float damage)
     {
@@ -11,6 +12,8 @@ public class Predict : MonoBehaviour
             if (enemy.GetComponent<Enemy>().tempHealth > 0)
             {
                 enemy.GetComponent<Enemy>().tempHealth -= damage;
+
+                currentTarget = enemy.GetComponent<Enemy>();
 
                 FireProjectile(velocity, damage, enemy);
             }
@@ -23,6 +26,7 @@ public class Predict : MonoBehaviour
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         Projectile projectile = projectileGameObject.GetComponent<Projectile>();
+        projectile.SetStats(GetComponent<Tower>().shooter, GetComponent<Tower>().damage, currentTarget);
         projectile.SetVelocity(velocity);
         projectileGameObject.SetActive(true);
 

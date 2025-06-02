@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7295542429822634194}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071057, y: -0, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.223, y: 1.564, z: 1.358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8915010465466492900}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1406367023310329724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,17 +141,17 @@ PrefabInstance:
     - target: {fileID: 4119139493613280975, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8174076
+      value: 118.649574
       objectReference: {fileID: 0}
     - target: {fileID: 4119139493613280975, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: -0.005493164
       objectReference: {fileID: 0}
     - target: {fileID: 4119139493613280975, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0192666
+      value: -85.24118
       objectReference: {fileID: 0}
     - target: {fileID: 4119139493613280975, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
@@ -260,14 +260,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   shooter: {fileID: 0}
-  defaultMaterial: {fileID: 2100000, guid: d4486ed9cf8dd314c8f5ed03e87aaaed, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
   price: 100
   reloadSpeed: 2
   reloadSpeedBase: 0
   range: 25
   rangeBase: 0
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 50

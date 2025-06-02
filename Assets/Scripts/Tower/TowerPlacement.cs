@@ -69,7 +69,8 @@ public class TowerPlacement : MonoBehaviour
     public void PlaceTower(Tower tower)
     {
         main.ChangeCoinAmount(-towerToPlace.price);
-        tower.transform.Find("Shooter").GetComponent<Shooter>().canShoot = true;
+        if (tower.type != TowerTypes.Barracks)
+            tower.TurnShooterOn();
         towersPlaced.Add(tower);
     }
 }

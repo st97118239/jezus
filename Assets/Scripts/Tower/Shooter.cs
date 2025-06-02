@@ -105,7 +105,61 @@ public class Shooter : MonoBehaviour
         return time < 0.1f ? -1 : time;
     }
 
-    private Vector3 GetArrowVelocity(Vector3 targetPosition, float t, float arcScale = 1.0f)
+    //    public Vector3 GetGravityAwareArrowVelocity(
+    //    Vector3 launchPoint,
+    //    Vector3 targetPosition,
+    //    float arrowSpeed,
+    //    float gravity = Physics.gravity.magnitude,
+    //    float arcScale = 1.0f
+    //)
+    //    {
+    //        // Compute displacement and distance
+    //        Vector3 displacement = targetPosition - launchPoint;
+    //        float distanceToTarget = displacement.magnitude;
+
+    //        // Handle edge case: no distance
+    //        if (distanceToTarget < 0.01f) return Vector3.zero;
+
+    //        // Step 1: Calculate horizontal velocity using distance and speed
+    //        float t = distanceToTarget / arrowSpeed; // Time of flight (ignoring gravity)
+    //        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
+
+    //        // Step 2: Calculate vertical velocity to counteract gravity
+    //        float vy = (displacement.y + 0.5f * gravity * t * t) / t;
+
+    //        // Step 3: Scale for flatter arc (adjust as needed)
+    //        horizontalVelocity *= arcScale;
+    //        vy *= arcScale;
+
+    //        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
+    //    }
+
+    Vector3 GetArrowVelocity(Vector3 targetPosition, float t)
+    {
+        Transform launchPoint = tower.shooter.projectileSpawner.transform;
+        float arrowSpeed = tower.projectileSpeed;
+
+        // Calculate the required velocity vector to hit the point at time t
+        Vector3 displacement = targetPosition - launchPoint.position;
+        float distanceToTarget = Vector3.Distance(launchPoint.position, targetPosition);
+
+        // Check if the arrow can reach the target at time t
+        float maxDistance = arrowSpeed * t;
+        if (distanceToTarget > maxDistance)
+            return Vector3.zero;
+
+        // Calculate required velocity components
+        float vx = displacement.x / t;
+        float vz = displacement.z / t;
+
+        // Solve for vy: y(t) = y0 + vy * t - 0.5 * g * t^2
+        // Rearranged: vy = [y(t) - y0 + 0.5 * g * t^2] / t
+        float vy = (targetPosition.y - launchPoint.position.y + 0.5f * Physics.gravity.magnitude * t * t) / t;
+
+        return new Vector3(vx, vy, vz);
+    }
+
+    private Vector3 OldGetArrowVelocity(Vector3 targetPosition, float t, float arcScale = 1.0f)
     {
         Transform launchPoint = tower.shooter.projectileSpawner.transform;
         float arrowSpeed = tower.projectileSpeed;
@@ -205,10 +259,5 @@ public class Shooter : MonoBehaviour
         }
 
         return closestEnemy;
-    }
-
-    public void Missed()
-    {
-        currentTarget.GetComponent<Enemy>().tempHealth += tower.damage;
     }
 }
