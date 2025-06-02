@@ -174,7 +174,7 @@ MonoBehaviour:
   price: 250
   reloadSpeed: 10
   reloadSpeedBase: 0
-  range: 25
+  range: 75
   rangeBase: 0
   projectileSpeed: 20
   projectileSpeedBase: 0

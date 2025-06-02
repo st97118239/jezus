@@ -31,10 +31,11 @@ public class Tower : MonoBehaviour
         rangeBase = range;
         projectileSpeedBase = projectileSpeed;
         damageBase = damage;
+        buildTimer = timeToBuild;
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
         rangeObject = FindObjectOfType(typeof(Range)).GetComponent<Range>();
-        shooter = transform.Find("Shooter").GetComponent<Shooter>();
-        buildTimer = timeToBuild;
+        if (type != TowerTypes.Barracks)
+            shooter = transform.Find("Shooter").GetComponent<Shooter>();
     }
 
     private void Update()

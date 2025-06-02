@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Shooter : MonoBehaviour
 {
+    public GameObject projectileSpawner;
     public bool canShoot = false;
 
     [SerializeField] private List<GameObject> shootableEnemies = new();
@@ -22,6 +24,7 @@ public class Shooter : MonoBehaviour
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
+        projectileSpawner = transform.Find("ProjSpawn").gameObject;
         reloadSpeed = tower.reloadSpeed;
         range = tower.range;
     }
@@ -42,11 +45,44 @@ public class Shooter : MonoBehaviour
         {
             if (canShoot)
             {
-                FindEnemiesInRange();
+                FindEnemiesInRange(); // Vult shootableEnemies
                 if (shootableEnemies.Count > 0)
                 {
-                    currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
-                    Shoot();
+                    Predict p = tower.GetComponent<Predict>();
+
+                    bool isFired = false;
+                    foreach (GameObject enemy in shootableEnemies)
+                    {
+                        NavMeshAgent enemyAgent = enemy.GetComponent<NavMeshAgent>();
+                        for (int i = 0; i < enemyAgent.path.corners.Length; i++)
+                        {
+                            Vector3 targetPosition = enemyAgent.path.corners[i];
+                            float tEnemy = GetTimeToReachPoint(targetPosition, enemyAgent);
+
+                            if (tEnemy > 0)
+                            {
+                                Vector3 velocity = GetArrowVelocity(targetPosition, tEnemy);
+                                if (velocity != Vector3.zero)
+                                {
+                                    ShootVelocity(enemy, velocity);
+                                    isFired = true;
+                                    break;
+                                }
+                            }
+
+                        }
+
+                        if (isFired)
+                            break;
+
+                        //Vector3? enemyPosition = p.NewPredictEnemyPosition(enemy.transform);
+                        //if (enemyPosition != null)
+                        //{
+                        //    currentTarget = enemy;
+                        //    Shoot(enemy, enemyPosition.Value);
+                        //    break;
+                        //}
+                    }
                 }
             }
         }
@@ -61,11 +97,64 @@ public class Shooter : MonoBehaviour
             currentTarget = GetClosestEnemy(shootableEnemies, transform.position);
     }
 
+    private float GetTimeToReachPoint(Vector3 targetPosition, NavMeshAgent enemyAgent)
+    {
+        Vector3 displacement = targetPosition - enemyAgent.transform.position;
+        float time = Vector3.Magnitude(displacement) / enemyAgent.velocity.magnitude;
+
+        return time < 0.1f ? -1 : time;
+    }
+
+    private Vector3 GetArrowVelocity(Vector3 targetPosition, float t, float arcScale = 1.0f)
+    {
+        Transform launchPoint = tower.shooter.projectileSpawner.transform;
+        float arrowSpeed = tower.projectileSpeed;
+
+        Vector3 displacement = targetPosition - launchPoint.position;
+        float distanceToTarget = Vector3.Distance(launchPoint.position, targetPosition);
+
+        float maxDistance = arrowSpeed * t;
+        if (distanceToTarget > maxDistance)
+            return Vector3.zero;
+
+        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
+
+        float g = Physics.gravity.magnitude;
+        float vy = (displacement.y + 0.5f * g * t * t) / t;
+
+        horizontalVelocity *= arcScale;
+        vy *= arcScale;
+
+        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
+    }
+
+    private Vector3 GetArrowVelocityArced(Vector3 targetPosition, float t)
+    {
+        Transform launchPoint = tower.shooter.projectileSpawner.transform;
+        float arrowSpeed = tower.projectileSpeed;
+
+        Vector3 displacement = targetPosition - launchPoint.position;
+        float distanceToTarget = Vector3.Distance(launchPoint.position, targetPosition);
+
+        float maxDistance = arrowSpeed * t;
+        if (distanceToTarget > maxDistance)
+            return Vector3.zero;
+
+        float vx = displacement.x / t;
+        float vz = displacement.z / t;
+
+        // Physics baby!
+        // vy: y(t) = y0 + vy * t - 0.5 * g * t^2
+        float vy = (targetPosition.y - launchPoint.position.y + 0.5f * Physics.gravity.magnitude * t * t) / t;
+
+        return new Vector3(vx, vy, vz);
+    }
+
     private void FindEnemiesInRange()
     {
         shootableEnemies.Clear();
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range); // Vergroten vanwege het feit dat enemies bewegen?
 
         foreach (GameObject enemy in es.activeEnemies)
         {
@@ -76,12 +165,22 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void ShootVelocity(GameObject enemy, Vector3 velocity)
+    {
+        float damage = tower.damage;
+
+        tower.GetComponent<Predict>().ShootVelocity(enemy, velocity, damage);
+
+        shootableEnemies.Clear();
+        reloadTimer = reloadSpeed;
+        reloading = true;
+    }
+
+    private void Shoot(GameObject enemy, Vector3 destination)
     {
         float damage = tower.damage;
         
-        GameObject closest = GetClosestEnemy(shootableEnemies, transform.position);
-        tower.GetComponent<Predict>().Shoot(closest.transform, damage);
+        tower.GetComponent<Predict>().Shoot(enemy, destination, damage);
 
         shootableEnemies.Clear();
         reloadTimer = reloadSpeed;
