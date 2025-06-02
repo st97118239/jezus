@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     private float speed;
     private float damage;
     private float despawnTimer;
-    private bool canMove;
 
     public void SetStats(Shooter givenShooter, float givenDamage, Enemy givenTarget)
     {
@@ -31,7 +30,6 @@ public class Projectile : MonoBehaviour
         target = predictedPosition;
         transform.LookAt(target);
         speed = givenSpeed;
-        canMove = true;
         damage = givenDamage;
         despawnTimer = despawnTimerAmount;
         shooter = attacker;
@@ -39,31 +37,12 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb.velocity.sqrMagnitude > 0.01f) // Check to avoid NaNs from zero velocity
+        if (rb.velocity.sqrMagnitude > 0.01f)
         {
             Quaternion rotation = Quaternion.LookRotation(rb.velocity);
             transform.rotation = rotation;
         }
     }
-
-    //private void Update()
-    //{
-    //    if (canMove)
-    //    {
-    //        float step = speed * Time.deltaTime;
-    //        transform.position = Vector3.MoveTowards(transform.position, target, step);
-
-    //        if (transform.position == target)
-    //        {
-    //            if (despawnTimer > 0)
-    //                despawnTimer -= Time.deltaTime;
-    //            else
-    //            {
-    //                Destroy(gameObject);
-    //            }
-    //        }
-    //    }
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {

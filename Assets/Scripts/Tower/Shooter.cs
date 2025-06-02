@@ -105,34 +105,34 @@ public class Shooter : MonoBehaviour
         return time < 0.1f ? -1 : time;
     }
 
-//    public Vector3 GetGravityAwareArrowVelocity(
-//    Vector3 launchPoint,
-//    Vector3 targetPosition,
-//    float arrowSpeed,
-//    float gravity = Physics.gravity.magnitude,
-//    float arcScale = 1.0f
-//)
-//    {
-//        // Compute displacement and distance
-//        Vector3 displacement = targetPosition - launchPoint;
-//        float distanceToTarget = displacement.magnitude;
+    //    public Vector3 GetGravityAwareArrowVelocity(
+    //    Vector3 launchPoint,
+    //    Vector3 targetPosition,
+    //    float arrowSpeed,
+    //    float gravity = Physics.gravity.magnitude,
+    //    float arcScale = 1.0f
+    //)
+    //    {
+    //        // Compute displacement and distance
+    //        Vector3 displacement = targetPosition - launchPoint;
+    //        float distanceToTarget = displacement.magnitude;
 
-//        // Handle edge case: no distance
-//        if (distanceToTarget < 0.01f) return Vector3.zero;
+    //        // Handle edge case: no distance
+    //        if (distanceToTarget < 0.01f) return Vector3.zero;
 
-//        // Step 1: Calculate horizontal velocity using distance and speed
-//        float t = distanceToTarget / arrowSpeed; // Time of flight (ignoring gravity)
-//        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
+    //        // Step 1: Calculate horizontal velocity using distance and speed
+    //        float t = distanceToTarget / arrowSpeed; // Time of flight (ignoring gravity)
+    //        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
 
-//        // Step 2: Calculate vertical velocity to counteract gravity
-//        float vy = (displacement.y + 0.5f * gravity * t * t) / t;
+    //        // Step 2: Calculate vertical velocity to counteract gravity
+    //        float vy = (displacement.y + 0.5f * gravity * t * t) / t;
 
-//        // Step 3: Scale for flatter arc (adjust as needed)
-//        horizontalVelocity *= arcScale;
-//        vy *= arcScale;
+    //        // Step 3: Scale for flatter arc (adjust as needed)
+    //        horizontalVelocity *= arcScale;
+    //        vy *= arcScale;
 
-//        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
-//    }
+    //        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
+    //    }
 
     Vector3 GetArrowVelocity(Vector3 targetPosition, float t)
     {

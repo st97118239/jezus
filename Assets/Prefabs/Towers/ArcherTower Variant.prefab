@@ -265,7 +265,7 @@ MonoBehaviour:
   reloadSpeedBase: 0
   range: 25
   rangeBase: 0
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 50
