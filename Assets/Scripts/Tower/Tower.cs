@@ -5,8 +5,6 @@ public class Tower : MonoBehaviour
 {
     public TowerTypes type;
     public Shooter shooter;
-    public Material defaultMaterial;
-    public Material transparentMaterial;
     public int price;
     public float reloadSpeed;
     public float reloadSpeedBase;
@@ -59,7 +57,9 @@ public class Tower : MonoBehaviour
             rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
             rangeObject.GetComponent<MeshRenderer>().enabled = true;
         }
-        main.tus.NewTowerSelected(this);
+
+        if (type != TowerTypes.Barracks)
+            main.tus.NewTowerSelected(this);
     }
 
     public void RedrawRange()
@@ -84,5 +84,14 @@ public class Tower : MonoBehaviour
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
         main.tus.TowerDeselected();
+    }
+
+    public void TurnShooterOn()
+    {
+        if (shooter == null)
+            shooter = transform.Find("Shooter").GetComponent<Shooter>();
+
+        shooter.GetComponent<Shooter>().enabled = true;
+        shooter.canShoot = true;
     }
 }

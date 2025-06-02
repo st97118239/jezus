@@ -48,7 +48,8 @@ public class WhereToPlace : MonoBehaviour
                     transparentScript.NewObject(tower, 1f);
                     ChangeMaterialOfAllDescendants(tower.transform, true);
                     tower.GetComponent<BoxCollider>().enabled = true;
-                    tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
+                    if (tower.GetComponent<Tower>().shooter != null)
+                        tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
                     GetComponent<TowerPlacement>().PlaceTower(tower.GetComponent<Tower>());
                     tower.GetComponent<Tower>().WhenPlaced();
 

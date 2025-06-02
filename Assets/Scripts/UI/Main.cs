@@ -7,6 +7,7 @@ public class Main : MonoBehaviour
     public InfoPanel ip;
     public EnemyPanel ep;
     public TowerUpgradeSystem tus;
+    public BarracksUpgradeSystem bus;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
     public int health;
@@ -21,6 +22,7 @@ public class Main : MonoBehaviour
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         tus = FindObjectOfType(typeof(TowerUpgradeSystem)).GetComponent<TowerUpgradeSystem>();
+        bus = FindObjectOfType(typeof(BarracksUpgradeSystem)).GetComponent<BarracksUpgradeSystem>();
         tp = FindObjectOfType(typeof(TowerPlacement)).GetComponent<TowerPlacement>();
         ep = FindObjectOfType(typeof(EnemyPanel)).GetComponent<EnemyPanel>();
         ep.gameObject.SetActive(false);
