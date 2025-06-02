@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using Unity.VisualScripting;
 
 public class Main : MonoBehaviour
 {
@@ -20,15 +19,17 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
-        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
-        tus = FindObjectOfType(typeof(TowerUpgradeSystem)).GetComponent<TowerUpgradeSystem>();
-        bus = FindObjectOfType(typeof(BarracksUpgradeSystem)).GetComponent<BarracksUpgradeSystem>();
-        tp = FindObjectOfType(typeof(TowerPlacement)).GetComponent<TowerPlacement>();
-        ep = FindObjectOfType(typeof(EnemyPanel)).GetComponent<EnemyPanel>();
+        es = FindObjectOfType<EnemySpawner>();
+        tus = FindObjectOfType<TowerUpgradeSystem>();
+        bus = FindObjectOfType<BarracksUpgradeSystem>();
+        tp = FindObjectOfType<TowerPlacement>();
+        ep = FindObjectOfType<EnemyPanel>();
         ep.gameObject.SetActive(false);
         GameObject upgradePanel = transform.Find("UpgradePanel").gameObject;
+        GameObject barracksPanel = transform.Find("BarracksPanel").gameObject;
         upgradePanel.SetActive(false);
         tus.FindUpgradePanel(upgradePanel);
+        bus.FindBarracksPanel(barracksPanel);
         ip = transform.Find("InfoPanel").GetComponent<InfoPanel>();
         gameoverPanel = transform.Find("GameOverPanel").gameObject;
         coinsAmount = defaultCoinsAmount;

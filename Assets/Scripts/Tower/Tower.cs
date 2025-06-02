@@ -60,6 +60,8 @@ public class Tower : MonoBehaviour
 
         if (type != TowerTypes.Barracks)
             main.tus.NewTowerSelected(this);
+        else
+            main.bus.NewTowerSelected(GetComponent<BarracksTower>());
     }
 
     public void RedrawRange()
@@ -83,7 +85,10 @@ public class Tower : MonoBehaviour
     {
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
-        main.tus.TowerDeselected();
+        if (type != TowerTypes.Barracks)
+            main.tus.TowerDeselected();
+        else
+            main.bus.TowerDeselected();
     }
 
     public void TurnShooterOn()

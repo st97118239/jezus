@@ -43994,7 +43994,7 @@ MonoBehaviour:
   towers:
   - {fileID: 8360802504999729515, guid: ef6b857efff359f439dff7a236650806, type: 3}
   - {fileID: 2328603058190106215, guid: e3f61e1e6f96e7c4eab3f3ae9460461c, type: 3}
-  - {fileID: 0}
+  - {fileID: 4987345072615212632, guid: b40ca40d5a00f2643bbdcfb568208e3b, type: 3}
   - {fileID: 3659962739621025268, guid: 98c4d951b9621f2418c3a920836d6899, type: 3}
   buttons:
   - {fileID: 232720777}
@@ -49023,7 +49023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1741763510
 RectTransform:
   m_ObjectHideFlags: 0
