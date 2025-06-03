@@ -69,10 +69,10 @@ public class Unit : MonoBehaviour
             }
             else
                 FindEnemiesInRange();
-
-            if (isSelected)
-                rangeObject.transform.position = transform.position;
         }
+
+        if (isSelected)
+            rangeObject.transform.position = transform.position;
     }
 
     public void Select()
@@ -84,7 +84,7 @@ public class Unit : MonoBehaviour
 
     public void Deselect()
     {
-        main.ep.Deactivate();
+        main.up.Deactivate();
         isSelected = false;
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
     }
