@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
 {
     public UnitType type; // 0 = Spearman, 1 = Knight, 2 = DaVinciTank
     public Vector3 destination;
+    public bool reachedDestination = false;
     public int coins;
     public int damage;
     public float health;
@@ -24,7 +25,6 @@ public class Unit : MonoBehaviour
     private Main main;
     private EnemySpawner es;
     private bool isSelected = false;
-    private bool reachedDestination = false;
 
     private void Start()
     {
@@ -37,10 +37,10 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position == destination)
-        {
-            reachedDestination = true;
-        }
+        //if (transform.position == destination)
+        //{
+        //    reachedDestination = true;
+        //}
 
         if (reachedDestination)
         {
@@ -110,6 +110,13 @@ public class Unit : MonoBehaviour
 
         reachableEnemies = reachableEnemies.OrderBy((d) => (d.gameObject.transform.position - transform.position).sqrMagnitude).ToList();
 
-        currentTarget = reachableEnemies[0];
+        if (reachableEnemies.Count > 0)
+            currentTarget = reachableEnemies[0];
+    }
+
+    public void IsInRange()
+    {
+        GetComponent<NavMeshAgent>().isStopped = true;
+        reachedDestination = true;
     }
 }

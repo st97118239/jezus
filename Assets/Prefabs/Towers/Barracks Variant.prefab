@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 212.23549
+      value: 107.73552
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.113662
+      value: 0.6920204
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -102.3801
+      value: -72.194
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
@@ -153,6 +153,8 @@ MonoBehaviour:
   units:
   - {fileID: 4416869679616308231, guid: 4ce94e3ca37586b41869235a2d2c9d56, type: 3}
   spawnedUnits: []
+  destinationBall: {fileID: 6594104312601092800, guid: bcc68901da9d1304290e9ae6e4f77b5e,
+    type: 3}
   destination: {x: 0, y: 0, z: 0}
   spawnOffset: {x: 1, y: 0, z: 0}
   upgradeCount: 0

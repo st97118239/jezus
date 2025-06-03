@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,20 +6,23 @@ public class BarracksTower : MonoBehaviour
 {
     public List<Unit> units;
     public List<Unit> spawnedUnits;
+    public GameObject destinationBall;
     public Vector3 destination;
     public Vector3 spawnOffset;
     public int upgradeCount;
     public int maxUnits;
 
     private Main main;
-    private GameObject destinationBall;
     private Vector3 cursorLocation;
     private bool needsToFindLocation;
 
     private void Start()
     {
         main = FindObjectOfType<Main>();
-        destinationBall = FindObjectOfType<DestinationBall>().gameObject;
+        GameObject newBall = Instantiate(destinationBall, transform.position + spawnOffset, Quaternion.identity);
+        newBall.GetComponent<DestinationBall>().tower = this;
+        newBall.GetComponent<MeshRenderer>().enabled = false;
+        destinationBall = newBall;
     }
 
     void Update()
@@ -70,13 +72,14 @@ public class BarracksTower : MonoBehaviour
     public void FindNewDestination()
     {
         needsToFindLocation = true;
+        destinationBall.GetComponent<MeshRenderer>().enabled = true;
     }
 
     private void CancelNewDestination()
     {
         needsToFindLocation = false;
-        cursorLocation = Vector3.zero;
         destinationBall.transform.position = cursorLocation;
+        destinationBall.GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void FoundNewDestination()
@@ -86,11 +89,15 @@ public class BarracksTower : MonoBehaviour
 
         needsToFindLocation = false;
         cursorLocation = Vector3.zero;
-        destinationBall.transform.position = cursorLocation;
+        destinationBall.GetComponent<MeshRenderer>().enabled = false;
 
         foreach (Unit unit in spawnedUnits)
         {
             unit.GetComponent<NavMeshAgent>().SetDestination(destination);
+            unit.reachedDestination = false;
+            unit.GetComponent<NavMeshAgent>().isStopped = false;
         }
+
+        destinationBall.GetComponent<DestinationBall>().NewLocation();
     }
 }
