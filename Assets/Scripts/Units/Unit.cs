@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Unit : MonoBehaviour
 {
     public UnitType type; // 0 = Spearman, 1 = Knight, 2 = DaVinciTank
+    public BarracksTower tower;
     public Vector3 destination;
     public bool reachedDestination = false;
     public int coins;
@@ -24,12 +25,14 @@ public class Unit : MonoBehaviour
 
     private Main main;
     private EnemySpawner es;
+    private Range rangeObject;
     private bool isSelected = false;
 
     private void Start()
     {
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
-        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        main = FindObjectOfType<Main>();
+        es = FindObjectOfType<EnemySpawner>();
+        rangeObject = FindObjectOfType<Range>();
         GetComponent<NavMeshAgent>().speed = speed;
 
         attackTimer = attackSpeed;
@@ -118,5 +121,22 @@ public class Unit : MonoBehaviour
     {
         GetComponent<NavMeshAgent>().isStopped = true;
         reachedDestination = true;
+    }
+
+    public void RedrawRange()
+    {
+        rangeObject.transform.position = transform.position;
+        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+        rangeObject.GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    public void Die()
+    {
+        if (isSelected)
+            Deselect();
+
+
+        tower.spawnedUnits.Remove(this);
+        Destroy(gameObject);
     }
 }

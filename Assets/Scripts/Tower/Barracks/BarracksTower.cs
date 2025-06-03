@@ -67,6 +67,7 @@ public class BarracksTower : MonoBehaviour
 
         newUnitAgent.SetDestination(destination);
         spawnedUnits.Add(newUnit);
+        newUnit.tower = this;
     }
 
     public void FindNewDestination()

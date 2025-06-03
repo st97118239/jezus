@@ -29,7 +29,9 @@ public class DestinationBall : MonoBehaviour
                 }
             }
 
-            Debug.Log(unitsReached.Count);
+            if (unitsReached.Count > 0)
+                Debug.Log(unitsReached.Count);
+
             if (unitsReached.Count == tower.maxUnits)
                 hasEveryoneReachedLocation = true;
         }

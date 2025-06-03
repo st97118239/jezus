@@ -30,8 +30,8 @@ public class Tower : MonoBehaviour
         projectileSpeedBase = projectileSpeed;
         damageBase = damage;
         buildTimer = timeToBuild;
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
-        rangeObject = FindObjectOfType(typeof(Range)).GetComponent<Range>();
+        main = FindObjectOfType<Main>();
+        rangeObject = FindObjectOfType<Range>();
         if (type != TowerTypes.Barracks)
             shooter = transform.Find("Shooter").GetComponent<Shooter>();
     }

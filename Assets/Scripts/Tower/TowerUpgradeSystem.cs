@@ -17,7 +17,7 @@ public class TowerUpgradeSystem : MonoBehaviour
 
     private void Start()
     {
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+        main = FindObjectOfType<Main>();
 
         buttons = upgradeButtons.Select((b, i) =>
         {

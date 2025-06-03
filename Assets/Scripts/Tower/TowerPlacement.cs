@@ -17,7 +17,7 @@ public class TowerPlacement : MonoBehaviour
 
     private void Start()
     {
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+        main = FindObjectOfType<Main>();
 
         for (int i = 0; i < towers.Length; i++)
         {

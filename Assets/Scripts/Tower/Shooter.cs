@@ -22,7 +22,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
+        es = FindObjectOfType<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
         projectileSpawner = transform.Find("ProjSpawn").gameObject;
         reloadSpeed = tower.reloadSpeed;

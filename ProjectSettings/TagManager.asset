@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Path
   - Selectable
+  - Waypoint
   layers:
   - Default
   - TransparentFX

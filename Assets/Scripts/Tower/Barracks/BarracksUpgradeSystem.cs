@@ -17,7 +17,7 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Start()
     {
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+        main = FindObjectOfType<Main>();
 
         upgradeButton.onClick.AddListener(() => Upgrade());
         destinationButton.onClick.AddListener(() => DestinationButton());
