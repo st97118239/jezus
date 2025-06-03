@@ -35480,6 +35480,7 @@ MonoBehaviour:
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
   spawnRotation: {x: 0, y: 0, z: 0}
   currentWave: 0
+  groupSpawnCount: 1
   spawnTimerBase: 1
   nextWaveTimerBase: 1
 --- !u!4 &1093990629
@@ -35491,7 +35492,7 @@ Transform:
   m_GameObject: {fileID: 1093990627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.5519705, y: -4.5331664, z: 0.4360568}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
