@@ -1,29 +1,32 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Shooter : MonoBehaviour
 {
     public GameObject projectileSpawner;
-    public bool canShoot = false;
+    public bool canShoot;
 
-    [SerializeField] private List<GameObject> shootableEnemies = new();
+    private readonly List<KeyValuePair<GameObject, NavMeshAgent>> shootableEnemies = new();
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private float rotationSpeed;
-
+    [SerializeField] private float verticalArcFactor;
+    [SerializeField] private bool arcedProjectiles;
+    
     private EnemySpawner es;
     private Tower tower;
     private float reloadSpeed;
     private float reloadTimer;
     private float range;
     private bool reloading;
-
+    private Predict predict;
+    
     private void Start()
     {
         es = FindObjectOfType<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
+        predict = tower.GetComponent<Predict>();
         projectileSpawner = transform.Find("ProjSpawn").gameObject;
         reloadSpeed = tower.reloadSpeed;
         range = tower.range;
@@ -31,7 +34,6 @@ public class Shooter : MonoBehaviour
 
     private void Update()
     {
-
         if (reloading)
         {
             if (reloadTimer > 0)
@@ -48,15 +50,12 @@ public class Shooter : MonoBehaviour
                 FindEnemiesInRange(); // Vult shootableEnemies
                 if (shootableEnemies.Count > 0)
                 {
-                    Predict p = tower.GetComponent<Predict>();
-
                     bool isFired = false;
-                    foreach (GameObject enemy in shootableEnemies)
+                    foreach (KeyValuePair<GameObject, NavMeshAgent> enemy in shootableEnemies)
                     {
-                        NavMeshAgent enemyAgent = enemy.GetComponent<NavMeshAgent>();
-                        for (int i = 0; i < enemyAgent.path.corners.Length; i++)
+                        NavMeshAgent enemyAgent = enemy.Value;
+                        foreach (var targetPosition in enemyAgent.path.corners)
                         {
-                            Vector3 targetPosition = enemyAgent.path.corners[i];
                             float tEnemy = GetTimeToReachPoint(targetPosition, enemyAgent);
 
                             if (tEnemy > 0)
@@ -64,32 +63,26 @@ public class Shooter : MonoBehaviour
                                 Vector3 velocity = GetArrowVelocity(targetPosition, tEnemy);
                                 if (velocity != Vector3.zero)
                                 {
-                                    ShootVelocity(enemy, velocity);
+                                    ShootVelocity(enemy.Key, velocity);
                                     isFired = true;
+                                    currentTarget = enemy.Key;
                                     break;
                                 }
                             }
-
                         }
 
                         if (isFired)
                             break;
-
-                        //Vector3? enemyPosition = p.NewPredictEnemyPosition(enemy.transform);
-                        //if (enemyPosition != null)
-                        //{
-                        //    currentTarget = enemy;
-                        //    Shoot(enemy, enemyPosition.Value);
-                        //    break;
-                        //}
                     }
                 }
             }
         }
 
-        if (currentTarget != null)
+        if (currentTarget)
         {
             Vector3 targetDirection = currentTarget.transform.position - transform.position;
+            if (arcedProjectiles)
+                targetDirection.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
@@ -104,36 +97,7 @@ public class Shooter : MonoBehaviour
 
         return time < 0.1f ? -1 : time;
     }
-
-    //    public Vector3 GetGravityAwareArrowVelocity(
-    //    Vector3 launchPoint,
-    //    Vector3 targetPosition,
-    //    float arrowSpeed,
-    //    float gravity = Physics.gravity.magnitude,
-    //    float arcScale = 1.0f
-    //)
-    //    {
-    //        // Compute displacement and distance
-    //        Vector3 displacement = targetPosition - launchPoint;
-    //        float distanceToTarget = displacement.magnitude;
-
-    //        // Handle edge case: no distance
-    //        if (distanceToTarget < 0.01f) return Vector3.zero;
-
-    //        // Step 1: Calculate horizontal velocity using distance and speed
-    //        float t = distanceToTarget / arrowSpeed; // Time of flight (ignoring gravity)
-    //        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
-
-    //        // Step 2: Calculate vertical velocity to counteract gravity
-    //        float vy = (displacement.y + 0.5f * gravity * t * t) / t;
-
-    //        // Step 3: Scale for flatter arc (adjust as needed)
-    //        horizontalVelocity *= arcScale;
-    //        vy *= arcScale;
-
-    //        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
-    //    }
-
+    
     Vector3 GetArrowVelocity(Vector3 targetPosition, float t)
     {
         Transform launchPoint = tower.shooter.projectileSpawner.transform;
@@ -148,6 +112,13 @@ public class Shooter : MonoBehaviour
         if (distanceToTarget > maxDistance)
             return Vector3.zero;
 
+        if (!arcedProjectiles)
+        {
+            Vector3 direction = displacement.normalized;
+            Vector3 velocity = direction * arrowSpeed;
+            return velocity;
+        }
+
         // Calculate required velocity components
         float vx = displacement.x / t;
         float vz = displacement.z / t;
@@ -155,53 +126,8 @@ public class Shooter : MonoBehaviour
         // Solve for vy: y(t) = y0 + vy * t - 0.5 * g * t^2
         // Rearranged: vy = [y(t) - y0 + 0.5 * g * t^2] / t
         float vy = (targetPosition.y - launchPoint.position.y + 0.5f * Physics.gravity.magnitude * t * t) / t;
-
-        return new Vector3(vx, vy, vz);
-    }
-
-    private Vector3 OldGetArrowVelocity(Vector3 targetPosition, float t, float arcScale = 1.0f)
-    {
-        Transform launchPoint = tower.shooter.projectileSpawner.transform;
-        float arrowSpeed = tower.projectileSpeed;
-
-        Vector3 displacement = targetPosition - launchPoint.position;
-        float distanceToTarget = Vector3.Distance(launchPoint.position, targetPosition);
-
-        float maxDistance = arrowSpeed * t;
-        if (distanceToTarget > maxDistance)
-            return Vector3.zero;
-
-        Vector3 horizontalVelocity = displacement.normalized * arrowSpeed;
-
-        float g = Physics.gravity.magnitude;
-        float vy = (displacement.y + 0.5f * g * t * t) / t;
-
-        horizontalVelocity *= arcScale;
-        vy *= arcScale;
-
-        return new Vector3(horizontalVelocity.x, vy, horizontalVelocity.z);
-    }
-
-    private Vector3 GetArrowVelocityArced(Vector3 targetPosition, float t)
-    {
-        Transform launchPoint = tower.shooter.projectileSpawner.transform;
-        float arrowSpeed = tower.projectileSpeed;
-
-        Vector3 displacement = targetPosition - launchPoint.position;
-        float distanceToTarget = Vector3.Distance(launchPoint.position, targetPosition);
-
-        float maxDistance = arrowSpeed * t;
-        if (distanceToTarget > maxDistance)
-            return Vector3.zero;
-
-        float vx = displacement.x / t;
-        float vz = displacement.z / t;
-
-        // Physics baby!
-        // vy: y(t) = y0 + vy * t - 0.5 * g * t^2
-        float vy = (targetPosition.y - launchPoint.position.y + 0.5f * Physics.gravity.magnitude * t * t) / t;
-
-        return new Vector3(vx, vy, vz);
+        
+        return new Vector3(vx, vy * verticalArcFactor, vz);
     }
 
     private void FindEnemiesInRange()
@@ -214,7 +140,7 @@ public class Shooter : MonoBehaviour
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {
-                shootableEnemies.Add(enemy);
+                shootableEnemies.Add(new KeyValuePair<GameObject, NavMeshAgent>(enemy, enemy.GetComponent<NavMeshAgent>()));
             }
         }
     }
@@ -223,38 +149,27 @@ public class Shooter : MonoBehaviour
     {
         float damage = tower.damage;
 
-        tower.GetComponent<Predict>().ShootVelocity(enemy, velocity, damage);
+        predict.ShootVelocity(enemy, velocity, arcedProjectiles, damage);
 
         shootableEnemies.Clear();
         reloadTimer = reloadSpeed;
         reloading = true;
     }
 
-    private void Shoot(GameObject enemy, Vector3 destination)
-    {
-        float damage = tower.damage;
-        
-        tower.GetComponent<Predict>().Shoot(enemy, destination, damage);
-
-        shootableEnemies.Clear();
-        reloadTimer = reloadSpeed;
-        reloading = true;
-    }
-
-    GameObject GetClosestEnemy(List<GameObject> enemies, Vector3 towerPosition)
+    GameObject GetClosestEnemy(List<KeyValuePair<GameObject, NavMeshAgent>> enemies, Vector3 towerPosition)
     {
         GameObject closestEnemy = null;
         float closestDistanceSqr = Mathf.Infinity;
 
-        foreach (GameObject enemy in enemies)
+        foreach (KeyValuePair<GameObject, NavMeshAgent> enemy in enemies)
         {
-            if (enemy == null) continue;
+            if (!enemy.Key) continue;
 
-            float distanceSqr = (enemy.transform.position - towerPosition).sqrMagnitude;
+            float distanceSqr = (enemy.Key.transform.position - towerPosition).sqrMagnitude;
             if (distanceSqr < closestDistanceSqr)
             {
                 closestDistanceSqr = distanceSqr;
-                closestEnemy = enemy;
+                closestEnemy = enemy.Key;
             }
         }
 

@@ -426,9 +426,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpawner: {fileID: 0}
   canShoot: 0
-  shootableEnemies: []
   currentTarget: {fileID: 0}
   rotationSpeed: 10
+  verticalArcFactor: 0.6
+  arcedProjectiles: 1
 --- !u!4 &8915010465466492900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041952564402437157, guid: d6f9b18aae82ca6478199bb1cf5da7b9,

@@ -93,7 +93,7 @@ public class Tower : MonoBehaviour
 
     public void TurnShooterOn()
     {
-        if (shooter == null)
+        if (!shooter)
             shooter = transform.Find("Shooter").GetComponent<Shooter>();
 
         shooter.GetComponent<Shooter>().enabled = true;

@@ -169,8 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   shooter: {fileID: 0}
-  defaultMaterial: {fileID: 2100000, guid: d4486ed9cf8dd314c8f5ed03e87aaaed, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 4ac51142d2ce2994799e02b0088a67b5, type: 2}
   price: 250
   reloadSpeed: 10
   reloadSpeedBase: 0
@@ -246,7 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729a7abe812abb847b7d591b8739a18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSpawner: {fileID: 0}
   canShoot: 0
-  shootableEnemies: []
   currentTarget: {fileID: 0}
   rotationSpeed: 10
+  verticalArcFactor: 0.6

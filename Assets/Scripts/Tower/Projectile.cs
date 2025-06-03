@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Vector3 velocity;
-    private Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
 
     private Shooter shooter;
     private Enemy currentTarget;
@@ -19,10 +18,10 @@ public class Projectile : MonoBehaviour
         currentTarget = givenTarget;
     }
 
-    public void SetVelocity(Vector3 velocity)
+    public void SetVelocity(Vector3 velocity, bool arcedProjectiles)
     {
-        rb = GetComponent<Rigidbody>();
         rb.velocity = velocity;
+        rb.useGravity = arcedProjectiles;
     }
 
     public void Move(Vector3 predictedPosition, float givenSpeed, float givenDamage, float despawnTimerAmount, Shooter attacker)
@@ -55,14 +54,4 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Enemy"))
-    //        other.GetComponent<Enemy>().GotHit(damage);
-    //    else
-    //        currentTarget.tempHealth += damage;
-
-    //    Destroy(gameObject);
-    //}
 }
