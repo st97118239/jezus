@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Vector3 spawnRotation;
     [SerializeField] private int currentWave = 0;
+    [SerializeField] private int groupSpawnCount = 1;
     [SerializeField] private float spawnTimerBase = 1;
     [SerializeField] private float nextWaveTimerBase = 10;
 
@@ -89,18 +90,21 @@ public class EnemySpawner : MonoBehaviour
                 {
                     spawnTimer = spawnTimerBase;
 
-                    EnemyToSpawn enemyToSpawn = enemiesToSpawn.Dequeue();
-                    GameObject gameObjectToSpawn = enemyList[(int)enemyToSpawn.type];
+                    for (int i = 0; i < groupSpawnCount; i++)
+                    {
+                        EnemyToSpawn enemyToSpawn = enemiesToSpawn.Dequeue();
+                        GameObject gameObjectToSpawn = enemyList[(int)enemyToSpawn.type];
 
-                    GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos,
-                        Quaternion.Euler(spawnRotation));
+                        GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos,
+                            Quaternion.Euler(spawnRotation));
 
-                    Enemy newEnemy = newObject.GetComponent<Enemy>();
-                    newEnemy.health = (int)enemyToSpawn.health;
-                    newEnemy.damage = enemyToSpawn.damage;
+                        Enemy newEnemy = newObject.GetComponent<Enemy>();
+                        newEnemy.health = (int)enemyToSpawn.health;
+                        newEnemy.damage = enemyToSpawn.damage;
 
-                    activeEnemies.Add(newObject);
-                    newObject.SetActive(true);
+                        activeEnemies.Add(newObject);
+                        newObject.SetActive(true);
+                    }
 
                     main.ip.RedrawWaveText(currentWave, activeEnemies.Count, enemiesToSpawn.Count);
                 }
