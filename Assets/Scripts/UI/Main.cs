@@ -5,6 +5,7 @@ public class Main : MonoBehaviour
 {
     public InfoPanel ip;
     public EnemyPanel ep;
+    public UnitPanel up;
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
     public int coinsAmount;
@@ -24,7 +25,9 @@ public class Main : MonoBehaviour
         bus = FindObjectOfType<BarracksUpgradeSystem>();
         tp = FindObjectOfType<TowerPlacement>();
         ep = FindObjectOfType<EnemyPanel>();
+        up = FindObjectOfType<UnitPanel>();
         ep.gameObject.SetActive(false);
+        up.gameObject.SetActive(false);
         GameObject upgradePanel = transform.Find("UpgradePanel").gameObject;
         GameObject barracksPanel = transform.Find("BarracksPanel").gameObject;
         upgradePanel.SetActive(false);
