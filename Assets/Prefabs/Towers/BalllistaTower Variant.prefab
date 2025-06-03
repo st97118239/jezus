@@ -170,7 +170,7 @@ MonoBehaviour:
   type: 1
   shooter: {fileID: 0}
   price: 250
-  reloadSpeed: 10
+  reloadSpeed: 3
   reloadSpeedBase: 0
   range: 75
   rangeBase: 0
@@ -247,5 +247,7 @@ MonoBehaviour:
   projectileSpawner: {fileID: 0}
   canShoot: 0
   currentTarget: {fileID: 0}
+  waypointsToLookAhead: 10
   rotationSpeed: 10
   verticalArcFactor: 0.6
+  arcedProjectiles: 0

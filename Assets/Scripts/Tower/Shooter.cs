@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Shooter : MonoBehaviour
 
     private readonly List<KeyValuePair<GameObject, NavMeshAgent>> shootableEnemies = new();
     [SerializeField] private GameObject currentTarget;
+    [SerializeField] private int waypointsToLookAhead = 5;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float verticalArcFactor;
     [SerializeField] private bool arcedProjectiles;
@@ -53,9 +55,13 @@ public class Shooter : MonoBehaviour
                     bool isFired = false;
                     foreach (KeyValuePair<GameObject, NavMeshAgent> enemy in shootableEnemies)
                     {
+                        EnemyNavigation nav = enemy.Key.GetComponent<EnemyNavigation>();
                         NavMeshAgent enemyAgent = enemy.Value;
-                        foreach (var targetPosition in enemyAgent.path.corners)
+
+                        int startIdx = Math.Max(1, nav.currentWPIndex - 1);
+                        for (var i = startIdx; i < Math.Min(nav.waypoints.Count, nav.currentWPIndex + waypointsToLookAhead); i++)
                         {
+                            Vector3 targetPosition = i < startIdx + enemyAgent.path.corners.Length ? enemyAgent.path.corners[i - startIdx] : nav.waypoints[i].position;
                             float tEnemy = GetTimeToReachPoint(targetPosition, enemyAgent);
 
                             if (tEnemy > 0)

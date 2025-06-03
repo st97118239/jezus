@@ -59,7 +59,7 @@ public class EnemyNavigation : MonoBehaviour
                 GetComponent<Enemy>().ReachedCastle();
                 return;
             }
-            currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
+            currentWPIndex = (currentWPIndex + 1);
 
             if (canMove)
                 navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
