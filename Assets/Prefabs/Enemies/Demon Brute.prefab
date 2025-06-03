@@ -1315,8 +1315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  startingWave: 2
-  waveModulo: 1
+  startingWave: 5
+  waveModulo: 2
   enemyAmount: 15
   coins: 10
   damage: 200
