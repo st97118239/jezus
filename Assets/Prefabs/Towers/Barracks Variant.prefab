@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.332054
+      value: 212.23549
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02006054
+      value: 11.113662
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -76.76087
+      value: -102.3801
       objectReference: {fileID: 0}
     - target: {fileID: 1609772458125140799, guid: 3f7209dfed34ca349a6cd04997d9197d,
         type: 3}
@@ -150,3 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf67ceef241a9b2468ba29c75a05cbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units:
+  - {fileID: 4416869679616308231, guid: 4ce94e3ca37586b41869235a2d2c9d56, type: 3}
+  spawnedUnits: []
+  destination: {x: 0, y: 0, z: 0}
+  spawnOffset: {x: 1, y: 0, z: 0}
+  upgradeCount: 0
+  maxUnits: 5
