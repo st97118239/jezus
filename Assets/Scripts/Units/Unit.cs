@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,7 +11,6 @@ public class Unit : MonoBehaviour
     public Vector3 destination;
     public bool reachedDestination;
     public bool isFollowingEnemy;
-    public int coins;
     public int damage;
     public float health;
     public float speed;
