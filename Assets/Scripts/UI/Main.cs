@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class Main : MonoBehaviour
 {
+    public ClickDetection clickDetec;
     public InfoPanel ip;
     public EnemyPanel ep;
     public UnitPanel up;
@@ -20,6 +21,7 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
+        clickDetec = FindObjectOfType<ClickDetection>();
         es = FindObjectOfType<EnemySpawner>();
         tus = FindObjectOfType<TowerUpgradeSystem>();
         bus = FindObjectOfType<BarracksUpgradeSystem>();

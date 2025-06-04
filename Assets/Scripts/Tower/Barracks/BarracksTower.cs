@@ -14,6 +14,7 @@ public class BarracksTower : MonoBehaviour
     public int maxUnits;
 
     private Main main;
+    private Tower tower;
     private Vector3 cursorLocation;
     private bool needsToFindLocation;
 
@@ -26,6 +27,7 @@ public class BarracksTower : MonoBehaviour
         ballComponent.mesh = ballComponent.GetComponent<MeshRenderer>();
         ballComponent.mesh.enabled = false;
         destinationBall = newBall;
+        tower = GetComponent<Tower>();
     }
 
     void Update()
@@ -85,6 +87,7 @@ public class BarracksTower : MonoBehaviour
         needsToFindLocation = false;
         destinationBall.transform.position = cursorLocation;
         ballComponent.mesh.enabled = false;
+        main.bus.destinationButton.interactable = true;
     }
 
     private void FoundNewDestination()
@@ -104,5 +107,7 @@ public class BarracksTower : MonoBehaviour
         }
 
         ballComponent.NewLocation();
+
+        main.bus.destinationButton.interactable = true;
     }
 }

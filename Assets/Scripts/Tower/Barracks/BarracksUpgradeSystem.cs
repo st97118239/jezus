@@ -1,14 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BarracksUpgradeSystem : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> upgradeButtons;
-    [SerializeField] private Button upgradeButton;
-    [SerializeField] private Button destinationButton;
+    public Button upgradeButton;
+    public Button destinationButton;
 
     private Main main;
     private GameObject barracksPanel;
@@ -37,6 +34,7 @@ public class BarracksUpgradeSystem : MonoBehaviour
     private void DestinationButton()
     {
         selectedBarracks.FindNewDestination();
+        destinationButton.interactable = false;
     }
 
     public void NewTowerSelected(BarracksTower newTower)
