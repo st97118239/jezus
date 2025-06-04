@@ -149,10 +149,12 @@ MonoBehaviour:
   type: 0
   tower: {fileID: 0}
   agent: {fileID: 0}
+  boxCollider: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   reachedDestination: 0
   isFollowingEnemy: 0
   damage: 50
+  price: 25
   health: 100
   speed: 5
   range: 2.5

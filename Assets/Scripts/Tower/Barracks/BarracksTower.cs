@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,11 @@ public class BarracksTower : MonoBehaviour
     public Vector3 spawnOffset;
     public int upgradeCount;
     public int maxUnits;
+    public int spawnCount;
+
+    public List<int> unitsUpgradePrice;
+    public int upgradePrice;
+    public int spawnPrice;
 
     private Main main;
     private Tower tower;
@@ -55,14 +61,6 @@ public class BarracksTower : MonoBehaviour
                 CancelNewDestination();
             }
         }
-
-        if (destination != Vector3.zero)
-        {
-            if (spawnedUnits.Count < maxUnits)
-            {
-                SpawnUnit();
-            }
-        }
     }
 
     private void SpawnUnit()
@@ -74,6 +72,9 @@ public class BarracksTower : MonoBehaviour
         newUnitAgent.SetDestination(destination);
         spawnedUnits.Add(newUnit);
         newUnit.tower = this;
+
+        newUnit.NewDestination(destination);
+        newUnit.agent.isStopped = false;
     }
 
     public void FindNewDestination()
@@ -93,7 +94,6 @@ public class BarracksTower : MonoBehaviour
     private void FoundNewDestination()
     {
         destination = cursorLocation;
-        Debug.Log(destination);
 
         needsToFindLocation = false;
         cursorLocation = Vector3.zero;
@@ -109,5 +109,30 @@ public class BarracksTower : MonoBehaviour
         ballComponent.NewLocation();
 
         main.bus.destinationButton.interactable = true;
+    }
+
+    public void RecalculateUpgradePrice()
+    {
+        upgradePrice = unitsUpgradePrice[upgradeCount + 1];
+    }
+
+    public void RecalculateSpawnPrice() 
+    {
+        spawnPrice = units[upgradeCount].price;
+    }
+
+    public void Upgrade()
+    {
+        upgradeCount++;
+        main.bus.FillUpgradeButton();
+    }
+
+    public void Spawn()
+    {
+        for (int i = 0; i < spawnCount; i++)
+        {
+            SpawnUnit();
+        }
+        main.bus.FillSpawnButton();
     }
 }

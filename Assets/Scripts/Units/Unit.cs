@@ -8,10 +8,12 @@ public class Unit : MonoBehaviour
     public UnitType type; // 0 = Spearman, 1 = Knight, 2 = DaVinciTank
     public BarracksTower tower;
     public NavMeshAgent agent;
+    public BoxCollider boxCollider;
     public Vector3 destination;
     public bool reachedDestination;
     public bool isFollowingEnemy;
     public int damage;
+    public int price;
     public float health;
     public float speed;
     public float range;
@@ -38,6 +40,7 @@ public class Unit : MonoBehaviour
         rangeObject = FindObjectOfType<Range>();
         GetComponent<NavMeshAgent>().speed = speed;
         rangeRenderer = rangeObject.GetComponent<MeshRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
 
         attackTimer = attackSpeed;
     }
@@ -116,12 +119,15 @@ public class Unit : MonoBehaviour
 
         if (!currentTarget)
         {
-            GoBackToDestination();
+            if (!reachedDestination)
+                GoBackToDestination();
+
             return;
         }
 
         if (Vector3.Distance(currentTarget.transform.position, destination) > range)
         {
+            Debug.Log("Following enemy");
             agent.isStopped = false;
             isFollowingEnemy = true;
         }
@@ -179,11 +185,14 @@ public class Unit : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapSphere(destination, radius);
 
+        Debug.Log(destination);
+
         foreach (GameObject enemy in es.activeEnemies)
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {
                 reachableEnemies.Add(enemy);
+                Debug.Log(enemy);
             }
         }
 
