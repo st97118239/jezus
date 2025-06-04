@@ -146,17 +146,18 @@ MonoBehaviour:
   agent: {fileID: 0}
   boxCollider: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  reachedDestination: 0
+  atDestination: 0
+  hasReachedDestination: 0
   isFollowingEnemy: 0
   damage: 150
   price: 100
   health: 300
   speed: 3.25
   range: 1.75
+  extraDistanceToFindEnemiesIn: 4
   reachableEnemies: []
   currentTarget: {fileID: 0}
   isAttacking: 0
-  extraDistanceToFindEnemiesIn: 4
   maxDistanceToLeave: 13
   attackSpeed: 1
   attackTimer: 0

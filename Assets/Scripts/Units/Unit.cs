@@ -10,18 +10,19 @@ public class Unit : MonoBehaviour
     public NavMeshAgent agent;
     public BoxCollider boxCollider;
     public Vector3 destination;
-    public bool reachedDestination;
+    public bool atDestination;
+    public bool hasReachedDestination;
     public bool isFollowingEnemy;
     public int damage;
     public int price;
     public float health;
     public float speed;
     public float range;
+    public float extraDistanceToFindEnemiesIn = 3;
 
     [SerializeField] private List<GameObject> reachableEnemies = new();
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private bool isAttacking;
-    [SerializeField] private float extraDistanceToFindEnemiesIn = 3;
     [SerializeField] private float maxDistanceToLeave = 10;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float attackTimer;
@@ -47,7 +48,7 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (reachedDestination)
+        if (hasReachedDestination)
         {
             if (isAttacking)
             {
@@ -69,8 +70,8 @@ public class Unit : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
-            else
-                FindEnemiesInRange(range);
+            //else
+            //    FindEnemiesInRange(range);
         }
 
         if (isSelected)
@@ -96,7 +97,8 @@ public class Unit : MonoBehaviour
 
     private void Attack()
     {
-        FindEnemiesInRange(range);
+        if (atDestination)
+            FindEnemiesInRange(range);
 
         if (!currentTarget)
         {
@@ -106,8 +108,10 @@ public class Unit : MonoBehaviour
 
         Enemy enemy = currentTarget.GetComponent<Enemy>();
 
-        enemy.GotHit(damage);
+        if (Vector3.Distance(transform.position, currentTarget.transform.position) > range)
+            return;
 
+        enemy.GotHit(damage);
         reachableEnemies.Clear();
         attackTimer = attackSpeed;
         isAttacking = true;
@@ -115,11 +119,11 @@ public class Unit : MonoBehaviour
 
     private void MoveToEnemies()
     {
-        FindEnemiesInRangeOfDestination(range + extraDistanceToFindEnemiesIn);
+        FindEnemiesInRangeOfDestination(tower.unitRange + extraDistanceToFindEnemiesIn);
 
         if (!currentTarget)
         {
-            if (!reachedDestination)
+            if (!atDestination)
                 GoBackToDestination();
 
             return;
@@ -127,7 +131,6 @@ public class Unit : MonoBehaviour
 
         if (Vector3.Distance(currentTarget.transform.position, destination) > range)
         {
-            Debug.Log("Following enemy");
             agent.isStopped = false;
             isFollowingEnemy = true;
         }
@@ -185,8 +188,6 @@ public class Unit : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapSphere(destination, radius);
 
-        Debug.Log(destination);
-
         foreach (GameObject enemy in es.activeEnemies)
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
@@ -205,12 +206,21 @@ public class Unit : MonoBehaviour
     public void IsInRange()
     {
         agent.isStopped = true;
-        reachedDestination = true;
+        atDestination = true;
+        hasReachedDestination = true;
     }
 
     public void NewDestination(Vector3 position)
     {
-        reachedDestination = false;
+        atDestination = false;
+        isAttacking = false;
+        destination = position;
+    }
+
+    public void NewDestinationPoint(Vector3 position)
+    {
+        atDestination = false;
+        hasReachedDestination = false;
         isAttacking = false;
         destination = position;
     }

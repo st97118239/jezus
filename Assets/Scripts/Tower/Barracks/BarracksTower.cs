@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +13,7 @@ public class BarracksTower : MonoBehaviour
     public int upgradeCount;
     public int maxUnits;
     public int spawnCount;
+    public float unitRange;
 
     public List<int> unitsUpgradePrice;
     public int upgradePrice;
@@ -73,7 +73,7 @@ public class BarracksTower : MonoBehaviour
         spawnedUnits.Add(newUnit);
         newUnit.tower = this;
 
-        newUnit.NewDestination(destination);
+        newUnit.NewDestinationPoint(destination);
         newUnit.agent.isStopped = false;
     }
 
@@ -102,7 +102,7 @@ public class BarracksTower : MonoBehaviour
         foreach (Unit unit in spawnedUnits)
         {
             unit.agent.SetDestination(destination);
-            unit.NewDestination(destination);
+            unit.NewDestinationPoint(destination);
             unit.agent.isStopped = false;
         }
 

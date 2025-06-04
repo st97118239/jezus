@@ -21,6 +21,8 @@ public class Tower : MonoBehaviour
 
     private Main main;
     private Range rangeObject;
+    private BarracksRange barracksRangeObject;
+    private BarracksTower barracksTower;
     private float buildTimer;
 
     private void Start()
@@ -34,6 +36,11 @@ public class Tower : MonoBehaviour
         rangeObject = FindObjectOfType<Range>();
         if (type != TowerTypes.Barracks)
             shooter = transform.Find("Shooter").GetComponent<Shooter>();
+        else
+        {
+            barracksRangeObject = FindObjectOfType<BarracksRange>();
+            barracksTower = GetComponent<BarracksTower>();
+        }
     }
 
     private void Update()
@@ -56,6 +63,18 @@ public class Tower : MonoBehaviour
             rangeObject.transform.position = transform.position;
             rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
             rangeObject.GetComponent<MeshRenderer>().enabled = true;
+
+            if (type == TowerTypes.Barracks)
+            {
+                Unit unit = barracksTower.units[barracksTower.upgradeCount];
+                float barracksRange = barracksTower.unitRange + unit.extraDistanceToFindEnemiesIn;
+
+                barracksRangeObject.transform.position = barracksTower.destinationBall.transform.position;
+                barracksRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
+                barracksRangeObject.GetComponent<MeshRenderer>().enabled = true;
+            }
+            else if (type == TowerTypes.Barracks)
+                Debug.Log(recentlyBuilt);
         }
 
         if (type != TowerTypes.Barracks)
@@ -73,7 +92,7 @@ public class Tower : MonoBehaviour
             rangeObject.GetComponent<MeshRenderer>().enabled = true;
         }
         else
-            rangeObject = FindObjectOfType(typeof(Range)).GetComponent<Range>();
+            rangeObject = FindObjectOfType<Range>();
     }
 
     public void WhenPlaced()
@@ -88,7 +107,11 @@ public class Tower : MonoBehaviour
         if (type != TowerTypes.Barracks)
             main.tus.TowerDeselected();
         else
+        {
             main.bus.TowerDeselected();
+            barracksRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
+            barracksRangeObject.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 
     public void TurnShooterOn()

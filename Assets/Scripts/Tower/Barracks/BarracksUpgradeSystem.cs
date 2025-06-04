@@ -69,7 +69,8 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Spawn()
     {
-        Debug.Log("spawn unit");
+        if (selectedBarracks.units.Count >= selectedBarracks.maxUnits)
+            return;
 
         if (main.coinsAmount < selectedBarracks.spawnPrice)
             return;

@@ -161,7 +161,8 @@ MonoBehaviour:
   spawnOffset: {x: 1, y: 0, z: 0}
   upgradeCount: 0
   maxUnits: 15
-  spawnCount: 5
+  spawnCount: 1
+  unitRange: 5
   unitsUpgradePrice: 0000000064000000
   upgradePrice: 0
   spawnPrice: 25

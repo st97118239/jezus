@@ -134,10 +134,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Enemy enemyType = enemy.GetComponent<Enemy>();
 
-            if (enemyType.startingWave > wave)
-                continue;
-
-            if (wave % enemyType.waveModulo != 0)
+            if (enemyType.startingWave > wave || (wave - enemyType.startingWave) % enemyType.waveModulo != 0)
                 continue;
 
             int enemyUsedInWavesCount = enemiesUsedInWavesAmount[index];
