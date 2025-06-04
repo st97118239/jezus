@@ -427,6 +427,7 @@ MonoBehaviour:
   projectileSpawner: {fileID: 0}
   canShoot: 0
   currentTarget: {fileID: 0}
+  waypointsToLookAhead: 5
   rotationSpeed: 10
   verticalArcFactor: 0.6
   arcedProjectiles: 1

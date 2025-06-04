@@ -7,6 +7,7 @@ public class BarracksTower : MonoBehaviour
     public List<Unit> units;
     public List<Unit> spawnedUnits;
     public GameObject destinationBall;
+    public DestinationBall ballComponent;
     public Vector3 destination;
     public Vector3 spawnOffset;
     public int upgradeCount;
@@ -20,8 +21,10 @@ public class BarracksTower : MonoBehaviour
     {
         main = FindObjectOfType<Main>();
         GameObject newBall = Instantiate(destinationBall, transform.position + spawnOffset, Quaternion.identity);
-        newBall.GetComponent<DestinationBall>().tower = this;
-        newBall.GetComponent<MeshRenderer>().enabled = false;
+        ballComponent = newBall.GetComponent<DestinationBall>();
+        ballComponent.tower = this;
+        ballComponent.mesh = ballComponent.GetComponent<MeshRenderer>();
+        ballComponent.mesh.enabled = false;
         destinationBall = newBall;
     }
 
@@ -63,7 +66,8 @@ public class BarracksTower : MonoBehaviour
     private void SpawnUnit()
     {
         Unit newUnit = Instantiate(units[0 + upgradeCount], transform.position + spawnOffset, Quaternion.identity);
-        NavMeshAgent newUnitAgent = newUnit.GetComponent<NavMeshAgent>();
+        newUnit.agent = newUnit.GetComponent<NavMeshAgent>();
+        NavMeshAgent newUnitAgent = newUnit.agent;
 
         newUnitAgent.SetDestination(destination);
         spawnedUnits.Add(newUnit);
@@ -73,14 +77,14 @@ public class BarracksTower : MonoBehaviour
     public void FindNewDestination()
     {
         needsToFindLocation = true;
-        destinationBall.GetComponent<MeshRenderer>().enabled = true;
+        ballComponent.mesh.enabled = true;
     }
 
     private void CancelNewDestination()
     {
         needsToFindLocation = false;
         destinationBall.transform.position = cursorLocation;
-        destinationBall.GetComponent<MeshRenderer>().enabled = false;
+        ballComponent.mesh.enabled = false;
     }
 
     private void FoundNewDestination()
@@ -90,15 +94,15 @@ public class BarracksTower : MonoBehaviour
 
         needsToFindLocation = false;
         cursorLocation = Vector3.zero;
-        destinationBall.GetComponent<MeshRenderer>().enabled = false;
+        ballComponent.mesh.enabled = false;
 
         foreach (Unit unit in spawnedUnits)
         {
-            unit.GetComponent<NavMeshAgent>().SetDestination(destination);
-            unit.reachedDestination = false;
-            unit.GetComponent<NavMeshAgent>().isStopped = false;
+            unit.agent.SetDestination(destination);
+            unit.NewDestination(destination);
+            unit.agent.isStopped = false;
         }
 
-        destinationBall.GetComponent<DestinationBall>().NewLocation();
+        ballComponent.NewLocation();
     }
 }

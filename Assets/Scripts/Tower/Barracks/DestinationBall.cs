@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestinationBall : MonoBehaviour
 {
     public BarracksTower tower;
+    public MeshRenderer mesh;
     public float range = 1.5f;
 
     private bool hasEveryoneReachedLocation;

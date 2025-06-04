@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,8 +9,10 @@ public class Unit : MonoBehaviour
 {
     public UnitType type; // 0 = Spearman, 1 = Knight, 2 = DaVinciTank
     public BarracksTower tower;
+    public NavMeshAgent agent;
     public Vector3 destination;
-    public bool reachedDestination = false;
+    public bool reachedDestination;
+    public bool isFollowingEnemy;
     public int coins;
     public int damage;
     public float health;
@@ -18,7 +21,9 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private List<GameObject> reachableEnemies = new();
     [SerializeField] private GameObject currentTarget;
-    [SerializeField] private bool isAttacking = false;
+    [SerializeField] private bool isAttacking;
+    [SerializeField] private float extraDistanceToFindEnemiesIn = 3;
+    [SerializeField] private float maxDistanceToLeave = 10;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float attackTimer;
     [SerializeField] private float rotationSpeed;
@@ -26,7 +31,8 @@ public class Unit : MonoBehaviour
     private Main main;
     private EnemySpawner es;
     private Range rangeObject;
-    private bool isSelected = false;
+    private MeshRenderer rangeRenderer;
+    private bool isSelected;
 
     private void Start()
     {
@@ -34,23 +40,17 @@ public class Unit : MonoBehaviour
         es = FindObjectOfType<EnemySpawner>();
         rangeObject = FindObjectOfType<Range>();
         GetComponent<NavMeshAgent>().speed = speed;
+        rangeRenderer = rangeObject.GetComponent<MeshRenderer>();
 
         attackTimer = attackSpeed;
     }
 
     private void Update()
     {
-        //if (transform.position == destination)
-        //{
-        //    reachedDestination = true;
-        //}
-
         if (reachedDestination)
         {
             if (isAttacking)
             {
-                Debug.Log(attackTimer);
-
                 if (attackTimer > 0)
                 {
                     attackTimer -= Time.deltaTime;
@@ -60,19 +60,24 @@ public class Unit : MonoBehaviour
                     Attack();
                 }
             }
+            else
+                isAttacking = true;
 
-            if (currentTarget != null)
+            if (currentTarget)
             {
                 Vector3 targetDirection = currentTarget.transform.position - transform.position;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
             else
-                FindEnemiesInRange();
+                FindEnemiesInRange(range);
         }
 
         if (isSelected)
             rangeObject.transform.position = transform.position;
+
+        if (isFollowingEnemy)
+            FollowEnemy();
     }
 
     public void Select()
@@ -86,12 +91,18 @@ public class Unit : MonoBehaviour
     {
         main.up.Deactivate();
         isSelected = false;
-        rangeObject.GetComponent<MeshRenderer>().enabled = false;
+        rangeRenderer.enabled = false;
     }
 
     private void Attack()
     {
-        FindEnemiesInRange();
+        FindEnemiesInRange(range);
+
+        if (!currentTarget)
+        {
+            MoveToEnemies();
+            return;
+        }
 
         Enemy enemy = currentTarget.GetComponent<Enemy>();
 
@@ -102,11 +113,74 @@ public class Unit : MonoBehaviour
         isAttacking = true;
     }
 
-    private void FindEnemiesInRange()
+    private void MoveToEnemies()
+    {
+        FindEnemiesInRangeOfDestination(range + extraDistanceToFindEnemiesIn);
+
+        if (!currentTarget)
+        {
+            GoBackToDestination();
+            return;
+        }
+
+        if (Vector3.Distance(currentTarget.transform.position, destination) > range)
+        {
+            agent.isStopped = false;
+            isFollowingEnemy = true;
+        }
+    }
+
+    private void FollowEnemy()
+    {
+        if (!currentTarget)
+        {
+            currentTarget = null;
+            return;
+        }
+
+        Vector3 enemyPosition = currentTarget.transform.position;
+
+        if (Vector3.Distance(enemyPosition, transform.position) > maxDistanceToLeave)
+        {
+            GoBackToDestination();
+            return;
+        }
+
+        agent.SetDestination(enemyPosition);
+    }
+
+    private void GoBackToDestination()
+    {
+        isFollowingEnemy = false;
+        NewDestination(destination);
+        agent.SetDestination(destination);
+    }
+
+    private void FindEnemiesInRange(float radius)
     {
         reachableEnemies.Clear();
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range); // Vergroten vanwege het feit dat enemies bewegen?
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (GameObject enemy in es.activeEnemies)
+        {
+            if (hitColliders.Any(h => h.gameObject == enemy))
+            {
+                reachableEnemies.Add(enemy);
+            }
+        }
+
+        reachableEnemies = reachableEnemies.OrderBy((d) => (d.gameObject.transform.position - transform.position).sqrMagnitude).ToList();
+
+        if (reachableEnemies.Count > 0)
+            currentTarget = reachableEnemies[0];
+    }
+
+    private void FindEnemiesInRangeOfDestination(float radius)
+    {
+        reachableEnemies.Clear();
+
+        Collider[] hitColliders = Physics.OverlapSphere(destination, radius);
 
         foreach (GameObject enemy in es.activeEnemies)
         {
@@ -124,15 +198,22 @@ public class Unit : MonoBehaviour
 
     public void IsInRange()
     {
-        GetComponent<NavMeshAgent>().isStopped = true;
+        agent.isStopped = true;
         reachedDestination = true;
+    }
+
+    public void NewDestination(Vector3 position)
+    {
+        reachedDestination = false;
+        isAttacking = false;
+        destination = position;
     }
 
     public void RedrawRange()
     {
         rangeObject.transform.position = transform.position;
         rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-        rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        rangeRenderer.enabled = true;
     }
 
     public void Die()
