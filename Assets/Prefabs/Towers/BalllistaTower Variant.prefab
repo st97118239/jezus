@@ -179,6 +179,7 @@ MonoBehaviour:
   projectileDespawnTime: 0.1
   damage: 200
   damageBase: 0
+  hasNoShooter: 0
   recentlyBuilt: 1
   timeToBuild: 0.1
 --- !u!114 &3268961263255898005
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de28fb35cfa7454585de7c9d1604936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 9131804037937054088, guid: d90be59e33a09f24e8f9ef98cb34d814,
+  projectilePrefab: {fileID: 9131804037937054088, guid: 574e0fde9a1f3bc48b3cfa32d5930405,
     type: 3}
 --- !u!4 &8092240012316313908 stripped
 Transform:
@@ -247,7 +248,7 @@ MonoBehaviour:
   projectileSpawner: {fileID: 0}
   canShoot: 0
   currentTarget: {fileID: 0}
+  arcedProjectiles: 0
   waypointsToLookAhead: 10
   rotationSpeed: 10
   verticalArcFactor: 0.6
-  arcedProjectiles: 0

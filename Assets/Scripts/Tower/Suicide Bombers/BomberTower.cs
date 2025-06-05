@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class BomberTower : MonoBehaviour
 {
+    public GameObject projectileSpawner;
     public GameObject landingBall;
     public LandingBall ballComponent;
     public Vector3 landingPos;
