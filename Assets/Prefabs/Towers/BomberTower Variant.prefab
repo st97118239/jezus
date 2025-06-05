@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 96.83504
+      value: 97.04293
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0054974556
+      value: -0.0054922104
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -78.21951
+      value: -75.427345
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
@@ -80,6 +80,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6797671685972396544}
+    - targetCorrespondingSourceObject: {fileID: 7558767653775158117, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4184590272628626862}
   m_SourcePrefab: {fileID: 100100000, guid: 2d2405f986e10674aaa68f4e4aa9ae0d, type: 3}
 --- !u!1 &8015688372145511379 stripped
 GameObject:
@@ -132,5 +136,33 @@ MonoBehaviour:
   projectileDespawnTime: 0.1
   damage: 1000
   damageBase: 0
+  hasNoShooter: 1
   recentlyBuilt: 1
   timeToBuild: 0.1
+--- !u!114 &4184590272628626862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015688372145511379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32669292e1484f74d8796369a8d090ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landingBall: {fileID: 6594104312601092800, guid: 56db5d29fd76e1f41a3873b23606cc92,
+    type: 3}
+  ballComponent: {fileID: 0}
+  landingPos: {x: 0, y: 0, z: 0}
+  upgrade: 0000000001000000
+  upgradeCount: 0000000000000000
+  upgradeMax: 0500000005000000
+  upgradeFactor:
+  - 1.2
+  - 1.6
+  upgradeBaseCost: 64000000af000000
+  upgradeCostFactor:
+  - 1.4
+  - 1.875
+  upgradeCost: 0000000000000000

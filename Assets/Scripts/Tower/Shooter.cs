@@ -9,20 +9,20 @@ public class Shooter : MonoBehaviour
     public GameObject projectileSpawner;
     public bool canShoot;
 
-    private readonly List<KeyValuePair<GameObject, NavMeshAgent>> shootableEnemies = new();
     [SerializeField] private GameObject currentTarget;
+    [SerializeField] private bool arcedProjectiles;
     [SerializeField] private int waypointsToLookAhead = 5;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float verticalArcFactor;
-    [SerializeField] private bool arcedProjectiles;
     
+    private readonly List<KeyValuePair<GameObject, NavMeshAgent>> shootableEnemies = new();
     private EnemySpawner es;
     private Tower tower;
+    private Predict predict;
+    private bool reloading;
     private float reloadSpeed;
     private float reloadTimer;
     private float range;
-    private bool reloading;
-    private Predict predict;
     
     private void Start()
     {

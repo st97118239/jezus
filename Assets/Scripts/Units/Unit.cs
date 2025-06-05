@@ -61,8 +61,6 @@ public class Unit : MonoBehaviour
                     Attack();
                 }
             }
-            else
-                isAttacking = true;
 
             if (currentTarget)
             {

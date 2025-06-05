@@ -48,7 +48,7 @@ public class TowerUpgradeSystem : MonoBehaviour
         upgradePanel.SetActive(true);
         selectedTower = newTower;
         selectedTowerUpgrades = selectedTower.GetComponent<TowerUpgrades>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < upgradeButtons.Count; i++)
             FillUpgradeText(i);
     }
 
@@ -57,7 +57,8 @@ public class TowerUpgradeSystem : MonoBehaviour
         buttonCount++;
         GameObject selectedButton = upgradeButtons[buttonCount - 1];
 
-        TMP_Text upgradeButtonText = selectedButton.transform.Find("UpgradeButton" + buttonCount).transform.Find("UpgradeButtonText" + buttonCount).GetComponent<TMP_Text>();
+        Button upgradeButton = selectedButton.transform.Find("UpgradeButton" + buttonCount).GetComponent<Button>();
+        TMP_Text upgradeButtonText = upgradeButton.transform.Find("UpgradeButtonText" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextName = selectedButton.transform.Find("UpgradeTextName" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextAmount = selectedButton.transform.Find("UpgradeTextAmount" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextMax = selectedButton.transform.Find("UpgradeTextMax" + buttonCount).GetComponent<TMP_Text>();
@@ -70,11 +71,26 @@ public class TowerUpgradeSystem : MonoBehaviour
         upgradeTextAmount.text = stat.ToString("0.##");
         upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount - 1] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount - 1]).ToString();
         towerTextName.text = selectedTower.type.ToReadableString();
+
+        if (selectedTowerUpgrades.upgradeCount[buttonCount] >= selectedTowerUpgrades.upgradeMax[buttonCount])
+            DisableUpgradeButton(upgradeButton);
+        else
+            EnableUpgradeButton(upgradeButton);
     }
 
     public void TowerDeselected()
     {
         upgradePanel.SetActive(false);
         selectedTower = null;
+    }
+
+    public void DisableUpgradeButton(Button button)
+    {
+        button.interactable = false;
+    }
+
+    private void EnableUpgradeButton(Button button)
+    {
+        button.interactable = true;
     }
 }
