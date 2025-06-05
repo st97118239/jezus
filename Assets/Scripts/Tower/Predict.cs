@@ -39,17 +39,4 @@ public class Predict : MonoBehaviour
 
         enemy.TowerHasShot(projectileGameObject, damage);
     }
-
-    void FireProjectile(Vector3 direction, Vector3 predictedPosition, float damage, GameObject target)
-    {
-        Transform spawnLocation = transform.Find("Shooter").transform.Find("ProjSpawn").GetComponent<Transform>();
-        GameObject projectile = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
-
-        float projectileSpeed = GetComponent<Tower>().projectileSpeed;
-        projectile.GetComponent<Projectile>().Move(predictedPosition, projectileSpeed, damage, GetComponent<Tower>().projectileDespawnTime, GetComponent<Tower>().shooter);
-
-        projectile.SetActive(true);
-
-        target.GetComponent<Enemy>().TowerHasShot(projectile, damage);
-    }
 }

@@ -60257,7 +60257,7 @@ MonoBehaviour:
   tus: {fileID: 0}
   bus: {fileID: 0}
   coinsAmount: 0
-  defaultCoinsAmount: 750
+  defaultCoinsAmount: 5000
   health: 0
   defaultHealth: 5000
   isDead: 0

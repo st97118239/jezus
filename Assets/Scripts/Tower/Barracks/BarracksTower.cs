@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -113,7 +114,8 @@ public class BarracksTower : MonoBehaviour
 
     public void RecalculateUpgradePrice()
     {
-        upgradePrice = unitsUpgradePrice[upgradeCount + 1];
+        if (upgradeCount < (unitsUpgradePrice.Count - 1))
+            upgradePrice = unitsUpgradePrice[upgradeCount + 1];
     }
 
     public void RecalculateSpawnPrice() 
@@ -125,6 +127,10 @@ public class BarracksTower : MonoBehaviour
     {
         upgradeCount++;
         main.bus.FillUpgradeButton();
+        RemoveAllUnits();
+        main.bus.FillSpawnButton();
+        if (upgradeCount >= (units.Count - 1))
+            main.bus.DisableUpgradeButton();
     }
 
     public void Spawn()
@@ -134,5 +140,17 @@ public class BarracksTower : MonoBehaviour
             SpawnUnit();
         }
         main.bus.FillSpawnButton();
+
+        if (spawnedUnits.Count >= maxUnits)
+            main.bus.DisableSpawnButton();
+    }
+
+    private void RemoveAllUnits()
+    {
+        foreach (Unit unit in spawnedUnits.ToList())
+        {
+            spawnedUnits.Remove(unit);
+            Destroy(unit);
+        }
     }
 }

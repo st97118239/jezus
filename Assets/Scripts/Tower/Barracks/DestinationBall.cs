@@ -33,14 +33,12 @@ public class DestinationBall : MonoBehaviour
             {
                 if (hitColliders.Any(h => h.gameObject == unit.gameObject))
                 {
-                    Debug.Log(unit);
                     unit.IsInRange();
                     unitsReached.Add(unit);
                 }
             }
 
             if (unitsReached.Count > 0)
-                Debug.Log(unitsReached.Count);
 
             if (unitsReached.Count == units.Count)
                 hasEveryoneReachedLocation = true;

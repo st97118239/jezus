@@ -143,17 +143,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dddee6a5439dd34caa1bdc6afb0ca71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
+  tower: {fileID: 0}
+  agent: {fileID: 0}
+  boxCollider: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  reachedDestination: 0
-  coins: 0
+  atDestination: 0
+  hasReachedDestination: 0
+  isFollowingEnemy: 0
   damage: 5
+  price: 0
   health: 100
   speed: 5
   range: 2
+  extraDistanceToFindEnemiesIn: 3
   reachableEnemies: []
   currentTarget: {fileID: 0}
   isAttacking: 0
+  maxDistanceToLeave: 10
   attackSpeed: 1
   attackTimer: 0
   rotationSpeed: 100

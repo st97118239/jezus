@@ -97,7 +97,7 @@ public class Unit : MonoBehaviour
 
     private void Attack()
     {
-        if (atDestination)
+        if (hasReachedDestination && Vector3.Distance(destination, transform.position) <= maxDistanceToLeave)
             FindEnemiesInRange(range);
 
         if (!currentTarget)

@@ -37,9 +37,15 @@ public class BarracksUpgradeSystem : MonoBehaviour
         TMP_Text upgradeTextMax = upgradeParent.transform.Find("UpgradeTextMax").GetComponent<TMP_Text>();
 
         selectedBarracks.RecalculateUpgradePrice();
+
         upgradeButtonText.text = "Upgrade:\n$" + selectedBarracks.upgradePrice;
         upgradeTextUnit.text = selectedBarracks.units[selectedBarracks.upgradeCount].type.ToReadableString();
-        upgradeTextMax.text = (selectedBarracks.upgradeCount + "/" + (selectedBarracks.units.Count + 1)).ToString();
+        upgradeTextMax.text = (selectedBarracks.upgradeCount + "/" + (selectedBarracks.units.Count - 1)).ToString();
+
+        if (selectedBarracks.upgradeCount >= (selectedBarracks.units.Count - 1))
+            DisableUpgradeButton();
+        else
+            EnableUpgradeButton();
     }
 
     public void FillSpawnButton()
@@ -54,11 +60,21 @@ public class BarracksUpgradeSystem : MonoBehaviour
         spawnButtonText.text = "Spawn:\n$" + selectedBarracks.spawnPrice;
         spawnTextUnit.text = selectedBarracks.units[selectedBarracks.upgradeCount].type.ToReadableString();
         spawnTextMax.text = (selectedBarracks.spawnedUnits.Count + "/" + (selectedBarracks.maxUnits)).ToString();
+
+        if (selectedBarracks.spawnedUnits.Count >= selectedBarracks.maxUnits)
+            DisableSpawnButton();
+        else
+            EnableSpawnButton();
     }
 
     private void Upgrade()
     {
         Debug.Log("upgrade");
+
+        if (selectedBarracks.upgradeCount >= (selectedBarracks.unitsUpgradePrice.Count))
+        {
+            Debug.Log("max upgrades");
+        }
 
         if (main.coinsAmount < selectedBarracks.upgradePrice)
             return;
@@ -98,5 +114,25 @@ public class BarracksUpgradeSystem : MonoBehaviour
     {
         barracksPanel.SetActive(false);
         selectedBarracks = null;
+    }
+
+    public void DisableUpgradeButton()
+    {
+        upgradeButton.interactable = false;
+    }
+
+    private void EnableUpgradeButton()
+    {
+        upgradeButton.interactable = true;
+    }
+
+    public void DisableSpawnButton()
+    {
+        spawnButton.interactable = false;
+    }
+
+    private void EnableSpawnButton()
+    {
+        spawnButton.interactable = true;
     }
 }
