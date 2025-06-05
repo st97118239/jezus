@@ -61,10 +61,13 @@ public class Unit : MonoBehaviour
                     Attack();
                 }
             }
+            else
+                isAttacking = true;
 
             if (currentTarget)
             {
                 Vector3 targetDirection = currentTarget.transform.position - transform.position;
+                targetDirection.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
@@ -98,7 +101,7 @@ public class Unit : MonoBehaviour
         if (hasReachedDestination && Vector3.Distance(destination, transform.position) <= maxDistanceToLeave)
             FindEnemiesInRange(range);
 
-        if (!currentTarget)
+        if (!currentTarget || Vector3.Distance(currentTarget.transform.position, transform.position) > range)
         {
             MoveToEnemies();
             return;

@@ -166,4 +166,4 @@ MonoBehaviour:
   maxDistanceToLeave: 10
   attackSpeed: 0.75
   attackTimer: 0
-  rotationSpeed: 100
+  rotationSpeed: 10
