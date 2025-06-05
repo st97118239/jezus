@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
     public float projectileDespawnTime = 0.1f;
     public float damage;
     public float damageBase;
+    public bool hasNoShooter;
     public bool recentlyBuilt = true;
 
     [SerializeField] private float timeToBuild = 1;
@@ -34,9 +35,9 @@ public class Tower : MonoBehaviour
         buildTimer = timeToBuild;
         main = FindObjectOfType<Main>();
         rangeObject = FindObjectOfType<Range>();
-        if (type != TowerTypes.Barracks)
+        if (!hasNoShooter)
             shooter = transform.Find("Shooter").GetComponent<Shooter>();
-        else
+        else if (type == TowerTypes.Barracks)
         {
             barracksRangeObject = FindObjectOfType<BarracksRange>();
             barracksTower = GetComponent<BarracksTower>();
@@ -73,14 +74,14 @@ public class Tower : MonoBehaviour
                 barracksRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
                 barracksRangeObject.GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (type == TowerTypes.Barracks)
-                Debug.Log(recentlyBuilt);
         }
 
-        if (type != TowerTypes.Barracks)
-            main.tus.NewTowerSelected(this);
-        else
+        if (type == TowerTypes.Barracks)
             main.bus.NewTowerSelected(GetComponent<BarracksTower>());
+        else if (type == TowerTypes.SuicideBombers)
+            main.sus.NewTowerSelected(GetComponent<BomberTower>());
+        else
+            main.tus.NewTowerSelected(this);
     }
 
     public void RedrawRange()
@@ -106,6 +107,8 @@ public class Tower : MonoBehaviour
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
         if (type != TowerTypes.Barracks)
             main.tus.TowerDeselected();
+        else if (type == TowerTypes.SuicideBombers)
+            main.sus.TowerDeselected();
         else
         {
             main.bus.TowerDeselected();

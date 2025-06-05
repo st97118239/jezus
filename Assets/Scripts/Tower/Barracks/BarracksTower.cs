@@ -28,7 +28,7 @@ public class BarracksTower : MonoBehaviour
     private void Start()
     {
         main = FindObjectOfType<Main>();
-        GameObject newBall = Instantiate(destinationBall, transform.position + spawnOffset, Quaternion.identity);
+        GameObject newBall = Instantiate(destinationBall, transform.position, Quaternion.identity);
         ballComponent = newBall.GetComponent<DestinationBall>();
         ballComponent.tower = this;
         ballComponent.mesh = ballComponent.GetComponent<MeshRenderer>();
@@ -87,7 +87,7 @@ public class BarracksTower : MonoBehaviour
     private void CancelNewDestination()
     {
         needsToFindLocation = false;
-        destinationBall.transform.position = cursorLocation;
+        destinationBall.transform.position = destination;
         ballComponent.mesh.enabled = false;
         main.bus.destinationButton.interactable = true;
     }

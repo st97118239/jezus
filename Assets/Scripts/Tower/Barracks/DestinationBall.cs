@@ -79,6 +79,5 @@ public class DestinationBall : MonoBehaviour
     {
         hasEveryoneReachedLocation = false;
         unitsReached.Clear();
-        
     }
 }

@@ -9,6 +9,7 @@ public class Main : MonoBehaviour
     public UnitPanel up;
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
+    public SuicideUpgradeSystem sus;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
     public int health;
@@ -25,6 +26,7 @@ public class Main : MonoBehaviour
         es = FindObjectOfType<EnemySpawner>();
         tus = FindObjectOfType<TowerUpgradeSystem>();
         bus = FindObjectOfType<BarracksUpgradeSystem>();
+        sus = FindObjectOfType<SuicideUpgradeSystem>();
         tp = FindObjectOfType<TowerPlacement>();
         ep = FindObjectOfType<EnemyPanel>();
         up = FindObjectOfType<UnitPanel>();
@@ -32,9 +34,11 @@ public class Main : MonoBehaviour
         up.gameObject.SetActive(false);
         GameObject upgradePanel = transform.Find("UpgradePanel").gameObject;
         GameObject barracksPanel = transform.Find("BarracksPanel").gameObject;
+        GameObject suicidePanel = transform.Find("SuicidePanel").gameObject;
         upgradePanel.SetActive(false);
         tus.FindUpgradePanel(upgradePanel);
         bus.FindBarracksPanel(barracksPanel);
+        sus.FindSuicidePanel(suicidePanel);
         ip = transform.Find("InfoPanel").GetComponent<InfoPanel>();
         gameoverPanel = transform.Find("GameOverPanel").gameObject;
         coinsAmount = defaultCoinsAmount;

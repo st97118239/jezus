@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8563456827513960603, guid: 1d3066e392b352c42beb65997ecb853b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 9051199724063597089, guid: 1d3066e392b352c42beb65997ecb853b,
         type: 3}
       propertyPath: m_LocalPosition.x
