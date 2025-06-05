@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -107,16 +106,16 @@ public class Tower : MonoBehaviour
     {
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
-        if (type != TowerTypes.Barracks)
-            main.tus.TowerDeselected();
-        else if (type == TowerTypes.SuicideBombers)
-            main.sus.TowerDeselected();
-        else
+        if (type == TowerTypes.Barracks)
         {
             main.bus.TowerDeselected();
             barracksRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
             barracksRangeObject.GetComponent<MeshRenderer>().enabled = false;
         }
+        else if (type == TowerTypes.SuicideBombers)
+            main.sus.TowerDeselected();
+        else
+            main.tus.TowerDeselected();
     }
 
     public void TurnShooterOn()

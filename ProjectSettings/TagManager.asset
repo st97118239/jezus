@@ -10,6 +10,7 @@ TagManager:
   - Selectable
   - Waypoint
   - NoMRToggle
+  - SuicideBomberMaxHeight
   layers:
   - Default
   - TransparentFX

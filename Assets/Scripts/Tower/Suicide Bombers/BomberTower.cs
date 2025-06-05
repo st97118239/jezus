@@ -6,8 +6,13 @@ public class BomberTower : MonoBehaviour
 {
     public GameObject projectileSpawner;
     public GameObject landingBall;
+    public GameObject projectilePrefab;
     public LandingBall ballComponent;
+    public Collider maxHeightCollider;
     public Vector3 landingPos;
+    public bool isFlyingUp;
+
+    [SerializeField] private Vector3 flyUpVelocity;
 
     public List<Upgrades> upgrade; // ReloadSpeed, AttackDamage, Range, ProjectileSpeed
     public List<int> upgradeCount; // times it has been upgraded (keep at 0)
@@ -18,6 +23,7 @@ public class BomberTower : MonoBehaviour
     public List<int> upgradeCost; // the price of the upgrade (keep at 0)
 
     private Main main;
+    private SuicideBomber bomber;
     private Tower tower;
     private Vector3 cursorLocation;
     private bool needsToFindLocation;
@@ -43,6 +49,11 @@ public class BomberTower : MonoBehaviour
 
     private void Update()
     {
+        if (isFlyingUp)
+        {
+            GiveBomberVelocity(flyUpVelocity);
+        }
+
         if (isReloading)
         {
             if (reloadTimer > 0)
@@ -51,7 +62,7 @@ public class BomberTower : MonoBehaviour
             }
             else if (hasTargetPos)
             {
-                Shoot();
+                FlyUp();
             }
         }
 
@@ -185,10 +196,37 @@ public class BomberTower : MonoBehaviour
         return upgradeCost[indexToUpgrade];
     }
 
-    private void Shoot()
+    private void FlyUp()
     {
-        Debug.Log("shoot");
-        isReloading = true;
+        Shoot(flyUpVelocity);
+        isFlyingUp = true;
+    }
+
+    
+
+    private void Shoot(Vector3 velocity)
+    {
+        float damage = tower.damage;
+
+        FireProjectile(velocity, damage);
+
         reloadTimer = reloadSpeed;
+        isReloading = true;
+    }
+
+    private void FireProjectile(Vector3 velocity, float damage)
+    {
+        Transform spawnLocation = projectileSpawner.transform;
+        GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
+
+        bomber = projectileGameObject.GetComponent<SuicideBomber>();
+        bomber.SetStats(tower.damage, landingPos, this);
+        bomber.SetVelocity(velocity);
+        projectileGameObject.SetActive(true);
+    }
+
+    private void GiveBomberVelocity(Vector3 velocity)
+    {
+        bomber.SetVelocity(velocity);
     }
 }
