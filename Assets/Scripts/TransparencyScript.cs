@@ -28,14 +28,25 @@ public class TransparencyScript : MonoBehaviour
 
     public void TurnOpaque(GameObject obj)
     {
+        if (obj.TryGetComponent(out BarracksTower objBarracks))
+        {
+            TurnOpaque(objBarracks.barrackModels[objBarracks.upgradeCount]);
+            return;
+        }
+
         obj.GetComponent<Renderer>().material.shader = opaqueShader;
-        obj = null;
     }
 
     public void TurnTransparent(GameObject obj, float transparency)
     {
+        if (obj.TryGetComponent(out BarracksTower objBarracks))
+        {
+            TurnTransparent(objBarracks.barrackModels[objBarracks.upgradeCount], transparency);
+            return;
+        }
+
         Material objMaterial = obj.GetComponent<Renderer>().material;
-        
+
 
         if (objMaterial.HasProperty("_BaseMap"))
         {
@@ -86,7 +97,6 @@ public class TransparencyScript : MonoBehaviour
 
         objMaterial.SetFloat("_Smoothness", smoothness);
 
-        obj = null;
         baseMap = null;
         normalMap = null;
         metallicMap = null;

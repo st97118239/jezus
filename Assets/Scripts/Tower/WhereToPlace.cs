@@ -12,6 +12,7 @@ public class WhereToPlace : MonoBehaviour
 
     private TransparencyScript transparentScript;
     private GameObject tower;
+    private Tower towerComponent;
     private Vector3 cursorLocation;
 
     private void Start()
@@ -28,15 +29,28 @@ public class WhereToPlace : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.CompareTag("Ground"))
-                {
-                    tower.GetComponent<Tower>().RedrawRange();
+                {;
+                    towerComponent.RedrawRange();
                     cursorLocation = hit.point;
                     tower.transform.position = cursorLocation;
 
                     if (IsCloseToObjects())
-                        tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
+                    {
+
+                        if (towerComponent.type == TowerTypes.Barracks)
+                            towerComponent.barracksTower.barrackModels[towerComponent.barracksTower.upgradeCount].GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
+                        else
+                            tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
+                    }
                     else
-                        tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
+                    {
+
+                        if (towerComponent.type == TowerTypes.Barracks)
+                            towerComponent.barracksTower.barrackModels[towerComponent.barracksTower.upgradeCount].GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
+                        else
+                            tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
+
+                    }
                 }
             }
 
@@ -44,14 +58,14 @@ public class WhereToPlace : MonoBehaviour
             {
                 if (!IsCloseToObjects())
                 {
-                    tower.GetComponent<Tower>().enabled = true;
+                    towerComponent.enabled = true;
                     transparentScript.NewObject(tower, 1f);
                     ChangeMaterialOfAllDescendants(tower.transform, true);
                     tower.GetComponent<BoxCollider>().enabled = true;
-                    if (tower.GetComponent<Tower>().shooter != null)
-                        tower.transform.Find("Shooter").GetComponent<Shooter>().enabled = true;
-                    GetComponent<TowerPlacement>().PlaceTower(tower.GetComponent<Tower>());
-                    tower.GetComponent<Tower>().WhenPlaced();
+                    if (towerComponent.shooter != null)
+                        towerComponent.shooter.enabled = true;
+                    GetComponent<TowerPlacement>().PlaceTower(towerComponent);
+                    towerComponent.WhenPlaced();
 
                     tower = null;
                     cursorLocation = new Vector3(0, 0, 0);
@@ -60,7 +74,7 @@ public class WhereToPlace : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                tower.GetComponent<Tower>().WhenPlaced();
+                towerComponent.WhenPlaced();
                 Destroy(tower);
                 tower = null;
                 cursorLocation = new Vector3(0, 0, 0);
@@ -74,7 +88,8 @@ public class WhereToPlace : MonoBehaviour
         Destroy(tower);
 
         tower = towerToPlace;
-        transparentScript.NewObject(tower, 0.5f);
+        towerComponent = tower.GetComponent<Tower>();
+        transparentScript.NewObject(tower, 0.5f); 
         ChangeMaterialOfAllDescendants(tower.transform, false);
 
         cursorLocation = new Vector3(0, 0, 0);
@@ -89,7 +104,7 @@ public class WhereToPlace : MonoBehaviour
     public static void ChangeMaterialOfAllDescendants(Transform tf, bool toggle)
     {
         MeshRenderer mr = tf.GetComponent<MeshRenderer>();
-        if (mr != null && !tf.GetComponent<Tower>())
+        if (mr != null && !tf.GetComponent<Tower>() && !tf.CompareTag("NoMRToggle"))
         {
             mr.enabled = toggle;
         }

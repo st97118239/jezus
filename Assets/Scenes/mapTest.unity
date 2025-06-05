@@ -53247,7 +53247,7 @@ MonoBehaviour:
   towers:
   - {fileID: 8360802504999729515, guid: ef6b857efff359f439dff7a236650806, type: 3}
   - {fileID: 2328603058190106215, guid: e3f61e1e6f96e7c4eab3f3ae9460461c, type: 3}
-  - {fileID: 4987345072615212632, guid: b40ca40d5a00f2643bbdcfb568208e3b, type: 3}
+  - {fileID: 8511733004581614614, guid: cd22744baa88a4840892d7d0798fc8f0, type: 3}
   - {fileID: 6797671685972396544, guid: 2e6bb1bc69d049048bdc0013368dca41, type: 3}
   buttons:
   - {fileID: 232720777}
@@ -62065,7 +62065,7 @@ MonoBehaviour:
   bus: {fileID: 0}
   sus: {fileID: 0}
   coinsAmount: 0
-  defaultCoinsAmount: 200
+  defaultCoinsAmount: 5000
   health: 0
   defaultHealth: 5000
   isDead: 0

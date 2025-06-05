@@ -4,6 +4,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public TowerTypes type;
+    public BarracksTower barracksTower;
+    public MeshRenderer mesh;
     public Shooter shooter;
     public int price;
     public float reloadSpeed;
@@ -23,11 +25,11 @@ public class Tower : MonoBehaviour
     private Main main;
     private Range rangeObject;
     private BarracksRange barracksRangeObject;
-    private BarracksTower barracksTower;
     private float buildTimer;
 
-    private void Start()
+    private void Awake()
     {
+        mesh = GetComponent<MeshRenderer>();
         reloadSpeedBase = reloadSpeed;
         rangeBase = range;
         projectileSpeedBase = projectileSpeed;

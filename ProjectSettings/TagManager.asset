@@ -9,6 +9,7 @@ TagManager:
   - Path
   - Selectable
   - Waypoint
+  - NoMRToggle
   layers:
   - Default
   - TransparentFX

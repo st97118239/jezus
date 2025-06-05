@@ -7,6 +7,7 @@ public class BarracksTower : MonoBehaviour
 {
     public List<Unit> units;
     public List<Unit> spawnedUnits;
+    public List<GameObject> barrackModels;
     public GameObject destinationBall;
     public DestinationBall ballComponent;
     public Vector3 destination;
@@ -131,6 +132,9 @@ public class BarracksTower : MonoBehaviour
         main.bus.FillSpawnButton();
         if (upgradeCount >= (units.Count - 1))
             main.bus.DisableUpgradeButton();
+
+        ChangeMaterialOfAllDescendants(barrackModels[upgradeCount].transform, true);
+        ChangeMaterialOfAllDescendants(barrackModels[upgradeCount - 1].transform, false);
     }
 
     public void Spawn()
@@ -153,5 +157,19 @@ public class BarracksTower : MonoBehaviour
         }
 
         spawnedUnits.Clear();
+    }
+
+    public static void ChangeMaterialOfAllDescendants(Transform tf, bool toggle)
+    {
+        MeshRenderer mr = tf.GetComponent<MeshRenderer>();
+        if (mr != null)
+        {
+            mr.enabled = toggle;
+        }
+
+        foreach (Transform child in tf)
+        {
+            ChangeMaterialOfAllDescendants(child, toggle);
+        }
     }
 }
