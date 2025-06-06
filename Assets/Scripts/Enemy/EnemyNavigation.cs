@@ -5,19 +5,25 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-    public bool canMove;
-
     public List<Transform> waypoints;
+    public bool canMove;
+    public int currentWPIndex;
+
+    [SerializeField]
+    private int waypointToStopAt;
+    
     private NavMeshAgent navMeshAgent;
+    private Enemy enemy;
     private Main main;
     private EnemySpawner es;
-    public int currentWPIndex = 0;
 
-    void Start()
+    private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemy = GetComponent<Enemy>();
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+        
 
         waypoints = es.waypoints;
 
@@ -25,12 +31,12 @@ public class EnemyNavigation : MonoBehaviour
             canMove = true;
     }
 
-    void Update()
+    private void Update()
     {
         Moving();
     }
 
-    void Moving()
+    private void Moving()
     {
         if (waypoints.Count == 0)
             return;
@@ -52,17 +58,25 @@ public class EnemyNavigation : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Waypoint"))
+        if (!collider.gameObject.CompareTag("Waypoint")) 
+            return;
+        
+        if (currentWPIndex >= waypoints.Count - 1)
         {
-            if (currentWPIndex >= waypoints.Count - 1)
-            {
-                GetComponent<Enemy>().ReachedCastle();
-                return;
-            }
-            currentWPIndex = (currentWPIndex + 1);
-
-            if (canMove)
-                navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
+            enemy.ReachedCastle();
+            return;
         }
+        else if (waypointToStopAt != 0 && currentWPIndex >= waypointToStopAt)
+        {
+            navMeshAgent.isStopped = true;
+            canMove = false;
+            enemy.ReachedDest();
+            return;
+        }
+            
+        currentWPIndex = (currentWPIndex + 1);
+
+        if (canMove)
+            navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
     }
 }

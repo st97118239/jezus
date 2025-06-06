@@ -20,6 +20,7 @@ public class Shooter : MonoBehaviour
     private Tower tower;
     private Predict predict;
     private bool reloading;
+    private float projectileSpeed;
     private float reloadSpeed;
     private float reloadTimer;
     private float range;
@@ -32,6 +33,7 @@ public class Shooter : MonoBehaviour
         projectileSpawner = transform.Find("ProjSpawn").gameObject;
         reloadSpeed = tower.reloadSpeed;
         range = tower.range;
+        projectileSpeed = tower.projectileSpeed;
     }
 
     private void Update()
@@ -58,6 +60,20 @@ public class Shooter : MonoBehaviour
                         EnemyNavigation nav = enemy.Key.GetComponent<EnemyNavigation>();
                         NavMeshAgent enemyAgent = enemy.Value;
 
+                        if (!nav.canMove)
+                        {
+                            float tEnemy = Vector3.Distance(nav.transform.position, projectileSpawner.transform.position) / projectileSpeed;
+                            
+                            Vector3 velocity = GetArrowVelocity(nav.transform.position, tEnemy);
+                            if (velocity != Vector3.zero)
+                            {
+                                ShootVelocity(enemy.Key, velocity);
+                                isFired = true;
+                                currentTarget = enemy.Key;
+                                break;
+                            }
+                        }
+                        
                         int startIdx = Math.Max(1, nav.currentWPIndex - 1);
                         for (var i = startIdx; i < Math.Min(nav.waypoints.Count, nav.currentWPIndex + waypointsToLookAhead); i++)
                         {

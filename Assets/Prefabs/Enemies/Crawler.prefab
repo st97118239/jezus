@@ -221,9 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd2b4964809d44a9f5886b68d9bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   waypoints: []
+  canMove: 0
   currentWPIndex: 0
+  waypointToStopAt: 0
 --- !u!114 &2854890461032279772
 MonoBehaviour:
   m_ObjectHideFlags: 0

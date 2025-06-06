@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public NavMeshAgent agent;
+    public EnemyNavigation nav;
     public EnemyType enemyType; // 0 = Crawler, 1 = Demon, 2 = Necromancer, 3 = HellHound
     public int startingWave = 1;
     public int waveModulo = 1;
@@ -16,7 +18,11 @@ public class Enemy : MonoBehaviour
     public float health;
     public float tempHealth;
     public float speed;
+    public float range;
+    public int amountOfEnemiesToSpawn;
 
+    [SerializeField] private Enemy enemyToSpawn;
+    [SerializeField] private Vector3 spawnOffset;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private bool gotShotAt;
@@ -29,12 +35,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private float attackTimer;
 
-    private void Start()
+    private void Awake()
     {
         es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
-        GetComponent<NavMeshAgent>().speed = speed;
+        nav = GetComponent<EnemyNavigation>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         tempHealth = health;
 
         attackTimer = attackSpeed;
@@ -63,9 +71,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void GotHit(float damage)
+    public void GotHit(float dmg)
     {
-        health -= damage;
+        health -= dmg;
 
         if (health <= 0)
         {
@@ -81,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     public void ReachedCastle()
     {
-        if (enemyType == 0)
+        if (enemyType == EnemyType.Crawler)
         {
             int dmgToDo = (int)health;
             main.ReceiveDmg(dmgToDo);
@@ -95,6 +103,28 @@ public class Enemy : MonoBehaviour
         es.activeEnemies.Remove(gameObject);
         if (enemyType == 0)
             Destroy(gameObject);
+    }
+    
+    public void ReachedDest()
+    {
+        if (enemyType == EnemyType.Necromancer)
+        {
+            Summon();
+        }
+    }
+
+    private void Summon()
+    {
+        for (int i = 0; i < amountOfEnemiesToSpawn; i++)
+        {
+            Enemy spawnedEnemy = Instantiate(enemyToSpawn, transform.position + spawnOffset, transform.rotation);
+
+            spawnedEnemy.nav.currentWPIndex = nav.currentWPIndex;
+            es.activeEnemies.Add(spawnedEnemy.gameObject);
+        }
+        
+        attackTimer = attackSpeed;
+        isAttacking = true;
     }
 
     public void TowerHasShot(GameObject projectile, float damage)
@@ -118,6 +148,11 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        if (enemyType == EnemyType.Necromancer)
+        {
+            Summon();
+            return;
+        }
         main.ReceiveDmg(damage);
         attackTimer = attackSpeed;
         isAttacking = true;

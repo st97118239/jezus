@@ -36899,6 +36899,7 @@ MonoBehaviour:
   enemyList:
   - {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
+  - {fileID: 3677092718262609189, guid: e256420a8c7d840fd8390611bfc53e43, type: 3}
   spawnRotation: {x: 0, y: 0, z: 0}
   currentWave: 0
   groupSpawnCount: 1
