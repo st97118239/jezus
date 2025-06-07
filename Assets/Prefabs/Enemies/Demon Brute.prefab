@@ -1298,7 +1298,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 6.9106774
+  m_Height: 3.44
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1314,6 +1314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cd00c749fb0464e9f07589fec81b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  nav: {fileID: 0}
   enemyType: 1
   startingWave: 5
   waveModulo: 2
@@ -1326,6 +1328,10 @@ MonoBehaviour:
   health: 250
   tempHealth: 0
   speed: 3.5
+  range: 0
+  amountOfEnemiesToSpawn: 0
+  enemyToSpawn: {fileID: 0}
+  spawnOffset: {x: 0, y: 0, z: 0}
   attackSpeed: 3
   projectileSpeed: 0
   gotShotAt: 0
@@ -1345,9 +1351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd2b4964809d44a9f5886b68d9bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   waypoints: []
+  canMove: 0
   currentWPIndex: 0
+  waypointToStopAt: 0
 --- !u!114 &7395749516403003180
 MonoBehaviour:
   m_ObjectHideFlags: 0

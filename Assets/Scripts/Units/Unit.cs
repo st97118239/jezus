@@ -194,7 +194,6 @@ public class Unit : MonoBehaviour
             if (hitColliders.Any(h => h.gameObject == enemy))
             {
                 reachableEnemies.Add(enemy);
-                Debug.Log(enemy);
             }
         }
 
