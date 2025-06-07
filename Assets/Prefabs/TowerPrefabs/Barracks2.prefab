@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.265236
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.005450567
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -231.48221
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}
       propertyPath: m_Name
-      value: Barracks 1
+      value: Barracks2
       objectReference: {fileID: 0}
     - target: {fileID: 4885404281695960448, guid: e1ef83e2a2a231c4999668337958f82a,
         type: 3}

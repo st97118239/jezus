@@ -60,7 +60,10 @@ public class WhereToPlace : MonoBehaviour
                 {
                     towerComponent.enabled = true;
                     transparentScript.NewObject(tower, 1f);
-                    ChangeMaterialOfAllDescendants(tower.transform, true);
+                    
+                    if (towerComponent.type != TowerTypes.Barracks)
+                        ChangeMaterialOfAllDescendants(tower.transform, true);
+                    
                     tower.GetComponent<BoxCollider>().enabled = true;
                     if (towerComponent.shooter != null)
                         towerComponent.shooter.enabled = true;

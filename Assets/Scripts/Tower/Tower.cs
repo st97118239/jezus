@@ -68,9 +68,9 @@ public class Tower : MonoBehaviour
 
             if (type == TowerTypes.Barracks)
             {
-                Unit unit = barracksTower.units[barracksTower.upgradeCount];
+                BaseUnit unit = barracksTower.units[barracksTower.upgradeCount];
                 float barracksRange = barracksTower.unitRange + unit.extraDistanceToFindEnemiesIn;
-
+                Debug.Log(barracksRange + ", " + barracksTower.unitRange + ", " + unit.extraDistanceToFindEnemiesIn);
                 barracksRangeObject.transform.position = barracksTower.destinationBall.transform.position;
                 barracksRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
                 barracksRangeObject.GetComponent<MeshRenderer>().enabled = true;

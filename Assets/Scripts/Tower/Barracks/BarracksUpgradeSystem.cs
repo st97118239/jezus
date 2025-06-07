@@ -69,11 +69,9 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Upgrade()
     {
-        Debug.Log("upgrade");
-
-        if (selectedBarracks.upgradeCount >= (selectedBarracks.unitsUpgradePrice.Count))
+        if (selectedBarracks.upgradeCount >= selectedBarracks.unitsUpgradePrice.Count)
         {
-            Debug.Log("max upgrades");
+            return;
         }
 
         if (main.coinsAmount < selectedBarracks.upgradePrice)

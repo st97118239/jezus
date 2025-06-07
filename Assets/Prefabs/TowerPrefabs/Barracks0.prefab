@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.835266
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.005490303
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -258.3538
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}
       propertyPath: m_Name
-      value: SpearmanBarracks
+      value: Barracks0
       objectReference: {fileID: 0}
     - target: {fileID: 3627515020397893326, guid: 916eeee4a4128fb42b902880eb3db453,
         type: 3}

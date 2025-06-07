@@ -3905,6 +3905,7 @@ GameObject:
   - component: {fileID: 106085404}
   - component: {fileID: 106085407}
   - component: {fileID: 106085408}
+  - component: {fileID: 106085409}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Ground
@@ -4048,6 +4049,37 @@ MonoBehaviour:
   m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 83ebf7c61a285014e9e80ba827caa91b, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!114 &106085409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106085403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -902729914
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.33333334
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 69050270b432a441b85eb21ea7d28f00, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &106357609
 GameObject:
@@ -36900,6 +36932,7 @@ MonoBehaviour:
   - {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
   - {fileID: 3677092718262609189, guid: e256420a8c7d840fd8390611bfc53e43, type: 3}
+  - {fileID: 8392847934564319618, guid: 2860d4dc1618046588dfec96b9fc434c, type: 3}
   spawnRotation: {x: 0, y: 0, z: 0}
   currentWave: 0
   groupSpawnCount: 1

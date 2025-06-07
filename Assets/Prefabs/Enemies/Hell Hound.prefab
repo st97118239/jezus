@@ -13,20 +13,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hell Hound
       objectReference: {fileID: 0}
+    - target: {fileID: 2579037713309923503, guid: 8022761fc78afbe428eb1b037df0b874,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.11497
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.634243
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -105.20458
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
@@ -41,12 +46,12 @@ PrefabInstance:
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918690511153537557, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
@@ -127,7 +132,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8392847934564319618}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 866.98
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -138,7 +143,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -183,7 +188,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   nav: {fileID: 0}
   enemyType: 3
-  startingWave: 10
+  startingWave: 1
   waveModulo: 10
   enemyAmount: 1
   coins: 500

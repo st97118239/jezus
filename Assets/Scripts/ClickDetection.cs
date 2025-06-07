@@ -34,9 +34,9 @@ public class ClickDetection : MonoBehaviour
             {
                 selectedObject.GetComponent<Enemy>().Deselect();
             }
-            else if (selectedObject != null && selectedObject.GetComponent<Unit>())
+            else if (selectedObject != null && selectedObject.GetComponent<BaseUnit>())
             {
-                selectedObject.GetComponent<Unit>().Deselect();
+                selectedObject.GetComponent<BaseUnit>().Deselect();
             }
 
             if (hit.collider.gameObject.GetComponent<Tower>())
@@ -52,10 +52,10 @@ public class ClickDetection : MonoBehaviour
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<Enemy>().Select();
             }
-            else if (hit.collider.gameObject.GetComponent<Unit>())
+            else if (hit.collider.gameObject.GetComponent<BaseUnit>())
             {
                 selectedObject = hit.collider.gameObject;
-                selectedObject.GetComponent<Unit>().Select();
+                selectedObject.GetComponent<BaseUnit>().Select();
             }
             else
             {

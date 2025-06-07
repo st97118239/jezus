@@ -8,10 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2787052204532919759, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433731442642694729, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5961221512605012110, guid: acabc254c826dca4299b95d273c7f23c,
         type: 3}
       propertyPath: m_Name
       value: Spearman Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961221512605012110, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5961221512605012110, guid: acabc254c826dca4299b95d273c7f23c,
         type: 3}
@@ -67,6 +82,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837038684090868703, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

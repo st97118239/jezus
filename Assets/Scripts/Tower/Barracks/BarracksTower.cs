@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class BarracksTower : MonoBehaviour
 {
-    public List<Unit> units;
-    public List<Unit> spawnedUnits;
+    public List<BaseUnit> units;
+    public List<BaseUnit> spawnedUnits;
     public List<GameObject> barrackModels;
     public GameObject destinationBall;
     public DestinationBall ballComponent;
@@ -36,6 +36,7 @@ public class BarracksTower : MonoBehaviour
         ballComponent.mesh.enabled = false;
         destinationBall = newBall;
         tower = GetComponent<Tower>();
+        HideOtherModels();
     }
 
     void Update()
@@ -65,9 +66,18 @@ public class BarracksTower : MonoBehaviour
         }
     }
 
+    public void HideOtherModels()
+    {
+        foreach (GameObject model in barrackModels.Skip(1))
+        {
+            ChangeMaterialOfAllDescendants(model.transform, false);
+            Debug.Log(model);
+        }
+    }
+
     private void SpawnUnit()
     {
-        Unit newUnit = Instantiate(units[0 + upgradeCount], transform.position + spawnOffset, Quaternion.identity);
+        BaseUnit newUnit = Instantiate(units[0 + upgradeCount], transform.position + spawnOffset, Quaternion.identity);
         newUnit.agent = newUnit.GetComponent<NavMeshAgent>();
         NavMeshAgent newUnitAgent = newUnit.agent;
 
@@ -101,7 +111,7 @@ public class BarracksTower : MonoBehaviour
         cursorLocation = Vector3.zero;
         ballComponent.mesh.enabled = false;
 
-        foreach (Unit unit in spawnedUnits)
+        foreach (BaseUnit unit in spawnedUnits)
         {
             unit.agent.SetDestination(destination);
             unit.NewDestinationPoint(destination);
@@ -135,6 +145,9 @@ public class BarracksTower : MonoBehaviour
 
         ChangeMaterialOfAllDescendants(barrackModels[upgradeCount].transform, true);
         ChangeMaterialOfAllDescendants(barrackModels[upgradeCount - 1].transform, false);
+
+        if (units[upgradeCount].type == UnitType.DaVinciTank)
+            unitRange = units[upgradeCount].destinationRange;
     }
 
     public void Spawn()
@@ -151,7 +164,7 @@ public class BarracksTower : MonoBehaviour
 
     private void RemoveAllUnits()
     {
-        foreach (Unit unit in spawnedUnits.ToList())
+        foreach (BaseUnit unit in spawnedUnits.ToList())
         {
             Destroy(unit.gameObject);
         }

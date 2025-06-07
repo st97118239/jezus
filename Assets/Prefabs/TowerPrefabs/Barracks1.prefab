@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.024452
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0054807663
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -265.12122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}
       propertyPath: m_Name
-      value: KnightBarracks 1
+      value: Barracks1
       objectReference: {fileID: 0}
     - target: {fileID: 8531479324051506594, guid: b8f5ac405bec1674db307ccb642edbdb,
         type: 3}

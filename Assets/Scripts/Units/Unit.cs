@@ -1,49 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Unit : MonoBehaviour
+public class Unit : BaseUnit
 {
-    public UnitType type; // 0 = Spearman, 1 = Knight, 2 = DaVinciTank
-    public BarracksTower tower;
-    public NavMeshAgent agent;
-    public BoxCollider boxCollider;
-    public Vector3 destination;
-    public bool atDestination;
-    public bool hasReachedDestination;
     public bool isFollowingEnemy;
-    public int damage;
-    public int price;
-    public float health;
-    public float speed;
-    public float range;
-    public float extraDistanceToFindEnemiesIn = 3;
 
     [SerializeField] private List<GameObject> reachableEnemies = new();
     [SerializeField] private GameObject currentTarget;
-    [SerializeField] private bool isAttacking;
     [SerializeField] private float maxDistanceToLeave = 10;
-    [SerializeField] private float attackSpeed;
-    [SerializeField] private float attackTimer;
-    [SerializeField] private float rotationSpeed;
 
-    private Main main;
-    private EnemySpawner es;
-    private Range rangeObject;
-    private MeshRenderer rangeRenderer;
-    private bool isSelected;
-
-    private void Start()
+    protected override void OnStart()
     {
-        main = FindObjectOfType<Main>();
-        es = FindObjectOfType<EnemySpawner>();
-        rangeObject = FindObjectOfType<Range>();
-        GetComponent<NavMeshAgent>().speed = speed;
-        rangeRenderer = rangeObject.GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
-
-        attackTimer = attackSpeed;
+        // Speciale code die alleen voor deze classe geldt
     }
 
     private void Update()
@@ -82,21 +51,9 @@ public class Unit : MonoBehaviour
             FollowEnemy();
     }
 
-    public void Select()
-    {
-        main.up.Activate(type, (int)health);
-        isSelected = true;
-        RedrawRange();
-    }
+    
 
-    public void Deselect()
-    {
-        main.up.Deactivate();
-        isSelected = false;
-        rangeRenderer.enabled = false;
-    }
-
-    private void Attack()
+    protected override void Attack()
     {
         if (hasReachedDestination && Vector3.Distance(destination, transform.position) <= maxDistanceToLeave)
             FindEnemiesInRange(range);
@@ -201,44 +158,5 @@ public class Unit : MonoBehaviour
 
         if (reachableEnemies.Count > 0)
             currentTarget = reachableEnemies[0];
-    }
-
-    public void IsInRange()
-    {
-        agent.isStopped = true;
-        atDestination = true;
-        hasReachedDestination = true;
-    }
-
-    public void NewDestination(Vector3 position)
-    {
-        atDestination = false;
-        isAttacking = false;
-        destination = position;
-    }
-
-    public void NewDestinationPoint(Vector3 position)
-    {
-        atDestination = false;
-        hasReachedDestination = false;
-        isAttacking = false;
-        destination = position;
-    }
-
-    public void RedrawRange()
-    {
-        rangeObject.transform.position = transform.position;
-        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-        rangeRenderer.enabled = true;
-    }
-
-    public void Die()
-    {
-        if (isSelected)
-            Deselect();
-
-
-        tower.spawnedUnits.Remove(this);
-        Destroy(gameObject);
     }
 }
