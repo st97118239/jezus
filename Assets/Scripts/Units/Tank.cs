@@ -7,16 +7,21 @@ public class Tank : BaseUnit
 
     private void Update()
     {
-        if (attackTimer > 0)
+        if (isAttacking)
         {
-            attackTimer -= Time.deltaTime;
+            if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+            else
+            {
+                Attack();
+            }
+        
+            transform.Rotate(new Vector3(0, rotationSpeed, 0));
         }
-        else
-        {
-            Attack();
-        }
-
-        transform.rotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0));
+        else if (atDestination)
+            isAttacking = true;
 
         if (isSelected)
             rangeObject.transform.position = transform.position;
@@ -26,10 +31,10 @@ public class Tank : BaseUnit
     {
         for (int i = 0; i < guns.Count; i++)
         {
-            if (Physics.Raycast(guns[i].position, guns[i].eulerAngles, out RaycastHit hit, range))
+            if (Physics.Raycast(guns[i].position, guns[i].rotation * guns[i].position, out RaycastHit hit, range))
             {
-                hit.collider.TryGetComponent<Enemy>(out Enemy enemy);
-                enemy.GotHit(damage);
+                if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                    enemy.GotHit(damage);
             }
         }
         

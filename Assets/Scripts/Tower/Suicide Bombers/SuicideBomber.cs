@@ -16,10 +16,6 @@ public class SuicideBomber : MonoBehaviour
         damage = givenDamage;
         target = landingPos;
         tower = givenTower;
-
-       
-
-        Debug.Log(transform.rotation);
     }
 
     private void Update()

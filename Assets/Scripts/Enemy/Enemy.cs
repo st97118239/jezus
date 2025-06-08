@@ -58,8 +58,6 @@ public class Enemy : MonoBehaviour
 
         if (isAttacking)
         {
-            Debug.Log(attackTimer);
-
             if (attackTimer > 0)
             {
                 attackTimer -= Time.deltaTime;

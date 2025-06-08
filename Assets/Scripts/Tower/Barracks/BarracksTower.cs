@@ -71,7 +71,6 @@ public class BarracksTower : MonoBehaviour
         foreach (GameObject model in barrackModels.Skip(1))
         {
             ChangeMaterialOfAllDescendants(model.transform, false);
-            Debug.Log(model);
         }
     }
 

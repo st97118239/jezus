@@ -180,7 +180,7 @@ MonoBehaviour:
   enemyAmount: 1
   coins: 5
   damage: 10
-  amountFactor: 10
+  amountFactor: 1
   healthFactor: 1
   damageFactor: 1
   health: 50

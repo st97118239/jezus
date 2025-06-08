@@ -249,6 +249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DavinciTank Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9020044460106264318, guid: 23033997030d31546b4887c89ab8bdda,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -373,7 +378,7 @@ MonoBehaviour:
   extraDistanceToFindEnemiesIn: 0
   attackSpeed: 1
   attackTimer: 0
-  rotationSpeed: 100
+  rotationSpeed: 0.25
   isAttacking: 0
   guns:
   - {fileID: 8321218971574428154}
