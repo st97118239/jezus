@@ -198,7 +198,7 @@ MonoBehaviour:
   damageFactor: 3
   health: 1000
   tempHealth: 0
-  speed: 1
+  speed: 2.32
   range: 0
   amountOfEnemiesToSpawn: 0
   enemyToSpawn: {fileID: 0}

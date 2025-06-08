@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Tank : BaseUnit
 {
-    
     public List<Transform> guns;
 
     private void Update()
