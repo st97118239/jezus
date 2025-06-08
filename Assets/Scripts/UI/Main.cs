@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class Main : MonoBehaviour
 {
+    public EnemySpawner es;
     public ClickDetection clickDetec;
     public InfoPanel ip;
     public EnemyPanel ep;
@@ -16,7 +17,6 @@ public class Main : MonoBehaviour
     public int defaultHealth = 100;
     public bool isDead = false;
 
-    private EnemySpawner es;
     private TowerPlacement tp;
     private GameObject gameoverPanel;
 

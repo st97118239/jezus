@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BomberTower : MonoBehaviour
 {
+    public Main main;
     public GameObject projectileSpawner;
     public GameObject landingBall;
     public GameObject projectilePrefab;
@@ -22,9 +23,8 @@ public class BomberTower : MonoBehaviour
     [SerializeField] private List<float> upgradeCostFactor; // multiplier for the cost of the upgrade
     public List<int> upgradeCost; // the price of the upgrade (keep at 0)
 
-    private Main main;
     private SuicideBomber bomber;
-    private Tower tower;
+    public Tower tower;
     private Vector3 cursorLocation;
     private bool needsToFindLocation;
     private bool isReloading;
@@ -220,7 +220,7 @@ public class BomberTower : MonoBehaviour
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         bomber = projectileGameObject.GetComponent<SuicideBomber>();
-        bomber.SetStats(tower.damage, landingPos, this);
+        bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this);
         bomber.SetVelocity(velocity);
         projectileGameObject.SetActive(true);
     }

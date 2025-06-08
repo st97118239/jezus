@@ -36933,7 +36933,7 @@ MonoBehaviour:
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
   - {fileID: 1947778497061710026, guid: 00a7443e6469d4db9a84c1682eb1950f, type: 3}
   - {fileID: 8392847934564319618, guid: 2860d4dc1618046588dfec96b9fc434c, type: 3}
-  spawnRotation: {x: 0, y: 0, z: 0}
+  spawnRotation: {x: 0, y: -90, z: 0}
   currentWave: 0
   groupSpawnCount: 1
   spawnTimerBase: 1
@@ -62091,6 +62091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895f1d61f9da594c80cd180c70c63d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  es: {fileID: 0}
   clickDetec: {fileID: 0}
   ip: {fileID: 0}
   ep: {fileID: 0}

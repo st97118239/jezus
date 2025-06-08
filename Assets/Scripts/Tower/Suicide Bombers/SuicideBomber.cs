@@ -1,21 +1,29 @@
+using System.Linq;
 using UnityEngine;
 
 public class SuicideBomber : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-
+    [SerializeField] private MeshRenderer rend;
+    [SerializeField] private MeshRenderer rend2;
+    [SerializeField] private ParticleSystem particles;
+    [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private float explosionRadius;
+    
     private BomberTower tower;
     private Vector3 target;
     private float speed;
     private float damage;
     private float despawnTimer;
     private bool reachedMax;
+    private bool hitGround;
 
-    public void SetStats(float givenDamage, Vector3 landingPos, BomberTower givenTower)
+    public void SetStats(float givenDamage, float givenSpeed, Vector3 landingPos, BomberTower givenTower)
     {
         damage = givenDamage;
         target = landingPos;
         tower = givenTower;
+        speed = givenSpeed;
     }
 
     private void Update()
@@ -36,7 +44,7 @@ public class SuicideBomber : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb.velocity.sqrMagnitude > 0.01f && reachedMax)
+        if (!hitGround && rb.velocity.sqrMagnitude > 0.01f && reachedMax)
         {
             Quaternion rotation = Quaternion.LookRotation(rb.velocity);
             transform.rotation = rotation;
@@ -47,7 +55,9 @@ public class SuicideBomber : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("SuicideBomberMaxHeight"))
         {
-            PrepareShoot();
+            Vector3 directionToTarget = (target - transform.position).normalized;
+            rb.velocity = directionToTarget * speed;
+            // PrepareShoot();
             reachedMax = true;
             tower.isFlyingUp = false;
         }
@@ -116,5 +126,25 @@ public class SuicideBomber : MonoBehaviour
         float vz = (dz + 0.5f * gravity * t * t) / t;
 
         return new Vector3(vx, 0, vz);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        hitGround = true;
+        particles.Play();
+        boxCollider.enabled = false;
+        rend.enabled = false;
+        rend2.enabled = false;
+        Destroy(rb);
+        
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (tower.main.es.activeEnemies.Contains(collider.gameObject))
+            {
+                collider.GetComponent<Enemy>().GotHit(damage);
+            }
+        }
     }
 }

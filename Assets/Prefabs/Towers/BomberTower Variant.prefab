@@ -231,7 +231,7 @@ MonoBehaviour:
   reloadSpeedBase: 0
   range: 500
   rangeBase: 0
-  projectileSpeed: 2
+  projectileSpeed: 30
   projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 1000
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32669292e1484f74d8796369a8d090ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  main: {fileID: 0}
   projectileSpawner: {fileID: 4484513236338117066}
   landingBall: {fileID: 6594104312601092800, guid: 56db5d29fd76e1f41a3873b23606cc92,
     type: 3}
@@ -272,3 +273,4 @@ MonoBehaviour:
   - 1.4
   - 1.875
   upgradeCost: 0000000000000000
+  tower: {fileID: 0}
