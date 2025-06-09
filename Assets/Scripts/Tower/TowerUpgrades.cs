@@ -22,7 +22,7 @@ public class TowerUpgrades : MonoBehaviour
 
     public void GetStat(int upgradeStat, out float statToSend)
     {
-        Upgrades upgradeToCheck = upgrade[upgradeStat - 1];
+        Upgrades upgradeToCheck = upgrade[upgradeStat];
 
         statToSend = 0f;
 

@@ -21,7 +21,7 @@ public class SuicideUpgradeSystem : MonoBehaviour
 
         buttons = upgradeButtons.Select((b, i) =>
         {
-            Button btn = b.transform.Find($"UpgradeButton{i + 1}").GetComponent<Button>();
+            Button btn = b.transform.Find($"UpgradeButton{i}").GetComponent<Button>();
             btn.onClick.AddListener(() => BuyUpgrade(i));
             return btn;
         }).ToArray();

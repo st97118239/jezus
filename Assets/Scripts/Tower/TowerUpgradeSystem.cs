@@ -20,7 +20,7 @@ public class TowerUpgradeSystem : MonoBehaviour
 
         buttons = upgradeButtons.Select((b, i) =>
         {
-            Button btn = b.transform.Find($"UpgradeButton{i + 1}").GetComponent<Button>();
+            Button btn = b.transform.Find($"UpgradeButton{i}").GetComponent<Button>();
             btn.onClick.AddListener(() => BuyUpgrade(i));
             return btn;
         }).ToArray();
@@ -54,8 +54,7 @@ public class TowerUpgradeSystem : MonoBehaviour
 
     private void FillUpgradeText(int buttonCount)
     {
-        buttonCount++;
-        GameObject selectedButton = upgradeButtons[buttonCount - 1];
+        GameObject selectedButton = upgradeButtons[buttonCount];
 
         Button upgradeButton = selectedButton.transform.Find("UpgradeButton" + buttonCount).GetComponent<Button>();
         TMP_Text upgradeButtonText = upgradeButton.transform.Find("UpgradeButtonText" + buttonCount).GetComponent<TMP_Text>();
@@ -64,12 +63,12 @@ public class TowerUpgradeSystem : MonoBehaviour
         TMP_Text upgradeTextMax = selectedButton.transform.Find("UpgradeTextMax" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text towerTextName = upgradePanel.transform.Find("TowerName").GetComponent<TMP_Text>();
 
-        selectedTowerUpgrades.RecalculatePrice(buttonCount - 1);
-        upgradeButtonText.text = "Upgrade:\n$" + selectedTowerUpgrades.upgradeCost[buttonCount - 1];
-        upgradeTextName.text = selectedTowerUpgrades.upgrade[buttonCount - 1].ToReadableString();
+        selectedTowerUpgrades.RecalculatePrice(buttonCount);
+        upgradeButtonText.text = "Upgrade:\n$" + selectedTowerUpgrades.upgradeCost[buttonCount];
+        upgradeTextName.text = selectedTowerUpgrades.upgrade[buttonCount].ToReadableString();
         selectedTowerUpgrades.GetStat(buttonCount, out float stat);
         upgradeTextAmount.text = stat.ToString("0.##");
-        upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount - 1] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount - 1]).ToString();
+        upgradeTextMax.text = (selectedTowerUpgrades.upgradeCount[buttonCount] + "/" + selectedTowerUpgrades.upgradeMax[buttonCount]).ToString();
         towerTextName.text = selectedTower.type.ToReadableString();
 
         if (selectedTowerUpgrades.upgradeCount[buttonCount] >= selectedTowerUpgrades.upgradeMax[buttonCount])
