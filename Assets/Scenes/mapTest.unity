@@ -4593,7 +4593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose new unit spawn location
+  m_text: Choose new unit destination
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 445ff6e8dca1ee340838bcac52dcb641, type: 2}
   m_sharedMaterial: {fileID: 3077818124732538592, guid: 445ff6e8dca1ee340838bcac52dcb641,
@@ -7337,7 +7337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose new unit spawn location
+  m_text: Choose new destination
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 445ff6e8dca1ee340838bcac52dcb641, type: 2}
   m_sharedMaterial: {fileID: 3077818124732538592, guid: 445ff6e8dca1ee340838bcac52dcb641,
