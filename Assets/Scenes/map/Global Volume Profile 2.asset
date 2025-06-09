@@ -148,7 +148,7 @@ MonoBehaviour:
     m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 76.12
+    m_Value: 66.45
   enableGround:
     m_OverrideState: 0
     m_Value: 1
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_Value: 0
   density:
     m_OverrideState: 1
-    m_Value: 0.147
+    m_Value: 0.13
   attenuationDistance:
     m_OverrideState: 1
     m_Value: 12.9
