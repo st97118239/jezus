@@ -120,8 +120,12 @@ public class Shooter : MonoBehaviour
     private float GetTimeToReachPoint(Vector3 targetPosition, NavMeshAgent enemyAgent)
     {
         Vector3 displacement = targetPosition - enemyAgent.transform.position;
-        float time = Vector3.Magnitude(displacement) / enemyAgent.velocity.magnitude;
 
+        float speed = enemyAgent.velocity.magnitude;
+        if (speed <= 0.001f)
+            return -1;
+
+        float time = Vector3.Magnitude(displacement) / speed;
         return time < 0.1f ? -1 : time;
     }
     
