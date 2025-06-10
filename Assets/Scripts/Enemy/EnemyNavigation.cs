@@ -5,15 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
+    public Enemy enemy;
     public List<Transform> waypoints;
     public bool canMove;
     public int currentWPIndex;
 
-    [SerializeField]
-    private int waypointToStopAt;
+    [SerializeField] private int waypointToStopAt;
     
     private NavMeshAgent navMeshAgent;
-    private Enemy enemy;
     private Main main;
     private EnemySpawner es;
 

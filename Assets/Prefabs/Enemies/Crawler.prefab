@@ -127,8 +127,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8482524, y: 2.0027232, z: 1.4967506}
-  m_Center: {x: 0.0050703883, y: 1.0004172, z: 0.025731206}
+  m_Size: {x: 0.8482524, y: 1.9755833, z: 1.4967506}
+  m_Center: {x: 0.0050703883, y: 0.9868473, z: 0.025731206}
 --- !u!54 &2015514983246450991
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd2b4964809d44a9f5886b68d9bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   waypoints: []
   canMove: 0
   currentWPIndex: 0

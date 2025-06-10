@@ -62262,7 +62262,7 @@ MonoBehaviour:
   bus: {fileID: 0}
   sus: {fileID: 0}
   coinsAmount: 0
-  defaultCoinsAmount: 5000
+  defaultCoinsAmount: 250
   health: 0
   defaultHealth: 5000
   isDead: 0

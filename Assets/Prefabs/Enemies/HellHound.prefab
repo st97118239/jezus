@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2579037713309923503, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
       propertyPath: m_Name
-      value: Hell Hound
+      value: HellHound
       objectReference: {fileID: 0}
     - target: {fileID: 2579037713309923503, guid: 8022761fc78afbe428eb1b037df0b874,
         type: 3}
@@ -122,8 +122,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6123148, y: 3.5010521, z: 5.396026}
-  m_Center: {x: 0, y: 1.7302049, z: -0.445287}
+  m_Size: {x: 3.7880244, y: 7.2407966, z: 11.22958}
+  m_Center: {x: 0.046336412, y: 3.6000774, z: 0.84239674}
 --- !u!54 &4424388845525202081
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd2b4964809d44a9f5886b68d9bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   waypoints: []
   canMove: 0
   currentWPIndex: 0

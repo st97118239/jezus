@@ -59,6 +59,12 @@ public class Shooter : MonoBehaviour
                     {
                         EnemyNavigation nav = enemy.Key.GetComponent<EnemyNavigation>();
                         NavMeshAgent enemyAgent = enemy.Value;
+                        Enemy enemyComponent = nav.enemy;
+
+                        if (enemyComponent.tempHealth <= 0)
+                        {
+                            return;
+                        }
 
                         if (!nav.canMove)
                         {
