@@ -9,6 +9,7 @@ public class Shooter : MonoBehaviour
     public GameObject projectileSpawner;
     public bool canShoot;
 
+    [SerializeField] private TargetType targetType;
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private bool arcedProjectiles;
     [SerializeField] private int waypointsToLookAhead = 5;
@@ -62,9 +63,7 @@ public class Shooter : MonoBehaviour
                         Enemy enemyComponent = nav.enemy;
 
                         if (enemyComponent.tempHealth <= 0)
-                        {
                             return;
-                        }
 
                         if (!nav.canMove)
                         {
@@ -162,14 +161,24 @@ public class Shooter : MonoBehaviour
     {
         shootableEnemies.Clear();
 
+        List<GameObject> tempEnemiesList = new();
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range); // Vergroten vanwege het feit dat enemies bewegen?
 
         foreach (GameObject enemy in es.activeEnemies)
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {
-                shootableEnemies.Add(new KeyValuePair<GameObject, NavMeshAgent>(enemy, enemy.GetComponent<NavMeshAgent>()));
+                tempEnemiesList.Add(enemy.gameObject);
             }
+        }
+
+        if (targetType == TargetType.Closest)
+            tempEnemiesList = tempEnemiesList.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToList();
+
+        foreach (GameObject enemy in tempEnemiesList)
+        {
+            shootableEnemies.Add(new KeyValuePair<GameObject, NavMeshAgent>(enemy, enemy.GetComponent<NavMeshAgent>()));
         }
     }
 

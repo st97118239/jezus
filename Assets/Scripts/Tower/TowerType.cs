@@ -1,4 +1,4 @@
-public enum TowerTypes
+public enum TowerType
 {
     ArcheryTower,
     Ballista,

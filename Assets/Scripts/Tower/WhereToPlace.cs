@@ -37,7 +37,7 @@ public class WhereToPlace : MonoBehaviour
                     if (IsCloseToObjects())
                     {
 
-                        if (towerComponent.type == TowerTypes.Barracks)
+                        if (towerComponent.type == TowerType.Barracks)
                             towerComponent.barracksTower.barrackModels[towerComponent.barracksTower.upgradeCount].GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
                         else
                             tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", warningColor);
@@ -45,7 +45,7 @@ public class WhereToPlace : MonoBehaviour
                     else
                     {
 
-                        if (towerComponent.type == TowerTypes.Barracks)
+                        if (towerComponent.type == TowerType.Barracks)
                             towerComponent.barracksTower.barrackModels[towerComponent.barracksTower.upgradeCount].GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
                         else
                             tower.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", baseColor);
@@ -61,7 +61,7 @@ public class WhereToPlace : MonoBehaviour
                     towerComponent.enabled = true;
                     transparentScript.NewObject(tower, 1f);
                     
-                    if (towerComponent.type != TowerTypes.Barracks)
+                    if (towerComponent.type != TowerType.Barracks)
                         ChangeMaterialOfAllDescendants(tower.transform, true);
                     
                     tower.GetComponent<BoxCollider>().enabled = true;

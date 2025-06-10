@@ -259,6 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  barracksTower: {fileID: 0}
+  mesh: {fileID: 0}
   shooter: {fileID: 0}
   price: 100
   reloadSpeed: 2
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpawner: {fileID: 0}
   canShoot: 0
+  targetType: 0
   currentTarget: {fileID: 0}
   arcedProjectiles: 1
   waypointsToLookAhead: 5
