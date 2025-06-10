@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8135173899589252233}
   - component: {fileID: 218297960779838595}
   - component: {fileID: 2137875283564837164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpearmanBarrack-Door-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8998190665529521690}
   - component: {fileID: 1844764304846818674}
   - component: {fileID: 2961817154667583348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpearmanBarrack-Door-Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2201310034503030228}
   - component: {fileID: 3632368793962231218}
   - component: {fileID: 5809922269036468726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankBarrack-Door-Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 6861676573765814513}
   - component: {fileID: 8511733004581614614}
   - component: {fileID: 2481456566923612351}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barracks
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 5213839656139158635}
   - component: {fileID: 79407536245126601}
   - component: {fileID: 5206054491610994638}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KnightBarrack-Door-Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 2891541531067405202}
   - component: {fileID: 7330679301716516534}
   - component: {fileID: 8124997885323433548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KnightBarrack-Door-Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 8414702787637683448}
   - component: {fileID: 6893805601339387189}
   - component: {fileID: 6314197165231207213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barracks0
   m_TagString: NoMRToggle
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 7298988005244116383}
   - component: {fileID: 4501540241115341716}
   - component: {fileID: 6007988664026198738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barracks2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 3209636316383173605}
   - component: {fileID: 1926692667250986681}
   - component: {fileID: 946556828924515537}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barracks1
   m_TagString: NoMRToggle
   m_Icon: {fileID: 0}
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 1125439855613760630}
   - component: {fileID: 5783946332937437288}
   - component: {fileID: 7234618043337946249}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TankBarrack-Door-Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

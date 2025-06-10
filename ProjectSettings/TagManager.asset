@@ -11,6 +11,7 @@ TagManager:
   - Waypoint
   - NoMRToggle
   - SuicideBomberMaxHeight
+  - NoOutline
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - NavMesh
   - TowerPlaceable
   - Unit
-  - 
+  - Render on Top
   - 
   - 
   - 

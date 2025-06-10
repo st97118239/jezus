@@ -16,7 +16,7 @@ public class EnemyNavigation : MonoBehaviour
     private Main main;
     private EnemySpawner es;
 
-    private void Start()
+    private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<Enemy>();

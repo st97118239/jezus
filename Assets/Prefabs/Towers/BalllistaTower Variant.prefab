@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891030715503918459}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ProjSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,6 +43,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BalllistaTower Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630245826482193755, guid: 54b8f8a47637a86429fc3dd3a90a32b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2630245826482193755, guid: 54b8f8a47637a86429fc3dd3a90a32b5,
         type: 3}
@@ -98,6 +103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519052651225049945, guid: 54b8f8a47637a86429fc3dd3a90a32b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

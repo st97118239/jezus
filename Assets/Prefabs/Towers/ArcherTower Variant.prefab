@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5070058110188837047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ProjSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossbow
       objectReference: {fileID: 0}
+    - target: {fileID: 7773361663308932149, guid: e003b2ee85c649348b239d5ea0b761ef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -128,10 +133,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28424720007790315, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816123021653827347, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3630410541109494901, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
       propertyPath: m_Name
       value: ArcherTower Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3630410541109494901, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3630410541109494901, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
         type: 3}
@@ -187,6 +207,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469779387310251616, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469779387310251616, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_TagString
+      value: NoOutline
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350035929773599028, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563269709235950803, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825166569243099032, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825166569243099032, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_TagString
+      value: NoOutline
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963702370861692203, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182770227740526796, guid: 1f8e44a772a8f1d4998def6baf1b50a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -326,6 +386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1665673965409396383, guid: d6f9b18aae82ca6478199bb1cf5da7b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2041952564402437157, guid: d6f9b18aae82ca6478199bb1cf5da7b9,
         type: 3}

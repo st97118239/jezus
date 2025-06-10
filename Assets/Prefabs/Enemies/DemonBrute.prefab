@@ -1331,7 +1331,7 @@ MonoBehaviour:
   range: 0
   amountOfEnemiesToSpawn: 0
   enemyToSpawn: {fileID: 0}
-  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnForwardMultiplier: 0
   attackSpeed: 3
   projectileSpeed: 0
   gotShotAt: 0
@@ -1351,6 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dd2b4964809d44a9f5886b68d9bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   waypoints: []
   canMove: 0
   currentWPIndex: 0
