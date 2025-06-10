@@ -37,8 +37,7 @@ public class SuicideUpgradeSystem : MonoBehaviour
 
     private void FillUpgradeText(int buttonCount)
     {
-        buttonCount++;
-        GameObject selectedButton = upgradeButtons[buttonCount - 1];
+        GameObject selectedButton = upgradeButtons[buttonCount];
 
         Button upgradeButton = selectedButton.transform.Find("UpgradeButton" + buttonCount).GetComponent<Button>();
         TMP_Text upgradeButtonText = upgradeButton.transform.Find("UpgradeButtonText" + buttonCount).GetComponent<TMP_Text>();
@@ -46,14 +45,14 @@ public class SuicideUpgradeSystem : MonoBehaviour
         TMP_Text upgradeTextAmount = selectedButton.transform.Find("UpgradeTextAmount" + buttonCount).GetComponent<TMP_Text>();
         TMP_Text upgradeTextMax = selectedButton.transform.Find("UpgradeTextMax" + buttonCount).GetComponent<TMP_Text>();
 
-        selectedBomber.RecalculatePrice(buttonCount - 1);
-        upgradeButtonText.text = "Upgrade:\n$" + selectedBomber.upgradeCost[buttonCount - 1];
-        upgradeTextName.text = selectedBomber.upgrade[buttonCount - 1].ToReadableString();
+        selectedBomber.RecalculatePrice(buttonCount);
+        upgradeButtonText.text = "Upgrade:\n$" + selectedBomber.upgradeCost[buttonCount];
+        upgradeTextName.text = selectedBomber.upgrade[buttonCount].ToReadableString();
         selectedBomber.GetStat(buttonCount, out float stat);
         upgradeTextAmount.text = stat.ToString("0.##");
-        upgradeTextMax.text = (selectedBomber.upgradeCount[buttonCount - 1] + "/" + selectedBomber.upgradeMax[buttonCount - 1]).ToString();
+        upgradeTextMax.text = (selectedBomber.upgradeCount[buttonCount] + "/" + selectedBomber.upgradeMax[buttonCount]).ToString();
 
-        if (selectedBomber.upgradeCount[buttonCount - 1] >= selectedBomber.upgradeMax[buttonCount - 1])
+        if (selectedBomber.upgradeCount[buttonCount] >= selectedBomber.upgradeMax[buttonCount])
             DisableUpgradeButton(upgradeButton);
         else
             EnableUpgradeButton(upgradeButton);
