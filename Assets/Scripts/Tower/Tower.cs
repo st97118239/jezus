@@ -17,14 +17,10 @@ public class Tower : MonoBehaviour
     public float damage;
     public float damageBase;
     public bool hasNoShooter;
-    public bool recentlyBuilt = true;
-
-    [SerializeField] private float timeToBuild = 1;
 
     private Main main;
     private Range rangeObject;
     private BarracksRange barracksRangeObject;
-    private float buildTimer;
 
     private void Awake()
     {
@@ -33,7 +29,6 @@ public class Tower : MonoBehaviour
         rangeBase = range;
         projectileSpeedBase = projectileSpeed;
         damageBase = damage;
-        buildTimer = timeToBuild;
         main = FindObjectOfType<Main>();
         rangeObject = FindObjectOfType<Range>();
         if (!hasNoShooter)
@@ -45,36 +40,22 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (recentlyBuilt)
-        {
-            if (buildTimer < 0)
-            {
-                recentlyBuilt = false;
-            }
-            else
-                buildTimer -= Time.deltaTime;
-        }
-    }
-
     public void Select()
     {
-        if (!recentlyBuilt)
-        {
-            rangeObject.transform.position = transform.position;
-            rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
-            rangeObject.GetComponent<MeshRenderer>().enabled = true;
+        rangeObject.transform.position = transform.position;
+        rangeObject.transform.localScale = new Vector3(range * 2, 0.1f, range * 2);
+        rangeObject.GetComponent<MeshRenderer>().enabled = true;
 
-            if (type == TowerType.Barracks)
-            {
-                BaseUnit unit = barracksTower.units[barracksTower.upgradeCount];
-                float barracksRange = barracksTower.unitRange + unit.extraDistanceToFindEnemiesIn;
-                barracksRangeObject.transform.position = barracksTower.destinationBall.transform.position;
-                barracksRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
-                barracksRangeObject.GetComponent<MeshRenderer>().enabled = true;
-            }
+        if (type == TowerType.Barracks)
+        {
+            BaseUnit unit = barracksTower.units[barracksTower.upgradeCount];
+            float barracksRange = barracksTower.unitRange + unit.extraDistanceToFindEnemiesIn;
+            barracksRangeObject.transform.position = barracksTower.destinationBall.transform.position;
+            barracksRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
+            barracksRangeObject.GetComponent<MeshRenderer>().enabled = true;
         }
+
+        main.ChangeLayerOfAllDescendants(transform, 9);
 
         if (type == TowerType.Barracks)
             main.bus.NewTowerSelected(GetComponent<BarracksTower>());
@@ -115,6 +96,8 @@ public class Tower : MonoBehaviour
             main.sus.TowerDeselected();
         else
             main.tus.TowerDeselected();
+
+        main.ChangeLayerOfAllDescendants(transform, 0);
     }
 
     public void TurnShooterOn()

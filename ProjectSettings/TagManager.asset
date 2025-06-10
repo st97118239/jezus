@@ -12,6 +12,7 @@ TagManager:
   - NoMRToggle
   - SuicideBomberMaxHeight
   - NoOutline
+  - NoLayerToggle
   layers:
   - Default
   - TransparentFX

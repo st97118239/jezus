@@ -92,4 +92,15 @@ public class Main : MonoBehaviour
             tower.shooter.canShoot = false;
         }
     }
+
+    public void ChangeLayerOfAllDescendants(Transform tf, int layer)
+    {
+        if (!tf.CompareTag("NoLayerToggle"))
+            tf.gameObject.layer = layer;
+
+        foreach (Transform child in tf)
+        {
+            ChangeLayerOfAllDescendants(child, layer);
+        }
+    }
 }

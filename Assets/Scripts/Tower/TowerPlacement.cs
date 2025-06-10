@@ -69,6 +69,6 @@ public class TowerPlacement : MonoBehaviour
         if (!tower.hasNoShooter)
             tower.TurnShooterOn();
         towersPlaced.Add(tower);
-        tower.gameObject.layer = 0;
+        main.ChangeLayerOfAllDescendants(tower.transform, 0);
     }
 }
