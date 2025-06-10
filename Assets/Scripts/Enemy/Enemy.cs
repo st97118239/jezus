@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public int amountOfEnemiesToSpawn;
 
     [SerializeField] private Enemy enemyToSpawn;
-    [SerializeField] private Vector3 spawnOffset;
+    [SerializeField] private float spawnForwardMultiplier;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private bool gotShotAt;
@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
     {
         if (enemyType == EnemyType.Necromancer)
         {
-            Summon();
+            Attack();
         }
     }
 
@@ -115,14 +115,11 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < amountOfEnemiesToSpawn; i++)
         {
-            Enemy spawnedEnemy = Instantiate(enemyToSpawn, transform.position + spawnOffset, transform.rotation);
+            Enemy spawnedEnemy = Instantiate(enemyToSpawn, transform.position + transform.forward * spawnForwardMultiplier, transform.rotation);
 
             spawnedEnemy.nav.currentWPIndex = nav.currentWPIndex;
             es.activeEnemies.Add(spawnedEnemy.gameObject);
         }
-        
-        attackTimer = attackSpeed;
-        isAttacking = true;
     }
 
     public void TowerHasShot(GameObject projectile, float damage)
@@ -147,11 +144,10 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         if (enemyType == EnemyType.Necromancer)
-        {
             Summon();
-            return;
-        }
-        main.ReceiveDmg(damage);
+        else
+            main.ReceiveDmg(damage);
+
         attackTimer = attackSpeed;
         isAttacking = true;
     }

@@ -188,9 +188,9 @@ MonoBehaviour:
   speed: 3.5
   range: 1
   amountOfEnemiesToSpawn: 3
-  enemyToSpawn: {fileID: 6247052353273129144, guid: 36462e2ed1eeb6549b2eb1b65b21e52a,
+  enemyToSpawn: {fileID: -295141106082875804, guid: cf643136c4e43fc4da31152b808d3b17,
     type: 3}
-  spawnOffset: {x: 0.25, y: 0, z: 0}
+  spawnForwardMultiplier: 2
   attackSpeed: 2
   projectileSpeed: 0
   gotShotAt: 0

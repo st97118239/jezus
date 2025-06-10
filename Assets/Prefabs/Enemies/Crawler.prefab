@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 7524223630674088384, guid: 84d21407dd157814599255f4226adc72,
         type: 3}
       propertyPath: m_Name
-      value: CrawlerNew
+      value: Crawler
       objectReference: {fileID: 0}
     - target: {fileID: 7524223630674088384, guid: 84d21407dd157814599255f4226adc72,
         type: 3}
@@ -202,7 +202,7 @@ MonoBehaviour:
   range: 0
   amountOfEnemiesToSpawn: 0
   enemyToSpawn: {fileID: 0}
-  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnForwardMultiplier: 0
   attackSpeed: 0
   projectileSpeed: 0
   gotShotAt: 0
