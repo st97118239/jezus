@@ -15,8 +15,9 @@ public class EnemySpawner : MonoBehaviour
     public bool canSpawn = true;
 
     [SerializeField] private List<GameObject> enemyList;
-    [SerializeField] private Vector3 spawnRotation;
+    [SerializeField] private Vector3 spawnRotOffset;
     [SerializeField] private int currentWave = 0;
+    [SerializeField] private int startingWaypoint = 0;
     [SerializeField] private int groupSpawnCount = 1;
     [SerializeField] private float spawnTimerBase = 1;
     [SerializeField] private float nextWaveTimerBase = 10;
@@ -24,8 +25,9 @@ public class EnemySpawner : MonoBehaviour
     private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Main main;
     private Vector3 spawnPos;
+    private Vector3 spawnRot;
     private float nextWaveTimer;
-    private float spawnTimer = 1;
+    private float spawnTimer;
     private bool nextWave;
 
     void Awake()
@@ -52,7 +54,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        spawnPos = waypoints[0].transform.position;
+        spawnPos = waypoints[startingWaypoint].transform.position;
+        spawnRot = waypoints[startingWaypoint].transform.rotation.eulerAngles + spawnRotOffset;
 
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
@@ -95,12 +98,12 @@ public class EnemySpawner : MonoBehaviour
                         EnemyToSpawn enemyToSpawn = enemiesToSpawn.Dequeue();
                         GameObject gameObjectToSpawn = enemyList[(int)enemyToSpawn.type];
 
-                        GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos,
-                            Quaternion.Euler(spawnRotation));
+                        GameObject newObject = Instantiate(gameObjectToSpawn, spawnPos, Quaternion.Euler(spawnRot));
 
                         Enemy newEnemy = newObject.GetComponent<Enemy>();
                         newEnemy.health = (int)enemyToSpawn.health;
                         newEnemy.damage = enemyToSpawn.damage;
+                        newEnemy.nav.currentWPIndex = startingWaypoint;
 
                         activeEnemies.Add(newObject);
                         newObject.SetActive(true);
