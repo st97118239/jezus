@@ -37090,7 +37090,7 @@ MonoBehaviour:
   waypoints: []
   canSpawn: 1
   enemyList:
-  - {fileID: 6951959788168624485, guid: 36462e2ed1eeb6549b2eb1b65b21e52a, type: 3}
+  - {fileID: 3975231919406356879, guid: cf643136c4e43fc4da31152b808d3b17, type: 3}
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
   - {fileID: 1947778497061710026, guid: 00a7443e6469d4db9a84c1682eb1950f, type: 3}
   - {fileID: 8392847934564319618, guid: 2860d4dc1618046588dfec96b9fc434c, type: 3}
