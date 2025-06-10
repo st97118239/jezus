@@ -37,7 +37,6 @@ public abstract class BaseUnit : MonoBehaviour
         GetComponent<NavMeshAgent>().speed = speed;
         rangeRenderer = rangeObject.GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
-
         attackTimer = attackSpeed;
 
         OnStart();
@@ -52,6 +51,7 @@ public abstract class BaseUnit : MonoBehaviour
         main.up.Activate(type, (int)health);
         isSelected = true;
         RedrawRange();
+        main.ChangeLayerOfAllDescendants(transform, 9);
     }
 
     public void Deselect()
@@ -59,6 +59,7 @@ public abstract class BaseUnit : MonoBehaviour
         main.up.Deactivate();
         isSelected = false;
         rangeRenderer.enabled = false;
+        main.ChangeLayerOfAllDescendants(transform, 0);
     }
     
     public void RedrawRange()

@@ -40,8 +40,6 @@ public class Unit : BaseUnit
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
-            //else
-            //    FindEnemiesInRange(range);
         }
 
         if (isSelected)
@@ -50,8 +48,6 @@ public class Unit : BaseUnit
         if (isFollowingEnemy)
             FollowEnemy();
     }
-
-    
 
     protected override void Attack()
     {
