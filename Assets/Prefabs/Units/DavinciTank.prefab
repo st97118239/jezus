@@ -186,6 +186,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3601389443137214451}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &443482996541171588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3601389443137214451}
+    m_Modifications:
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152126300814796139, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_Name
+      value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278758551116515478, guid: c38d6b222bb153b479b39f89b051df3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c38d6b222bb153b479b39f89b051df3f, type: 3}
+--- !u!4 &4045094232311464768 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4468871184165577924, guid: c38d6b222bb153b479b39f89b051df3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 443482996541171588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7896286520079066359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7760458276126819187, guid: c38d6b222bb153b479b39f89b051df3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 443482996541171588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556920d714dd1784fa6f93eebbd9b2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &8413742687974600466 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8278758551116515478, guid: c38d6b222bb153b479b39f89b051df3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 443482996541171588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5160217628868109239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 9020044460106264318, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
       propertyPath: m_Name
-      value: DavinciTank Variant
+      value: DavinciTank
       objectReference: {fileID: 0}
     - target: {fileID: 9020044460106264318, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
@@ -281,6 +378,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6949339856011035978}
+    - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4045094232311464768}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9020044460106264318, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
@@ -364,8 +465,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   tower: {fileID: 0}
-  agent: {fileID: 0}
-  boxCollider: {fileID: 0}
+  agent: {fileID: -7817511800780841595}
+  boxCollider: {fileID: 3293164170794935167}
+  rangeObject: {fileID: 7896286520079066359}
+  rangeRenderer: {fileID: 8413742687974600466}
   destination: {x: 0, y: 0, z: 0}
   atDestination: 0
   hasReachedDestination: 0

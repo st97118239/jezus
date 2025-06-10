@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class OutlineSelection : MonoBehaviour
 {
+    public List<Transform> selections;
+
     private Transform highlight;
-    private Transform selection;
     private RaycastHit raycastHit;
 
     void Update()
@@ -18,12 +20,10 @@ public class OutlineSelection : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
         {
             highlight = raycastHit.transform;
-            if (highlight.CompareTag("Selectable") && highlight != selection)
+            if (highlight.CompareTag("Selectable") && !selections.Contains(highlight))
             {
                 if (highlight.gameObject.GetComponent<Outline>() != null)
-                {
                     highlight.gameObject.GetComponent<Outline>().enabled = true;
-                }
                 else
                 {
                     Outline outline = highlight.gameObject.AddComponent<Outline>();
@@ -31,9 +31,7 @@ public class OutlineSelection : MonoBehaviour
                 }
             }
             else
-            {
                 highlight = null;
-            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -45,23 +43,26 @@ public class OutlineSelection : MonoBehaviour
 
             if (highlight)
             {
-                if (selection != null)
+                if (selections.Count > 0)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    foreach (var selection in selections)
+                        selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selections.Clear();
                 }
-                selection = raycastHit.transform;
-                selection.gameObject.GetComponent<Outline>().enabled = true;
+                selections.Add(raycastHit.transform);
+                foreach (var selection in selections)
+                    selection.gameObject.GetComponent<Outline>().enabled = true;
                 highlight = null;
             }
             else
             {
-                if (selection)
+                if (selections.Count > 0)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
-                    selection = null;
+                    foreach (var selection in selections)
+                        selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selections.Clear();
                 }
             }
         }
     }
-
 }

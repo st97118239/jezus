@@ -8,8 +8,10 @@ public class BarracksTower : MonoBehaviour
     public List<BaseUnit> units;
     public List<BaseUnit> spawnedUnits;
     public List<GameObject> barrackModels;
+    public OutlineSelection os;
     public GameObject destinationBall;
     public DestinationBall ballComponent;
+    public BarracksRange destinationRangeObject;
     public Vector3 destination;
     public Vector3 spawnOffset;
     public int upgradeCount;
@@ -21,6 +23,7 @@ public class BarracksTower : MonoBehaviour
     public int upgradePrice;
     public int spawnPrice;
 
+
     private Main main;
     private Tower tower;
     private Vector3 cursorLocation;
@@ -29,13 +32,14 @@ public class BarracksTower : MonoBehaviour
     private void Start()
     {
         main = FindObjectOfType<Main>();
+        os = FindObjectOfType<OutlineSelection>();
         GameObject newBall = Instantiate(destinationBall, transform.position, Quaternion.identity);
+        tower = GetComponent<Tower>();
         ballComponent = newBall.GetComponent<DestinationBall>();
         ballComponent.tower = this;
         ballComponent.mesh = ballComponent.GetComponent<MeshRenderer>();
         ballComponent.mesh.enabled = false;
         destinationBall = newBall;
-        tower = GetComponent<Tower>();
         HideOtherModels();
     }
 
@@ -77,7 +81,6 @@ public class BarracksTower : MonoBehaviour
     private void SpawnUnit()
     {
         BaseUnit newUnit = Instantiate(units[0 + upgradeCount], transform.position + spawnOffset, Quaternion.identity);
-        newUnit.agent = newUnit.GetComponent<NavMeshAgent>();
         NavMeshAgent newUnitAgent = newUnit.agent;
 
         newUnitAgent.SetDestination(destination);
@@ -128,7 +131,7 @@ public class BarracksTower : MonoBehaviour
             upgradePrice = unitsUpgradePrice[upgradeCount + 1];
     }
 
-    public void RecalculateSpawnPrice() 
+    public void RecalculateSpawnPrice()
     {
         spawnPrice = units[upgradeCount].price;
     }
@@ -182,6 +185,36 @@ public class BarracksTower : MonoBehaviour
         foreach (Transform child in tf)
         {
             ChangeMaterialOfAllDescendants(child, toggle);
+        }
+    }
+
+    public void Selected(bool runUnitsFunction)
+    {
+        BaseUnit unit = units[upgradeCount];
+        float barracksRange = unitRange + unit.extraDistanceToFindEnemiesIn;
+        destinationRangeObject.transform.position = destinationBall.transform.position;
+        destinationRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
+        destinationRangeObject.GetComponent<MeshRenderer>().enabled = true;
+        destinationRangeObject.gameObject.layer = 9;
+
+        if (runUnitsFunction)
+        {
+            foreach (var u in spawnedUnits)
+                u.Select(false);
+        }
+    }
+
+    public void Deselected(bool runUnitsFunction)
+    {
+        main.bus.TowerDeselected();
+        destinationRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
+        destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
+        destinationRangeObject.gameObject.layer = 0;
+
+        if (runUnitsFunction)
+        {
+            foreach (var u in spawnedUnits)
+                u.Deselect(false);
         }
     }
 }

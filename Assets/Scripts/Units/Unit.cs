@@ -12,7 +12,6 @@ public class Unit : BaseUnit
 
     protected override void OnStart()
     {
-        // Speciale code die alleen voor deze classe geldt
     }
 
     private void Update()

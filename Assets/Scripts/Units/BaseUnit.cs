@@ -7,6 +7,8 @@ public abstract class BaseUnit : MonoBehaviour
     public BarracksTower tower;
     public NavMeshAgent agent;
     public BoxCollider boxCollider;
+    public Range rangeObject;
+    public MeshRenderer rangeRenderer;
     public Vector3 destination;
     public bool atDestination;
     public bool hasReachedDestination;
@@ -25,18 +27,14 @@ public abstract class BaseUnit : MonoBehaviour
  
     protected Main main;
     protected EnemySpawner es;
-    protected Range rangeObject;
-    protected MeshRenderer rangeRenderer;
+
     protected bool isSelected;
 
     private void Start()
     {
         main = FindObjectOfType<Main>();
         es = FindObjectOfType<EnemySpawner>();
-        rangeObject = FindObjectOfType<Range>();
-        GetComponent<NavMeshAgent>().speed = speed;
-        rangeRenderer = rangeObject.GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
+        agent.speed = speed;
         attackTimer = attackSpeed;
 
         OnStart();
@@ -46,17 +44,27 @@ public abstract class BaseUnit : MonoBehaviour
     {
     }
     
-    public void Select()
+    public void Select(bool extraFunctions)
     {
-        main.up.Activate(type, (int)health);
+        if (extraFunctions)
+        {
+            main.up.Activate(type, (int)health);
+            tower.Selected(false);
+        }
+
         isSelected = true;
         RedrawRange();
         main.ChangeLayerOfAllDescendants(transform, 9);
     }
 
-    public void Deselect()
+    public void Deselect(bool extraFunctions)
     {
-        main.up.Deactivate();
+        if (extraFunctions)
+        {
+            main.up.Deactivate();
+            tower.Deselected(false);
+        }
+
         isSelected = false;
         rangeRenderer.enabled = false;
         main.ChangeLayerOfAllDescendants(transform, 0);
@@ -72,8 +80,7 @@ public abstract class BaseUnit : MonoBehaviour
     public void Die()
     {
         if (isSelected)
-            Deselect();
-
+            Deselect(true);
 
         tower.spawnedUnits.Remove(this);
         Destroy(gameObject);
