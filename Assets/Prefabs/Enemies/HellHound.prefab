@@ -188,7 +188,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   nav: {fileID: 0}
   enemyType: 3
-  startingWave: 1
+  startingWave: 10
   waveModulo: 10
   enemyAmount: 1
   coins: 500
