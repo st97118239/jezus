@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 2288923249152925001}
   - component: {fileID: 7395749516403003180}
   m_Layer: 0
-  m_Name: Demon Brute
+  m_Name: DemonBrute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

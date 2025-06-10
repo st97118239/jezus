@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2051730654832576476}
   - component: {fileID: 4045662048845619535}
   m_Layer: 0
-  m_Name: Autism Cube
+  m_Name: AutismCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
