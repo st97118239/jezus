@@ -47425,6 +47425,7 @@ MonoBehaviour:
   groupSpawnCount: 1
   spawnTimerBase: 1
   nextWaveTimerBase: 1
+  nextWaveTimerDelay: 5
 --- !u!4 &1093990629
 Transform:
   m_ObjectHideFlags: 0

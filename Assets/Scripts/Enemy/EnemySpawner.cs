@@ -16,11 +16,12 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Vector3 spawnRotOffset;
-    [SerializeField] private int currentWave = 0;
-    [SerializeField] private int startingWaypoint = 0;
+    [SerializeField] private int currentWave;
+    [SerializeField] private int startingWaypoint;
     [SerializeField] private int groupSpawnCount = 1;
     [SerializeField] private float spawnTimerBase = 1;
     [SerializeField] private float nextWaveTimerBase = 10;
+    [SerializeField] private float nextWaveTimerDelay;
 
     private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Main main;
@@ -60,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
 
         spawnTimer = spawnTimerBase;
-        nextWaveTimer = nextWaveTimerBase;
+        nextWaveTimer = nextWaveTimerDelay;
 
         foreach (GameObject enemy in enemyList)
         {
