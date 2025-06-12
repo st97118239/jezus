@@ -25,9 +25,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float spawnForwardMultiplier;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
-    [SerializeField] private bool gotShotAt;
-    [SerializeField] private GameObject projectileThatShot;
-    [SerializeField] private float projectileDamage;
 
     private EnemySpawner es;
     private Main main;
@@ -50,12 +47,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        //if (gotShotAt && projectileThatShot == null)
-        //{
-        //    GotHit(projectileDamage);
-        //    Debug.LogWarning("The projectile that was aiming for " + enemyType + " is gone, removed " + projectileDamage + " from health. Health is now " + health);
-        //}
-
         if (isAttacking)
         {
             if (attackTimer > 0)
@@ -81,8 +72,6 @@ public class Enemy : MonoBehaviour
             es.EnemyKilled(coins, gameObject);
             Destroy(gameObject);
         }
-
-        gotShotAt = false;
     }
 
     public void ReachedCastle()
@@ -120,13 +109,6 @@ public class Enemy : MonoBehaviour
             spawnedEnemy.nav.currentWPIndex = nav.currentWPIndex;
             es.activeEnemies.Add(spawnedEnemy.gameObject);
         }
-    }
-
-    public void TowerHasShot(GameObject projectile, float damage)
-    {
-        gotShotAt = true;
-        projectileThatShot = projectile;
-        projectileDamage = damage;
     }
 
     public void Select()

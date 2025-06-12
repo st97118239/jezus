@@ -35,10 +35,8 @@ public class Predict : MonoBehaviour
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         Projectile projectile = projectileGameObject.GetComponent<Projectile>();
-        projectile.SetStats(tower.shooter, tower.damage, currentTarget, time, tower.projectileSpeed);
+        projectile.SetStats(tower.shooter, damage, enemy, time, tower.projectileSpeed);
         projectile.SetVelocity(velocity, arcedProjectiles, extraTargetAmount);
         projectileGameObject.SetActive(true);
-
-        enemy.TowerHasShot(projectileGameObject, damage);
     }
 }

@@ -8,6 +8,7 @@ public class Main : MonoBehaviour
     public InfoPanel ip;
     public EnemyPanel ep;
     public UnitPanel up;
+    public MenuButtons mb;
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
     public SuicideUpgradeSystem sus;
@@ -46,6 +47,24 @@ public class Main : MonoBehaviour
         health = defaultHealth;
         ip.RedrawHealthBar(health);
         ip.RedrawWaveText(0, 0, 0);
+        Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (mb.gameObject.activeSelf == true)
+            {
+                mb.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                mb.gameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
     }
 
     public void ReceiveDmg(int dmg)
@@ -72,8 +91,6 @@ public class Main : MonoBehaviour
 
         ip.RedrawCoinText(coinsAmount);
     }
-
-    
 
     private void GameOver()
     {
