@@ -50,11 +50,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (gotShotAt && projectileThatShot == null)
-        {
-            GotHit(projectileDamage);
-            Debug.LogWarning("The projectile that was aiming for " + enemyType + " is gone, removed " + projectileDamage + " from health. Health is now " + health);
-        }
+        //if (gotShotAt && projectileThatShot == null)
+        //{
+        //    GotHit(projectileDamage);
+        //    Debug.LogWarning("The projectile that was aiming for " + enemyType + " is gone, removed " + projectileDamage + " from health. Health is now " + health);
+        //}
 
         if (isAttacking)
         {

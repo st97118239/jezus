@@ -329,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 9131804037937054088, guid: 574e0fde9a1f3bc48b3cfa32d5930405,
     type: 3}
+  extraTargetAmount: 0
 --- !u!4 &8092240012316313908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4295870069346021859, guid: 54b8f8a47637a86429fc3dd3a90a32b5,

@@ -85,7 +85,7 @@ public class Tower : MonoBehaviour
         else
             main.tus.TowerDeselected();
 
-        main.ChangeLayerOfAllDescendants(transform, 0);
+        main.ChangeLayerOfAllDescendants(transform, 10);
     }
 
     public void TurnShooterOn()

@@ -3,8 +3,10 @@ using UnityEngine;
 public class Predict : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    private Enemy currentTarget;
 
+    [SerializeField] private float extraTargetAmount;
+    
+    private Enemy currentTarget;
     private Tower tower;
     
     public void Start()
@@ -12,7 +14,7 @@ public class Predict : MonoBehaviour
         tower = GetComponent<Tower>();
     }
 
-    public void ShootVelocity(GameObject enemy, Vector3 velocity, bool arcedProjectiles, float damage)
+    public void ShootVelocity(GameObject enemy, Vector3 velocity, bool arcedProjectiles, float damage, float time)
     {
         if (enemy)
         {
@@ -22,19 +24,19 @@ public class Predict : MonoBehaviour
                 enemyComponent.tempHealth -= damage;
                 currentTarget = enemyComponent;
 
-                FireProjectile(velocity, arcedProjectiles, damage, enemyComponent);
+                FireProjectile(velocity, arcedProjectiles, damage, enemyComponent, time);
             }
         }
     }
 
-    void FireProjectile(Vector3 velocity, bool arcedProjectiles, float damage, Enemy enemy)
+    void FireProjectile(Vector3 velocity, bool arcedProjectiles, float damage, Enemy enemy, float time)
     {
         Transform spawnLocation = tower.shooter.projectileSpawner.transform;
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         Projectile projectile = projectileGameObject.GetComponent<Projectile>();
-        projectile.SetStats(tower.shooter, tower.damage, currentTarget);
-        projectile.SetVelocity(velocity, arcedProjectiles);
+        projectile.SetStats(tower.shooter, tower.damage, currentTarget, time, tower.projectileSpeed);
+        projectile.SetVelocity(velocity, arcedProjectiles, extraTargetAmount);
         projectileGameObject.SetActive(true);
 
         enemy.TowerHasShot(projectileGameObject, damage);

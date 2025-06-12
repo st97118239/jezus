@@ -72,7 +72,7 @@ public class Shooter : MonoBehaviour
                             Vector3 velocity = GetArrowVelocity(nav.transform.position, tEnemy);
                             if (velocity != Vector3.zero)
                             {
-                                ShootVelocity(enemy.Key, velocity);
+                                ShootVelocity(enemy.Key, velocity, tEnemy);
                                 isFired = true;
                                 currentTarget = enemy.Key;
                                 break;
@@ -90,7 +90,7 @@ public class Shooter : MonoBehaviour
                                 Vector3 velocity = GetArrowVelocity(targetPosition, tEnemy);
                                 if (velocity != Vector3.zero)
                                 {
-                                    ShootVelocity(enemy.Key, velocity);
+                                    ShootVelocity(enemy.Key, velocity, tEnemy);
                                     isFired = true;
                                     currentTarget = enemy.Key;
                                     break;
@@ -173,7 +173,7 @@ public class Shooter : MonoBehaviour
         {
             if (hitColliders.Any(h => h.gameObject == enemy))
             {
-                tempEnemiesList.Add(enemy.gameObject);
+                tempEnemiesList.Add(enemy);
             }
         }
 
@@ -186,11 +186,11 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    private void ShootVelocity(GameObject enemy, Vector3 velocity)
+    private void ShootVelocity(GameObject enemy, Vector3 velocity, float time)
     {
         float damage = tower.damage;
 
-        predict.ShootVelocity(enemy, velocity, arcedProjectiles, damage);
+        predict.ShootVelocity(enemy, velocity, arcedProjectiles, damage, time);
 
         shootableEnemies.Clear();
         reloadTimer = reloadSpeed;

@@ -327,6 +327,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   shooter: {fileID: 0}
   rangeObject: {fileID: 3566824266563964288}
+  barracksRangeObject: {fileID: 0}
   price: 100
   reloadSpeed: 2
   reloadSpeedBase: 0
@@ -377,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 9131804037937054088, guid: 574e0fde9a1f3bc48b3cfa32d5930405,
     type: 3}
+  extraTargetAmount: 0.75
 --- !u!1001 &6542965456730214131
 PrefabInstance:
   m_ObjectHideFlags: 0

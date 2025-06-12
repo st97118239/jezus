@@ -67,7 +67,7 @@ public abstract class BaseUnit : MonoBehaviour
 
         isSelected = false;
         rangeRenderer.enabled = false;
-        main.ChangeLayerOfAllDescendants(transform, 0);
+        main.ChangeLayerOfAllDescendants(transform, 10);
     }
     
     public void RedrawRange()
