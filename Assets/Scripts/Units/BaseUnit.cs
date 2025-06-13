@@ -31,7 +31,7 @@ public abstract class BaseUnit : MonoBehaviour
 
     protected bool isSelected;
 
-    private void Start()
+    private void Awake()
     {
         outlineSelection = FindObjectOfType<OutlineSelection>();
         main = FindObjectOfType<Main>();
@@ -56,6 +56,7 @@ public abstract class BaseUnit : MonoBehaviour
             RedrawRange();
         }
 
+        outlineSelection.AddNewSelection(transform);
         isSelected = true;
         main.ChangeLayerOfAllDescendants(transform, 9);
     }

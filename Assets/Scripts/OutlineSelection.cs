@@ -69,8 +69,7 @@ public class OutlineSelection : MonoBehaviour
                 {
                     if (selection.gameObject.GetComponent<Outline>() == null)
                     {
-                        Outline outline = selection.gameObject.AddComponent<Outline>();
-                        outline.enabled = true;
+                        selection.gameObject.AddComponent<Outline>();
                     }
                     selection.gameObject.GetComponent<Outline>().enabled = true;
                 }
@@ -106,5 +105,11 @@ public class OutlineSelection : MonoBehaviour
     public void AddNewSelection(Transform objectToAdd)
     {
         toAdd.Add(objectToAdd);
+        if (objectToAdd.gameObject.GetComponent<Outline>() == null)
+        {
+            Outline outline = objectToAdd.gameObject.AddComponent<Outline>();
+            outline.enabled = true;
+        }
+        selections.Add(objectToAdd);
     }
 }

@@ -90,6 +90,8 @@ public class BarracksTower : MonoBehaviour
 
         newUnit.NewDestinationPoint(destination);
         newUnit.agent.isStopped = false;
+
+        newUnit.Select(false);
     }
 
     public void FindNewDestination()
@@ -204,9 +206,7 @@ public class BarracksTower : MonoBehaviour
             foreach (var u in spawnedUnits)
             {
                 u.Select(false);
-                outlineSelection.AddNewSelection(u.transform);
             }
-            
         }
     }
 
