@@ -44,8 +44,8 @@ public class Tower : MonoBehaviour
 
         if (type == TowerType.Barracks)
             barracksTower.Selected(true);
-
-        main.ChangeLayerOfAllDescendants(transform, 9);
+        else
+            main.ChangeLayerOfAllDescendants(transform, 9);
 
         if (type == TowerType.Barracks)
             main.bus.NewTowerSelected(GetComponent<BarracksTower>());

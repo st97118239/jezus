@@ -23,7 +23,7 @@ public class BarracksTower : MonoBehaviour
     public int upgradePrice;
     public int spawnPrice;
 
-
+    private OutlineSelection outlineSelection;
     private Main main;
     private Tower tower;
     private Vector3 cursorLocation;
@@ -31,6 +31,7 @@ public class BarracksTower : MonoBehaviour
 
     private void Start()
     {
+        outlineSelection = FindObjectOfType<OutlineSelection>();
         main = FindObjectOfType<Main>();
         os = FindObjectOfType<OutlineSelection>();
         GameObject newBall = Instantiate(destinationBall, transform.position, Quaternion.identity);
@@ -196,11 +197,16 @@ public class BarracksTower : MonoBehaviour
         destinationRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = true;
         destinationRangeObject.gameObject.layer = 9;
+        main.ChangeLayerOfAllDescendants(transform, 9);
 
         if (runUnitsFunction)
         {
             foreach (var u in spawnedUnits)
+            {
                 u.Select(false);
+                outlineSelection.AddNewSelection(u.transform);
+            }
+            
         }
     }
 
@@ -210,6 +216,7 @@ public class BarracksTower : MonoBehaviour
         destinationRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
         destinationRangeObject.gameObject.layer = 0;
+        main.ChangeLayerOfAllDescendants(transform, 10);
 
         if (runUnitsFunction)
         {

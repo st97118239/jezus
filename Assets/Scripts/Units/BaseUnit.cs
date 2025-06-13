@@ -24,7 +24,8 @@ public abstract class BaseUnit : MonoBehaviour
     [SerializeField] protected float attackTimer;
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected bool isAttacking;
- 
+
+    protected OutlineSelection outlineSelection;
     protected Main main;
     protected EnemySpawner es;
 
@@ -32,6 +33,7 @@ public abstract class BaseUnit : MonoBehaviour
 
     private void Start()
     {
+        outlineSelection = FindObjectOfType<OutlineSelection>();
         main = FindObjectOfType<Main>();
         es = FindObjectOfType<EnemySpawner>();
         agent.speed = speed;
@@ -50,10 +52,11 @@ public abstract class BaseUnit : MonoBehaviour
         {
             main.up.Activate(type, (int)health);
             tower.Selected(false);
+            outlineSelection.AddNewSelection(tower.transform);
+            RedrawRange();
         }
 
         isSelected = true;
-        RedrawRange();
         main.ChangeLayerOfAllDescendants(transform, 9);
     }
 
@@ -63,10 +66,10 @@ public abstract class BaseUnit : MonoBehaviour
         {
             main.up.Deactivate();
             tower.Deselected(false);
+            rangeRenderer.enabled = false;
         }
 
         isSelected = false;
-        rangeRenderer.enabled = false;
         main.ChangeLayerOfAllDescendants(transform, 10);
     }
     
