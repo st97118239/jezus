@@ -11674,7 +11674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &256303865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80541,7 +80541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1826458278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80582,6 +80582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895f1d61f9da594c80cd180c70c63d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  os: {fileID: 0}
   es: {fileID: 0}
   clickDetec: {fileID: 0}
   ip: {fileID: 0}
@@ -85569,11 +85570,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c571d29d2dcf145bb22cc51513c251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toAdd: []
   selections: []
   selected: {fileID: 0}
   highlight: {fileID: 0}
   hitObject: {fileID: 0}
-  toAdd: []
 --- !u!4 &1943393835
 Transform:
   m_ObjectHideFlags: 0
