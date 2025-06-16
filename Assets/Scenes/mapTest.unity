@@ -7882,7 +7882,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 176892478}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 290358266}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &176892478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12911,6 +12923,7 @@ GameObject:
   - component: {fileID: 290358264}
   - component: {fileID: 290358263}
   - component: {fileID: 290358262}
+  - component: {fileID: 290358266}
   m_Layer: 5
   m_Name: WinScreenCanvas
   m_TagString: Untagged
@@ -13003,6 +13016,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &290358266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290358261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d253515c2836e274c948d387a95f89ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &290398162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8362163723807947919, guid: a1112c9b0042a9847ac1b7c9f977cf77,
@@ -13745,8 +13770,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1335255891}
   - {fileID: 1285872691}
+  - {fileID: 1335255891}
   - {fileID: 335000705}
   m_Father: {fileID: 1390568883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15571,7 +15596,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 335000707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1390568884}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &335000707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25521,7 +25558,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 587033277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 290358266}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &587033277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35738,7 +35787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8784314}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -44797,7 +44846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8784314}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -49495,6 +49544,8 @@ MonoBehaviour:
   waypointParent: {fileID: 1923861222}
   waypoints: []
   canSpawn: 1
+  winCanvas: {fileID: 290358261}
+  loseCanvas: {fileID: 1390568879}
   enemyList:
   - {fileID: 3975231919406356879, guid: cf643136c4e43fc4da31152b808d3b17, type: 3}
   - {fileID: 7197842966538249039, guid: acca4b018a14ac742a30e2c5b709f7a2, type: 3}
@@ -49502,6 +49553,7 @@ MonoBehaviour:
   - {fileID: 8392847934564319618, guid: 2860d4dc1618046588dfec96b9fc434c, type: 3}
   spawnRotOffset: {x: 0, y: -90, z: 0}
   currentWave: 0
+  lastWave: 100
   startingWaypoint: 0
   groupSpawnCount: 1
   spawnTimerBase: 1
@@ -58320,7 +58372,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1285872693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1390568884}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1285872693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61118,7 +61182,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1335255893}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1390568884}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1335255893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63184,6 +63260,7 @@ GameObject:
   - component: {fileID: 1390568882}
   - component: {fileID: 1390568881}
   - component: {fileID: 1390568880}
+  - component: {fileID: 1390568884}
   m_Layer: 5
   m_Name: LoseScreenCanvas
   m_TagString: Untagged
@@ -63276,6 +63353,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1390568884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390568879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d253515c2836e274c948d387a95f89ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1391618455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83313,7 +83402,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1900200619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 290358266}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1900200619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93806,8 +93907,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1900200617}
   - {fileID: 587033275}
+  - {fileID: 1900200617}
   - {fileID: 176892476}
   m_Father: {fileID: 290358265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94387,9 +94488,9 @@ SceneRoots:
   - {fileID: 203844589}
   - {fileID: 4806034494669243085}
   - {fileID: 106085406}
+  - {fileID: 1662622070}
   - {fileID: 1923861222}
   - {fileID: 1399719518}
   - {fileID: 256303868}
-  - {fileID: 1662622070}
-  - {fileID: 1390568883}
   - {fileID: 290358265}
+  - {fileID: 1390568883}
