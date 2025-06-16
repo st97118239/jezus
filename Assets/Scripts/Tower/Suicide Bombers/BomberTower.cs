@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BomberTower : MonoBehaviour
 {
+    public List<SuicideBomber> spawnedBombers;
     public Main main;
     public GameObject projectileSpawner;
     public GameObject landingBall;
@@ -26,6 +27,7 @@ public class BomberTower : MonoBehaviour
     private SuicideBomber bomber;
     public Tower tower;
     private Vector3 cursorLocation;
+    private bool isSelected;
     private bool needsToFindLocation;
     private bool isReloading;
     private bool hasTargetPos;
@@ -220,13 +222,43 @@ public class BomberTower : MonoBehaviour
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         bomber = projectileGameObject.GetComponent<SuicideBomber>();
-        bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this);
+        bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this, main.os);
         bomber.SetVelocity(velocity);
         projectileGameObject.SetActive(true);
+        if (isSelected)
+            bomber.Select(false);
+        spawnedBombers.Add(bomber);
     }
 
     private void GiveBomberVelocity(Vector3 velocity)
     {
         bomber.SetVelocity(velocity);
+    }
+
+    public void Selected(bool extraFunctions)
+    {
+        isSelected = true;
+        main.os.ChangeLayerOfAllDescendants(transform, 9);
+
+        if (extraFunctions)
+        {
+            main.sus.NewTowerSelected(this);
+
+            foreach (SuicideBomber b in spawnedBombers)
+                b.Select(false);
+        }
+    }
+
+    public void Deselected(bool extraFunctions)
+    {
+        isSelected = false;
+        main.sus.TowerDeselected();
+        main.os.ChangeLayerOfAllDescendants(transform, 10);
+
+        if (extraFunctions)
+        {
+            foreach (SuicideBomber b in spawnedBombers)
+                b.Deselect(false);
+        }
     }
 }

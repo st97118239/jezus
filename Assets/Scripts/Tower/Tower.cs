@@ -4,6 +4,7 @@ public class Tower : MonoBehaviour
 {
     public TowerType type;
     public BarracksTower barracksTower;
+    public BomberTower bomberTower;
     public MeshRenderer mesh;
     public Shooter shooter;
     public Range rangeObject;
@@ -34,6 +35,8 @@ public class Tower : MonoBehaviour
             shooter = transform.Find("Shooter").GetComponent<Shooter>();
         else if (type == TowerType.Barracks)
             barracksTower = GetComponent<BarracksTower>();
+        else if (type == TowerType.SuicideBombers)
+            bomberTower = GetComponent<BomberTower>();
     }
 
     public void Select()
@@ -45,12 +48,12 @@ public class Tower : MonoBehaviour
         if (type == TowerType.Barracks)
             barracksTower.Selected(true);
         else
-            main.ChangeLayerOfAllDescendants(transform, 9);
+            main.os.ChangeLayerOfAllDescendants(transform, 9);
 
         if (type == TowerType.Barracks)
-            main.bus.NewTowerSelected(GetComponent<BarracksTower>());
+            main.bus.NewTowerSelected(barracksTower);
         else if (type == TowerType.SuicideBombers)
-            main.sus.NewTowerSelected(GetComponent<BomberTower>());
+            bomberTower.Selected(true);
         else
             main.tus.NewTowerSelected(this);
     }
@@ -77,15 +80,13 @@ public class Tower : MonoBehaviour
         rangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
         if (type == TowerType.Barracks)
-        {
             barracksTower.Deselected(true);
-        }
-        else if (type == TowerType.SuicideBombers)
-            main.sus.TowerDeselected();
+        else if (type == TowerType.SuicideBombers) 
+            bomberTower.Deselected(true);
         else
             main.tus.TowerDeselected();
 
-        main.ChangeLayerOfAllDescendants(transform, 10);
+        main.os.ChangeLayerOfAllDescendants(transform, 10);
     }
 
     public void TurnShooterOn()

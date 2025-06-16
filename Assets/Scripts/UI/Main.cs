@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class Main : MonoBehaviour
 {
+    public OutlineSelection os;
     public EnemySpawner es;
     public ClickDetection clickDetec;
     public InfoPanel ip;
@@ -23,6 +24,7 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
+        os = FindObjectOfType<OutlineSelection>();
         clickDetec = FindObjectOfType<ClickDetection>();
         es = FindObjectOfType<EnemySpawner>();
         tus = FindObjectOfType<TowerUpgradeSystem>();
@@ -107,17 +109,6 @@ public class Main : MonoBehaviour
         foreach (Tower tower in tp.towersPlaced)
         {
             tower.shooter.canShoot = false;
-        }
-    }
-
-    public void ChangeLayerOfAllDescendants(Transform tf, int layer)
-    {
-        if (!tf.CompareTag("NoLayerToggle"))
-            tf.gameObject.layer = layer;
-
-        foreach (Transform child in tf)
-        {
-            ChangeLayerOfAllDescendants(child, layer);
         }
     }
 }

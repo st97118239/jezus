@@ -1,4 +1,5 @@
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class SuicideBomber : MonoBehaviour
@@ -9,7 +10,8 @@ public class SuicideBomber : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private float explosionRadius;
-    
+
+    private OutlineSelection outlineSelection;
     private BomberTower tower;
     private Vector3 target;
     private float speed;
@@ -18,12 +20,13 @@ public class SuicideBomber : MonoBehaviour
     private bool reachedMax;
     private bool hitGround;
 
-    public void SetStats(float givenDamage, float givenSpeed, Vector3 landingPos, BomberTower givenTower)
+    public void SetStats(float givenDamage, float givenSpeed, Vector3 landingPos, BomberTower givenTower, OutlineSelection givenOutlineSelection)
     {
         damage = givenDamage;
         target = landingPos;
         tower = givenTower;
         speed = givenSpeed;
+        outlineSelection = givenOutlineSelection;
     }
 
     private void Update()
@@ -130,6 +133,15 @@ public class SuicideBomber : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Deselect(false);
+        tower.spawnedBombers.Remove(this);
+        if (outlineSelection.selections.Contains(transform))
+            outlineSelection.selections.Remove(transform);
+        if (outlineSelection.selected == transform)
+            outlineSelection.selected = null;
+        if (outlineSelection.toAdd.Contains(transform))
+            outlineSelection.toAdd.Remove(transform);
+        gameObject.GetComponent<Outline>().enabled = false;
         hitGround = true;
         particles.Play();
         boxCollider.enabled = false;
@@ -146,5 +158,31 @@ public class SuicideBomber : MonoBehaviour
                 collider.GetComponent<Enemy>().GotHit(damage);
             }
         }
+    }
+
+    public void Select(bool extraFunctions)
+    {
+        if (extraFunctions)
+        {
+            tower.Selected(false);
+            outlineSelection.AddNewSelection(tower.transform);
+        }
+
+        outlineSelection.AddNewSelection(transform);
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 9);
+    }
+
+    public void Deselect(bool extraFunctions)
+    {
+        if (extraFunctions)
+        {
+            tower.Deselected(false);
+        }
+
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 10);
+        outlineSelection.selections.Remove(transform);
+        if (outlineSelection.selected == transform)
+            outlineSelection.selected = null;
+        gameObject.GetComponent<Outline>().enabled = false;
     }
 }

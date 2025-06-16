@@ -4,12 +4,12 @@ using UnityEngine.EventSystems;
 
 public class OutlineSelection : MonoBehaviour
 {
+    public List<Transform> toAdd = new();
     public List<Transform> selections;
     public Transform selected;
 
     [SerializeField] private Transform highlight;
     [SerializeField] private Transform hitObject;
-    [SerializeField] private List<Transform> toAdd = new();
     [SerializeField] private RaycastHit raycastHit;
 
     void Update()
@@ -53,7 +53,12 @@ public class OutlineSelection : MonoBehaviour
                 if (selections.Count > 0)
                 {
                     foreach (var selection in selections)
-                        selection.gameObject.GetComponent<Outline>().enabled = false;
+                    {
+                        if (selection != null)
+                            selection.gameObject.GetComponent<Outline>().enabled = false;
+                        else
+                            selections.Remove(selection);
+                    }
 
                     selections.Clear();
                     selected = null;
@@ -111,5 +116,16 @@ public class OutlineSelection : MonoBehaviour
             outline.enabled = true;
         }
         selections.Add(objectToAdd);
+    }
+
+    public void ChangeLayerOfAllDescendants(Transform tf, int layer)
+    {
+        if (!tf.CompareTag("NoLayerToggle") && !tf.CompareTag("SuicideBomberMaxHeight"))
+            tf.gameObject.layer = layer;
+
+        foreach (Transform child in tf)
+        {
+            ChangeLayerOfAllDescendants(child, layer);
+        }
     }
 }

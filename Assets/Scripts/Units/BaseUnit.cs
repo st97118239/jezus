@@ -58,7 +58,7 @@ public abstract class BaseUnit : MonoBehaviour
 
         outlineSelection.AddNewSelection(transform);
         isSelected = true;
-        main.ChangeLayerOfAllDescendants(transform, 9);
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 9);
     }
 
     public void Deselect(bool extraFunctions)
@@ -71,7 +71,7 @@ public abstract class BaseUnit : MonoBehaviour
         }
 
         isSelected = false;
-        main.ChangeLayerOfAllDescendants(transform, 10);
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 10);
     }
     
     public void RedrawRange()

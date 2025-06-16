@@ -199,7 +199,7 @@ public class BarracksTower : MonoBehaviour
         destinationRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = true;
         destinationRangeObject.gameObject.layer = 9;
-        main.ChangeLayerOfAllDescendants(transform, 9);
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 9);
 
         if (runUnitsFunction)
         {
@@ -216,7 +216,7 @@ public class BarracksTower : MonoBehaviour
         destinationRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
         destinationRangeObject.gameObject.layer = 0;
-        main.ChangeLayerOfAllDescendants(transform, 10);
+        outlineSelection.ChangeLayerOfAllDescendants(transform, 10);
 
         if (runUnitsFunction)
         {
