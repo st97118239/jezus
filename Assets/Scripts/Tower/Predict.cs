@@ -38,5 +38,7 @@ public class Predict : MonoBehaviour
         projectile.SetStats(tower.shooter, damage, enemy, time, tower.projectileSpeed);
         projectile.SetVelocity(velocity, arcedProjectiles, extraTargetAmount);
         projectileGameObject.SetActive(true);
+
+        tower.shooter.PlayShootSoundEffect();
     }
 }

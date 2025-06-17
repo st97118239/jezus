@@ -11,6 +11,7 @@ public class Shooter : MonoBehaviour
 
     [SerializeField] private TargetType targetType;
     [SerializeField] private GameObject currentTarget;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool arcedProjectiles;
     [SerializeField] private int waypointsToLookAhead = 5;
     [SerializeField] private float rotationSpeed;
@@ -28,6 +29,7 @@ public class Shooter : MonoBehaviour
     
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         es = FindObjectOfType<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
         predict = tower.GetComponent<Predict>();
@@ -215,5 +217,11 @@ public class Shooter : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    public void PlayShootSoundEffect()
+    {
+        if (audioSource && audioSource.clip)
+            audioSource.Play();
     }
 }

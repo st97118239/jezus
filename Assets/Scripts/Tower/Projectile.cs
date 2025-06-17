@@ -39,21 +39,14 @@ public class Projectile : MonoBehaviour
             target = currentTarget.transform.position;
 
         if (!usesArcedProj && timer > 0 && timer > (timeToReach * 0.25))
-        {
             timer -= Time.deltaTime;
-        }
         else if (usesArcedProj && timer > 0 && timer > (timeToReach * 0.5))
-        {
             timer -= Time.deltaTime;
-        }
         else if (timer < 0)
         {
             if (currentTarget)
             {
-                if (usesArcedProj)
-                    transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, speed / 2 * Time.deltaTime);
-                else
-                    transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
 
                 transform.LookAt(currentTarget.transform.position);
             }
@@ -66,8 +59,6 @@ public class Projectile : MonoBehaviour
 
                 transform.LookAt(target);
             }
-
-
         }
         else
         {
@@ -94,22 +85,11 @@ public class Projectile : MonoBehaviour
         foreach (Collider collider in hitColliders)
         {
             if (currentTarget && collider.gameObject == currentTarget.gameObject)
-            {
                 currentTarget.GotHit(damage);
-            }
             else if (currentTarget && !collision.gameObject.GetComponent<Tower>())
                 currentTarget.tempHealth += damage;
         }
 
         Destroy(gameObject);
-
-        //    if (collision.gameObject.GetComponent<Enemy>())
-        //    {
-        //        collision.gameObject.GetComponent<Enemy>().GotHit(damage);
-        //    }
-        //    else if (!collision.gameObject.GetComponent<Tower>())
-        //        currentTarget.tempHealth += damage;
-
-        //    Destroy(gameObject);
     }
 }

@@ -206,13 +206,11 @@ MonoBehaviour:
   speed: 2.32
   range: 0
   amountOfEnemiesToSpawn: 0
+  isDisabled: 0
   enemyToSpawn: {fileID: 0}
   spawnForwardMultiplier: 0
   attackSpeed: 5
   projectileSpeed: 0
-  gotShotAt: 0
-  projectileThatShot: {fileID: 0}
-  projectileDamage: 0
   isAttacking: 0
   attackTimer: 0
 --- !u!114 &6325865241295404089
@@ -229,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   waypoints: []
-  canMove: 0
+  canMove: 1
   currentWPIndex: 0
   waypointToStopAt: 0
 --- !u!114 &2999636042916922844
