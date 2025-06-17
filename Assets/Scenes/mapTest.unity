@@ -11484,7 +11484,7 @@ GameObject:
   - component: {fileID: 251538717}
   - component: {fileID: 251538718}
   m_Layer: 0
-  m_Name: Click Audio
+  m_Name: ClickSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44602,7 +44602,7 @@ GameObject:
   - component: {fileID: 951688618}
   - component: {fileID: 951688619}
   m_Layer: 0
-  m_Name: Yippe Audio
+  m_Name: YippeSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50000,7 +50000,7 @@ MonoBehaviour:
   spawnRotOffset: {x: 0, y: -90, z: 0}
   currentWave: 0
   lastWave: 100
-  startingWaypoint: 300
+  startingWaypoint: 0
   groupSpawnCount: 1
   spawnTimerBase: 1
   nextWaveTimerBase: 1
@@ -91473,7 +91473,7 @@ PrefabInstance:
     - target: {fileID: 128599532084098856, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
         type: 3}
       propertyPath: m_Name
-      value: Audio
+      value: BackgroundMusic
       objectReference: {fileID: 0}
     - target: {fileID: 8040394618327504193, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
         type: 3}
