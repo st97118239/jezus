@@ -97,6 +97,9 @@ public abstract class BaseUnit : MonoBehaviour
         agent.isStopped = true;
         atDestination = true;
         hasReachedDestination = true;
+
+        if (type == UnitType.DaVinciTank)
+            Attack();
     }
 
     public void NewDestination(Vector3 position)

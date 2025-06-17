@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006768985860346231}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Gun (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6949339856011035978}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Gun (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8321218971574428154}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Gun (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8408731634148176543}
   m_Layer: 0
-  m_Name: GameObject (5)
+  m_Name: Gun (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492088180992194909}
   m_Layer: 0
-  m_Name: GameObject (4)
+  m_Name: Gun (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693297573574119584}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Gun (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,11 +361,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 693297573574119584}
+      addedObject: {fileID: 1006768985860346231}
     - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1006768985860346231}
+      addedObject: {fileID: 6949339856011035978}
+    - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 693297573574119584}
     - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
       insertIndex: -1
@@ -374,10 +378,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8408731634148176543}
-    - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6949339856011035978}
     - targetCorrespondingSourceObject: {fileID: 8531631931181069380, guid: 23033997030d31546b4887c89ab8bdda,
         type: 3}
       insertIndex: -1
@@ -481,7 +481,7 @@ MonoBehaviour:
   range: 50
   destinationRange: 0.5
   extraDistanceToFindEnemiesIn: 0
-  attackSpeed: 1
+  attackSpeed: 0.4
   attackTimer: 0
   rotationSpeed: 0.25
   isAttacking: 0

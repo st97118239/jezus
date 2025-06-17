@@ -7,7 +7,7 @@ public class Tank : BaseUnit
 
     private void Update()
     {
-        if (!canMove)
+        if (canMove)
         {
             if (isAttacking)
             {

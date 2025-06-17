@@ -49987,10 +49987,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeEnemies: []
-  enemiesUsedInWavesAmount: 
   toSpawn: []
-  waypointParent: {fileID: 1923861222}
   waypoints: []
+  enemiesUsedInWavesAmount: 
+  waypointParent: {fileID: 1923861222}
   canSpawn: 1
   enemyList:
   - {fileID: 3975231919406356879, guid: cf643136c4e43fc4da31152b808d3b17, type: 3}
