@@ -11,22 +11,19 @@ public class SuicideBomber : MonoBehaviour
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private float explosionRadius;
 
-    private OutlineSelection outlineSelection;
     private BomberTower tower;
     private Vector3 target;
     private float speed;
     private float damage;
-    private float despawnTimer;
     private bool reachedMax;
     private bool hitGround;
 
-    public void SetStats(float givenDamage, float givenSpeed, Vector3 landingPos, BomberTower givenTower, OutlineSelection givenOutlineSelection)
+    public void SetStats(float givenDamage, float givenSpeed, Vector3 landingPos, BomberTower givenTower)
     {
         damage = givenDamage;
         target = landingPos;
         tower = givenTower;
         speed = givenSpeed;
-        outlineSelection = givenOutlineSelection;
     }
 
     private void Update()
@@ -60,88 +57,15 @@ public class SuicideBomber : MonoBehaviour
         {
             Vector3 directionToTarget = (target - transform.position).normalized;
             rb.velocity = directionToTarget * speed;
-            // PrepareShoot();
             reachedMax = true;
             tower.isFlyingUp = false;
         }
     }
 
-    private void PrepareShoot()
-    {
-        float h = Mathf.Abs(target.y - transform.position.y);
-
-        // Calculate time of flight (t = sqrt(2h / |gravity|))
-        float t = Mathf.Sqrt(2 * h / Mathf.Abs(Physics.gravity.magnitude));
-
-        // Horizontal distance between object and target
-        float d = Mathf.Abs(target.x - transform.position.x);
-
-        // Required horizontal velocity to hit target
-        float vx = d / t;
-
-        // Apply force (impulse) in horizontal direction
-        rb.useGravity = true;
-        rb.AddForce(rb.mass * vx * transform.forward, ForceMode.Impulse);
-
-        //Vector3 velocity = CalculateLaunchVelocityWithAngle(transform.position, target, 0);
-        //if (velocity != Vector3.zero)
-        //{
-        //    SetVelocity(velocity);
-        //}
-    }
-
-    public Vector3 CalculateLaunchVelocity()
-    {
-        // Displacement vector
-        Vector3 displacement = target - transform.position;
-
-        float dx = displacement.x;
-        float dy = displacement.y;
-        float dz = displacement.z;
-
-        float velocityFactor = 2 * dy / Physics.gravity.magnitude;
-        int negative = velocityFactor < 0 ? -1 : 1;
-        float t = Mathf.Sqrt(velocityFactor * negative) * negative;
-
-        // Calculate velocity in x and z directions
-        float vx = dx / t;
-        float vz = dz / t;
-
-        return new Vector3(vx, 0, vz);
-    }
-
-    public static Vector3 CalculateLaunchVelocityWithAngle(Vector3 origin, Vector3 target, float launchAngleInDegrees, float gravity = 9.81f)
-    {
-        // Displacement
-        Vector3 displacement = target - origin;
-        float dx = displacement.x;
-        float dz = displacement.z;
-
-        float angleRad = Mathf.Deg2Rad * launchAngleInDegrees;
-
-        // Calculate horizontal velocity (vx)
-        float vx = dx / Mathf.Cos(angleRad);
-
-        // Time of flight is determined by horizontal distance and speed
-        float t = dx / vx;
-
-        // Calculate vertical velocity (vz) using time of flight and displacement
-        float vz = (dz + 0.5f * gravity * t * t) / t;
-
-        return new Vector3(vx, 0, vz);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Deselect(false);
         tower.spawnedBombers.Remove(this);
-        if (outlineSelection.selections.Contains(transform))
-            outlineSelection.selections.Remove(transform);
-        if (outlineSelection.selected == transform)
-            outlineSelection.selected = null;
-        if (outlineSelection.toAdd.Contains(transform))
-            outlineSelection.toAdd.Remove(transform);
-        gameObject.GetComponent<Outline>().enabled = false;
         hitGround = true;
         particles.Play();
         boxCollider.enabled = false;
@@ -158,31 +82,5 @@ public class SuicideBomber : MonoBehaviour
                 collider.GetComponent<Enemy>().GotHit(damage);
             }
         }
-    }
-
-    public void Select(bool extraFunctions)
-    {
-        if (extraFunctions)
-        {
-            tower.Selected(false);
-            outlineSelection.AddNewSelection(tower.transform);
-        }
-
-        outlineSelection.AddNewSelection(transform);
-        outlineSelection.ChangeLayerOfAllDescendants(transform, 9);
-    }
-
-    public void Deselect(bool extraFunctions)
-    {
-        if (extraFunctions)
-        {
-            tower.Deselected(false);
-        }
-
-        outlineSelection.ChangeLayerOfAllDescendants(transform, 10);
-        outlineSelection.selections.Remove(transform);
-        if (outlineSelection.selected == transform)
-            outlineSelection.selected = null;
-        gameObject.GetComponent<Outline>().enabled = false;
     }
 }

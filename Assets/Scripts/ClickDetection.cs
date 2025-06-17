@@ -22,9 +22,8 @@ public class ClickDetection : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (selectedObject != null && selectedObject.GetComponent<Tower>())
                 selectedObject.GetComponent<Tower>().Deselect();
@@ -32,8 +31,6 @@ public class ClickDetection : MonoBehaviour
                 selectedObject.GetComponent<Enemy>().Deselect();
             else if (selectedObject != null && selectedObject.GetComponent<BaseUnit>())
                 selectedObject.GetComponent<BaseUnit>().Deselect(true);
-            else if (selectedObject != null && selectedObject.GetComponent<SuicideBomber>())
-                selectedObject.GetComponent<SuicideBomber>().Deselect(true);
 
             if (hit.collider.gameObject.GetComponent<Tower>())
             {
@@ -52,11 +49,6 @@ public class ClickDetection : MonoBehaviour
             {
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<BaseUnit>().Select(true);
-            }
-            else if (hit.collider.gameObject.GetComponent<SuicideBomber>())
-            {
-                selectedObject = hit.collider.gameObject;
-                selectedObject.GetComponent<SuicideBomber>().Select(true);
             }
             else
             {

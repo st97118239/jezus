@@ -95,17 +95,17 @@ PrefabInstance:
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.04293
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0054922104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -75.427345
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
@@ -120,12 +120,12 @@ PrefabInstance:
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182664774424687071, guid: 2d2405f986e10674aaa68f4e4aa9ae0d,
         type: 3}
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedBombers: []
   main: {fileID: 0}
+  tower: {fileID: 0}
   projectileSpawner: {fileID: 4484513236338117066}
   landingBall: {fileID: 6594104312601092800, guid: 56db5d29fd76e1f41a3873b23606cc92,
     type: 3}
@@ -272,6 +273,7 @@ MonoBehaviour:
   maxHeightCollider: {fileID: 8628783541538177224}
   landingPos: {x: 0, y: 0, z: 0}
   isFlyingUp: 0
+  isDisabled: 0
   flyUpVelocity: {x: 0, y: 10, z: 0}
   upgrade: 0000000001000000
   upgradeCount: 0000000000000000
@@ -284,7 +286,6 @@ MonoBehaviour:
   - 1.4
   - 1.875
   upgradeCost: 0000000000000000
-  tower: {fileID: 0}
 --- !u!1001 &5208330891443015171
 PrefabInstance:
   m_ObjectHideFlags: 0

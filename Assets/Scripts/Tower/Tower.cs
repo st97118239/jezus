@@ -82,7 +82,7 @@ public class Tower : MonoBehaviour
         if (type == TowerType.Barracks)
             barracksTower.Deselected(true);
         else if (type == TowerType.SuicideBombers) 
-            bomberTower.Deselected(true);
+            bomberTower.Deselected();
         else
             main.tus.TowerDeselected();
 

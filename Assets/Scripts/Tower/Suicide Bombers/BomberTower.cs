@@ -28,7 +28,6 @@ public class BomberTower : MonoBehaviour
 
     private SuicideBomber bomber;
     private Vector3 cursorLocation;
-    private bool isSelected;
     private bool needsToFindLocation;
     private bool isReloading;
     private bool hasTargetPos;
@@ -158,7 +157,6 @@ public class BomberTower : MonoBehaviour
 
     public int Upgrade(int indexToUpgrade, int coins)
     {
-        int baseCost = upgradeBaseCost[indexToUpgrade];
         int cost = upgradeCost[indexToUpgrade];
 
         if (coins < cost)
@@ -209,25 +207,21 @@ public class BomberTower : MonoBehaviour
 
     private void Shoot(Vector3 velocity)
     {
-        float damage = tower.damage;
-
-        FireProjectile(velocity, damage);
+        FireProjectile(velocity);
 
         reloadTimer = reloadSpeed;
         isReloading = true;
     }
 
-    private void FireProjectile(Vector3 velocity, float damage)
+    private void FireProjectile(Vector3 velocity)
     {
         Transform spawnLocation = projectileSpawner.transform;
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         bomber = projectileGameObject.GetComponent<SuicideBomber>();
-        bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this, main.os);
+        bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this);
         bomber.SetVelocity(velocity);
         projectileGameObject.SetActive(true);
-        if (isSelected)
-            bomber.Select(false);
         spawnedBombers.Add(bomber);
     }
 
@@ -238,29 +232,16 @@ public class BomberTower : MonoBehaviour
 
     public void Selected(bool extraFunctions)
     {
-        isSelected = true;
         main.os.ChangeLayerOfAllDescendants(transform, 9);
 
         if (extraFunctions)
-        {
             main.sus.NewTowerSelected(this);
-
-            foreach (SuicideBomber b in spawnedBombers)
-                b.Select(false);
-        }
     }
 
-    public void Deselected(bool extraFunctions)
+    public void Deselected()
     {
-        isSelected = false;
         main.sus.TowerDeselected();
         main.os.ChangeLayerOfAllDescendants(transform, 10);
-
-        if (extraFunctions)
-        {
-            foreach (SuicideBomber b in spawnedBombers)
-                b.Deselect(false);
-        }
     }
 
     public void DisableTower()
