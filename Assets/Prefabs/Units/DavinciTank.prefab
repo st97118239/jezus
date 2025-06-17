@@ -472,8 +472,10 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   atDestination: 0
   hasReachedDestination: 0
+  canMove: 1
   damage: 500
   price: 500
+  maxUnits: 1
   health: 500
   speed: 4
   range: 50

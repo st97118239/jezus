@@ -43,6 +43,7 @@ public class BarracksTower : MonoBehaviour
         ballComponent.mesh.enabled = false;
         destinationBall = newBall;
         HideOtherModels();
+        maxUnits = units[upgradeCount].maxUnits;
     }
 
     void Update()
@@ -143,6 +144,7 @@ public class BarracksTower : MonoBehaviour
     public void Upgrade()
     {
         upgradeCount++;
+        maxUnits = units[upgradeCount].maxUnits;
         main.bus.FillUpgradeButton();
         RemoveAllUnits();
         main.bus.FillSpawnButton();

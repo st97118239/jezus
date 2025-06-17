@@ -15,6 +15,7 @@ public abstract class BaseUnit : MonoBehaviour
     public bool canMove = true;
     public int damage;
     public int price;
+    public int maxUnits;
     public float health;
     public float speed;
     public float range;

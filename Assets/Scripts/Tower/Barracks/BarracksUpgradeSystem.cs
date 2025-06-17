@@ -78,7 +78,7 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Spawn()
     {
-        if (selectedBarracks.isDisabled || selectedBarracks.units.Count >= selectedBarracks.maxUnits || main.coinsAmount < selectedBarracks.spawnPrice)
+        if (selectedBarracks.isDisabled || selectedBarracks.spawnedUnits.Count >= selectedBarracks.maxUnits || main.coinsAmount < selectedBarracks.spawnPrice)
             return;
 
         main.ChangeCoinAmount(-selectedBarracks.spawnPrice);
