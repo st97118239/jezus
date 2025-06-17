@@ -12,6 +12,7 @@ public abstract class BaseUnit : MonoBehaviour
     public Vector3 destination;
     public bool atDestination;
     public bool hasReachedDestination;
+    public bool canMove = true;
     public int damage;
     public int price;
     public float health;
@@ -33,6 +34,7 @@ public abstract class BaseUnit : MonoBehaviour
 
     private void Awake()
     {
+        canMove = true;
         outlineSelection = FindObjectOfType<OutlineSelection>();
         main = FindObjectOfType<Main>();
         es = FindObjectOfType<EnemySpawner>();
@@ -111,5 +113,11 @@ public abstract class BaseUnit : MonoBehaviour
         hasReachedDestination = false;
         isAttacking = false;
         destination = position;
+    }
+
+    public void DisableUnit()
+    {
+        canMove = false;
+        agent.isStopped = true;
     }
 }

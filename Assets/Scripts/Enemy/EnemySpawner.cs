@@ -14,8 +14,6 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
     public bool canSpawn = true;
 
-    [SerializeField] private GameObject winCanvas;
-    [SerializeField] private GameObject loseCanvas;
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Vector3 spawnRotOffset;
     [SerializeField] private int currentWave;
@@ -76,13 +74,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (main.health <= 0)
-        {
-            Debug.Log("Castle got destroyed, 0 hp left.");
-            loseCanvas.SetActive(true);
-        }
-        
-
         if (nextWave)
         {
             if (nextWaveTimer <= 0)
@@ -90,10 +81,7 @@ public class EnemySpawner : MonoBehaviour
                 if (currentWave >= lastWave && activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
                 {
                     Debug.Log("All enemies are killed and it's the last wave.");
-                    canSpawn = false;
-                    nextWave = false;
-                    nextWaveTimer = 5000;
-                    winCanvas.SetActive(true);
+                    main.Win();
                     return;
                 }
 
@@ -183,5 +171,12 @@ public class EnemySpawner : MonoBehaviour
         nextWaveTimer = nextWaveTimerBase;
         nextWave = false;
         main.ip.RedrawWaveText(wave, activeEnemies.Count, enemiesToSpawn.Count);
+    }
+
+    public void DisableSpawner()
+    {
+        canSpawn = false;
+        nextWave = false;
+        nextWaveTimer = 5000;
     }
 }

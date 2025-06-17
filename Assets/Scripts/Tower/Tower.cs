@@ -97,4 +97,15 @@ public class Tower : MonoBehaviour
         shooter.GetComponent<Shooter>().enabled = true;
         shooter.canShoot = true;
     }
+
+    public void DisableTower()
+    {
+        if (shooter)
+            shooter.canShoot = false;
+
+        if (type == TowerType.Barracks)
+            barracksTower.DisableTower();
+        else if (type == TowerType.SuicideBombers)
+            bomberTower.DisableTower();
+    }
 }

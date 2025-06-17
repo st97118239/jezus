@@ -25,9 +25,6 @@ public class EnemyNavigation : MonoBehaviour
         
 
         waypoints = es.waypoints;
-
-        if (!main.isDead)
-            canMove = true;
     }
 
     private void Update()
@@ -39,20 +36,6 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (waypoints.Count == 0)
             return;
-
-        //float distanceToWP = Vector3.Distance(new Vector3(waypoints[currentWPIndex].position.x, 0, waypoints[currentWPIndex].position.z), new Vector3(transform.position.x, 0, transform.position.z));
-
-        //if (distanceToWP <= 0.25)
-        //{
-        //    if (currentWPIndex >= waypoints.Count - 1)
-        //    {
-        //        GetComponent<Enemy>().ReachedCastle();
-        //        return;
-        //    }
-        //    currentWPIndex = (currentWPIndex + 1) % waypoints.Count;
-        //}
-        //if (canMove)
-        //    navMeshAgent.SetDestination(waypoints[currentWPIndex].position);
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -73,7 +56,7 @@ public class EnemyNavigation : MonoBehaviour
             return;
         }
             
-        currentWPIndex = (currentWPIndex + 1);
+        currentWPIndex++;
 
         if (canMove)
             navMeshAgent.SetDestination(waypoints[currentWPIndex].position);

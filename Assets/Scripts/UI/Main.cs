@@ -17,13 +17,19 @@ public class Main : MonoBehaviour
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
-    public bool isDead = false;
+    public bool isFinished = false;
+
+    [SerializeField] private GameObject winCanvas;
+    [SerializeField] private GameObject loseCanvas;
+    [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource loseSound;
 
     private TowerPlacement tp;
-    private GameObject gameoverPanel;
+    private Movement movement;
 
     private void Start()
     {
+        movement = FindObjectOfType<Movement>();
         os = FindObjectOfType<OutlineSelection>();
         clickDetec = FindObjectOfType<ClickDetection>();
         es = FindObjectOfType<EnemySpawner>();
@@ -43,7 +49,6 @@ public class Main : MonoBehaviour
         bus.FindBarracksPanel(barracksPanel);
         sus.FindSuicidePanel(suicidePanel);
         ip = transform.Find("InfoPanel").GetComponent<InfoPanel>();
-        gameoverPanel = transform.Find("GameOverPanel").gameObject;
         coinsAmount = defaultCoinsAmount;
         ip.RedrawCoinText(coinsAmount);
         health = defaultHealth;
@@ -54,7 +59,7 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (mb.gameObject.activeSelf == true)
             {
@@ -76,7 +81,8 @@ public class Main : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            GameOver();
+            Debug.Log("Castle got destroyed, 0 hp left.");
+            Lose();
         }
 
         ip.RedrawHealthBar(health);
@@ -87,28 +93,41 @@ public class Main : MonoBehaviour
         coinsAmount += coinsToReceive;
 
         if (coinsAmount < 0)
-        {
             coinsAmount = 0;
-        }
 
         ip.RedrawCoinText(coinsAmount);
     }
 
-    private void GameOver()
+    public void Win()
     {
-        print("ded");
-        isDead = true;
-        gameoverPanel.SetActive(true);
-        es.canSpawn = false;
-        foreach (GameObject pawn in es.activeEnemies)
-        {
-            pawn.GetComponent<EnemyNavigation>().canMove = false;
-            pawn.GetComponent<NavMeshAgent>().enabled = false;
-        }
+        DisableGame();
+
+        winCanvas.SetActive(true);
+        if (winSound)
+            winSound.Play();
+    }
+
+    public void Lose()
+    {
+        DisableGame();
+
+        loseCanvas.SetActive(true);
+        if (loseSound)
+            loseSound.Play();
+    }
+
+    public void DisableGame()
+    {
+        isFinished = true;
+        es.DisableSpawner();
+        movement.DisableMovement();
+
+        foreach (GameObject enemy in es.activeEnemies)
+            enemy.GetComponent<Enemy>().DisableEnemy();
 
         foreach (Tower tower in tp.towersPlaced)
-        {
-            tower.shooter.canShoot = false;
-        }
+            tower.DisableTower();
+
+        Time.timeScale = 0;
     }
 }

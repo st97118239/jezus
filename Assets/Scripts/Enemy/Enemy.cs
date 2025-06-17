@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float range;
     public int amountOfEnemiesToSpawn;
+    public bool isDisabled;
 
     [SerializeField] private Enemy enemyToSpawn;
     [SerializeField] private float spawnForwardMultiplier;
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
             {
                 attackTimer -= Time.deltaTime;
             }
-            else
+            else if (!isDisabled)
             {
                 Attack();
             }
@@ -132,5 +133,12 @@ public class Enemy : MonoBehaviour
 
         attackTimer = attackSpeed;
         isAttacking = true;
+    }
+
+    public void DisableEnemy()
+    {
+        isDisabled = true;
+        nav.canMove = false;
+        agent.isStopped = true;
     }
 }

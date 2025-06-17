@@ -6,6 +6,7 @@ public class BomberTower : MonoBehaviour
 {
     public List<SuicideBomber> spawnedBombers;
     public Main main;
+    public Tower tower;
     public GameObject projectileSpawner;
     public GameObject landingBall;
     public GameObject projectilePrefab;
@@ -13,6 +14,7 @@ public class BomberTower : MonoBehaviour
     public Collider maxHeightCollider;
     public Vector3 landingPos;
     public bool isFlyingUp;
+    public bool isDisabled;
 
     [SerializeField] private Vector3 flyUpVelocity;
 
@@ -25,7 +27,6 @@ public class BomberTower : MonoBehaviour
     public List<int> upgradeCost; // the price of the upgrade (keep at 0)
 
     private SuicideBomber bomber;
-    public Tower tower;
     private Vector3 cursorLocation;
     private bool isSelected;
     private bool needsToFindLocation;
@@ -62,7 +63,7 @@ public class BomberTower : MonoBehaviour
             {
                 reloadTimer -= Time.deltaTime;
             }
-            else if (hasTargetPos)
+            else if (hasTargetPos && !isDisabled)
             {
                 FlyUp();
             }
@@ -260,5 +261,12 @@ public class BomberTower : MonoBehaviour
             foreach (SuicideBomber b in spawnedBombers)
                 b.Deselect(false);
         }
+    }
+
+    public void DisableTower()
+    {
+        isDisabled = true;
+        needsToFindLocation = false;
+        CancelNewDestination();
     }
 }

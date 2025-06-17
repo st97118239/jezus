@@ -18,6 +18,7 @@ public class BarracksTower : MonoBehaviour
     public int maxUnits;
     public int spawnCount;
     public float unitRange;
+    public bool isDisabled;
 
     public List<int> unitsUpgradePrice;
     public int upgradePrice;
@@ -223,5 +224,15 @@ public class BarracksTower : MonoBehaviour
             foreach (var u in spawnedUnits)
                 u.Deselect(false);
         }
+    }
+
+    public void DisableTower()
+    {
+        isDisabled = true;
+        needsToFindLocation = false;
+        CancelNewDestination();
+
+        foreach (var unit in spawnedUnits)
+            unit.DisableUnit();
     }
 }

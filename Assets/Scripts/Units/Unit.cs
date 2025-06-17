@@ -16,7 +16,7 @@ public class Unit : BaseUnit
 
     private void Update()
     {
-        if (hasReachedDestination)
+        if (!canMove && hasReachedDestination)
         {
             if (isAttacking)
             {
@@ -44,7 +44,7 @@ public class Unit : BaseUnit
         if (isSelected)
             rangeObject.transform.position = transform.position;
 
-        if (isFollowingEnemy)
+        if (!canMove && isFollowingEnemy)
             FollowEnemy();
     }
 

@@ -7,21 +7,24 @@ public class Tank : BaseUnit
 
     private void Update()
     {
-        if (isAttacking)
+        if (!canMove)
         {
-            if (attackTimer > 0)
+            if (isAttacking)
             {
-                attackTimer -= Time.deltaTime;
+                if (attackTimer > 0)
+                {
+                    attackTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    Attack();
+                }
+
+                transform.Rotate(new Vector3(0, rotationSpeed, 0));
             }
-            else
-            {
-                Attack();
-            }
-        
-            transform.Rotate(new Vector3(0, rotationSpeed, 0));
+            else if (atDestination)
+                isAttacking = true;
         }
-        else if (atDestination)
-            isAttacking = true;
 
         if (isSelected)
             rangeObject.transform.position = transform.position;

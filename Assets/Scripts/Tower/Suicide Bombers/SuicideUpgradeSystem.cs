@@ -60,6 +60,9 @@ public class SuicideUpgradeSystem : MonoBehaviour
 
     private void BuyUpgrade(int upgradeIndex)
     {
+        if (selectedBomber.isDisabled)
+            return;
+
         int upgradeCost = selectedBomber.Upgrade(upgradeIndex, main.coinsAmount);
         if (upgradeCost > 0)
         {
@@ -72,6 +75,9 @@ public class SuicideUpgradeSystem : MonoBehaviour
 
     private void DestinationButton()
     {
+        if (selectedBomber.isDisabled)
+            return;
+
         selectedBomber.FindNewDestination();
         destinationButton.interactable = false;
     }

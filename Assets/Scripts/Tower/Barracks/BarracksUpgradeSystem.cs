@@ -69,12 +69,7 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Upgrade()
     {
-        if (selectedBarracks.upgradeCount >= selectedBarracks.unitsUpgradePrice.Count)
-        {
-            return;
-        }
-
-        if (main.coinsAmount < selectedBarracks.upgradePrice)
+        if (selectedBarracks.isDisabled || selectedBarracks.upgradeCount >= selectedBarracks.unitsUpgradePrice.Count || main.coinsAmount < selectedBarracks.upgradePrice)
             return;
 
         main.ChangeCoinAmount(-selectedBarracks.upgradePrice);
@@ -83,10 +78,7 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void Spawn()
     {
-        if (selectedBarracks.units.Count >= selectedBarracks.maxUnits)
-            return;
-
-        if (main.coinsAmount < selectedBarracks.spawnPrice)
+        if (selectedBarracks.isDisabled || selectedBarracks.units.Count >= selectedBarracks.maxUnits || main.coinsAmount < selectedBarracks.spawnPrice)
             return;
 
         main.ChangeCoinAmount(-selectedBarracks.spawnPrice);
@@ -95,6 +87,9 @@ public class BarracksUpgradeSystem : MonoBehaviour
 
     private void DestinationButton()
     {
+        if (selectedBarracks.isDisabled)
+            return;
+
         selectedBarracks.FindNewDestination();
         destinationButton.interactable = false;
     }
