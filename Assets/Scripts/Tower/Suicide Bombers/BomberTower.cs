@@ -10,13 +10,15 @@ public class BomberTower : MonoBehaviour
     public GameObject projectileSpawner;
     public GameObject landingBall;
     public GameObject projectilePrefab;
-    public LandingBall ballComponent;
+    public GameObject destinationRangeObject;
+    public MeshRenderer ballRenderer;
     public Collider maxHeightCollider;
     public Vector3 landingPos;
     public bool isFlyingUp;
     public bool isDisabled;
 
     [SerializeField] private Vector3 flyUpVelocity;
+    [SerializeField] private float destinationRange;
 
     public List<Upgrades> upgrade; // ReloadSpeed, AttackDamage, Range, ProjectileSpeed
     public List<int> upgradeCount; // times it has been upgraded (keep at 0)
@@ -38,10 +40,8 @@ public class BomberTower : MonoBehaviour
     {
         main = FindObjectOfType<Main>();
         GameObject newBall = Instantiate(landingBall, transform.position, Quaternion.identity);
-        ballComponent = newBall.GetComponent<LandingBall>();
-        ballComponent.tower = this;
-        ballComponent.mesh = ballComponent.GetComponent<MeshRenderer>();
-        ballComponent.mesh.enabled = false;
+        ballRenderer = newBall.GetComponent<MeshRenderer>();
+        ballRenderer.enabled = false;
         landingBall = newBall;
         tower = GetComponent<Tower>();
         reloadSpeed = tower.reloadSpeed;
@@ -52,20 +52,14 @@ public class BomberTower : MonoBehaviour
     private void Update()
     {
         if (isFlyingUp)
-        {
             GiveBomberVelocity(flyUpVelocity);
-        }
 
         if (isReloading)
         {
             if (reloadTimer > 0)
-            {
                 reloadTimer -= Time.deltaTime;
-            }
             else if (hasTargetPos && !isDisabled)
-            {
-                FlyUp();
-            }
+                Shoot();
         }
 
         if (needsToFindLocation)
@@ -77,33 +71,39 @@ public class BomberTower : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     cursorLocation = hit.point;
-                    landingBall.transform.position = cursorLocation;
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Vector3.Distance(new Vector3(cursorLocation.x, 0f, cursorLocation.z), new Vector3(transform.position.x, 0f, transform.position.z)) <= tower.range)
                     {
-                        FoundNewDestination();
+                        landingBall.transform.position = cursorLocation;
+
+                        if (Input.GetMouseButtonDown(0))
+                            FoundNewDestination();
                     }
+                    else
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                            CancelNewDestination();
+                    }
+
                 }
             }
 
             if (Input.GetMouseButtonDown(1))
-            {
                 CancelNewDestination();
-            }
         }
     }
 
     public void FindNewDestination()
     {
         needsToFindLocation = true;
-        ballComponent.mesh.enabled = true;
+        ballRenderer.enabled = true;
     }
 
     private void CancelNewDestination()
     {
         needsToFindLocation = false;
         landingBall.transform.position = landingPos;
-        ballComponent.mesh.enabled = false;
+        ballRenderer.enabled = false;
         main.sus.destinationButton.interactable = true;
     }
 
@@ -113,10 +113,8 @@ public class BomberTower : MonoBehaviour
 
         needsToFindLocation = false;
         cursorLocation = Vector3.zero;
-        ballComponent.mesh.enabled = false;
+        ballRenderer.enabled = false;
         hasTargetPos = true;
-
-        ballComponent.NewLocation();
 
         main.sus.destinationButton.interactable = true;
     }
@@ -197,32 +195,20 @@ public class BomberTower : MonoBehaviour
         return upgradeCost[indexToUpgrade];
     }
 
-    private void FlyUp()
-    {
-        Shoot(flyUpVelocity);
-        isFlyingUp = true;
-    }
-
-    
-
-    private void Shoot(Vector3 velocity)
-    {
-        FireProjectile(velocity);
-
-        reloadTimer = reloadSpeed;
-        isReloading = true;
-    }
-
-    private void FireProjectile(Vector3 velocity)
+    private void Shoot()
     {
         Transform spawnLocation = projectileSpawner.transform;
         GameObject projectileGameObject = Instantiate(projectilePrefab, spawnLocation.position, Quaternion.identity);
 
         bomber = projectileGameObject.GetComponent<SuicideBomber>();
         bomber.SetStats(tower.damage, tower.projectileSpeed, landingPos, this);
-        bomber.SetVelocity(velocity);
+        bomber.SetVelocity(flyUpVelocity);
         projectileGameObject.SetActive(true);
         spawnedBombers.Add(bomber);
+
+        isFlyingUp = true;
+        reloadTimer = reloadSpeed;
+        isReloading = true;
     }
 
     private void GiveBomberVelocity(Vector3 velocity)
@@ -232,6 +218,10 @@ public class BomberTower : MonoBehaviour
 
     public void Selected(bool extraFunctions)
     {
+        destinationRangeObject.transform.position = ballRenderer.transform.position;
+        destinationRangeObject.transform.localScale = new Vector3(destinationRange, 0.1f, destinationRange);
+        destinationRangeObject.GetComponent<MeshRenderer>().enabled = true;
+        destinationRangeObject.layer = 9;
         main.os.ChangeLayerOfAllDescendants(transform, 9);
 
         if (extraFunctions)
@@ -241,6 +231,9 @@ public class BomberTower : MonoBehaviour
     public void Deselected()
     {
         main.sus.TowerDeselected();
+        destinationRangeObject.transform.localScale = Vector3.zero;
+        destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
+        destinationRangeObject.layer = 0;
         main.os.ChangeLayerOfAllDescendants(transform, 10);
     }
 

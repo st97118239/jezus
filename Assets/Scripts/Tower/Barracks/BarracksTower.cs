@@ -9,8 +9,8 @@ public class BarracksTower : MonoBehaviour
     public List<BaseUnit> spawnedUnits;
     public List<GameObject> barrackModels;
     public OutlineSelection os;
-    public GameObject destinationBall;
     public DestinationBall ballComponent;
+    public GameObject destinationBall;
     public GameObject destinationRangeObject;
     public Vector3 destination;
     public Vector3 spawnOffset;
@@ -212,7 +212,7 @@ public class BarracksTower : MonoBehaviour
     public void Deselected(bool runUnitsFunction)
     {
         main.bus.TowerDeselected();
-        destinationRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
+        destinationRangeObject.transform.localScale = Vector3.zero;
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
         destinationRangeObject.layer = 0;
         outlineSelection.ChangeLayerOfAllDescendants(transform, 10);

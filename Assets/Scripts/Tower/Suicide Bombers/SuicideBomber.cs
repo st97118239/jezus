@@ -62,7 +62,6 @@ public class SuicideBomber : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         tower.spawnedBombers.Remove(this);
