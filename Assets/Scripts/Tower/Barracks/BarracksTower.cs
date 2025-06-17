@@ -174,7 +174,7 @@ public class BarracksTower : MonoBehaviour
     {
         foreach (BaseUnit unit in spawnedUnits.ToList())
         {
-            Destroy(unit.gameObject);
+            unit.Remove();
         }
 
         spawnedUnits.Clear();

@@ -84,11 +84,9 @@ public abstract class BaseUnit : MonoBehaviour
         rangeRenderer.enabled = true;
     }
     
-    public void Die()
+    public void Remove()
     {
-        if (isSelected)
-            Deselect(true);
-
+        outlineSelection.selections.Remove(transform);
         tower.spawnedUnits.Remove(this);
         Destroy(gameObject);
     }
