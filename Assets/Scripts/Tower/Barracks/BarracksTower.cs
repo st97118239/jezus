@@ -57,11 +57,18 @@ public class BarracksTower : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     cursorLocation = hit.point;
-                    destinationBall.transform.position = cursorLocation;
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Vector3.Distance(new Vector3(cursorLocation.x, 0f, cursorLocation.z), new Vector3(transform.position.x, 0f, transform.position.z)) <= tower.range)
                     {
-                        FoundNewDestination();
+                        destinationBall.transform.position = cursorLocation;
+
+                        if (Input.GetMouseButtonDown(0))
+                            FoundNewDestination();
+                    }
+                    else
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                            CancelNewDestination();
                     }
                 }
             }
@@ -76,9 +83,7 @@ public class BarracksTower : MonoBehaviour
     public void HideOtherModels()
     {
         foreach (GameObject model in barrackModels.Skip(1))
-        {
             ChangeMaterialOfAllDescendants(model.transform, false);
-        }
     }
 
     private void SpawnUnit()
@@ -161,9 +166,8 @@ public class BarracksTower : MonoBehaviour
     public void Spawn()
     {
         for (int i = 0; i < spawnCount; i++)
-        {
             SpawnUnit();
-        }
+
         main.bus.FillSpawnButton();
 
         if (spawnedUnits.Count >= maxUnits)
@@ -173,9 +177,7 @@ public class BarracksTower : MonoBehaviour
     private void RemoveAllUnits()
     {
         foreach (BaseUnit unit in spawnedUnits.ToList())
-        {
             unit.Remove();
-        }
 
         spawnedUnits.Clear();
     }
@@ -184,14 +186,10 @@ public class BarracksTower : MonoBehaviour
     {
         MeshRenderer mr = tf.GetComponent<MeshRenderer>();
         if (mr != null)
-        {
             mr.enabled = toggle;
-        }
 
         foreach (Transform child in tf)
-        {
             ChangeMaterialOfAllDescendants(child, toggle);
-        }
     }
 
     public void Selected(bool runUnitsFunction)
@@ -207,9 +205,7 @@ public class BarracksTower : MonoBehaviour
         if (runUnitsFunction)
         {
             foreach (var u in spawnedUnits)
-            {
                 u.Select(false);
-            }
         }
     }
 
