@@ -36,18 +36,14 @@ public class EnemyVelocityTracker : MonoBehaviour
             float segmentLength = Vector3.Distance(from, to);
 
             if (distanceAhead > segmentLength)
-            {
                 distanceAhead -= segmentLength;
-            }
             else
             {
-                // Interpolate along this segment
                 predictedPosition = Vector3.Lerp(from, to, distanceAhead / segmentLength);
                 return predictedPosition;
             }
         }
 
-        // If we run out of path, just return the last corner
         return agent.path.corners[^1];
     }
 }

@@ -8,7 +8,6 @@ public class Tower : MonoBehaviour
     public MeshRenderer mesh;
     public Shooter shooter;
     public Range rangeObject;
-    public BarracksRange barracksRangeObject;
     public int price;
     public float reloadSpeed;
     public float reloadSpeedBase;

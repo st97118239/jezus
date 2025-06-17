@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,22 +6,19 @@ public class EnemyNavigation : MonoBehaviour
 {
     public Enemy enemy;
     public List<Transform> waypoints;
-    public bool canMove;
     public int currentWPIndex;
+    public bool canMove;
 
     [SerializeField] private int waypointToStopAt;
     
     private NavMeshAgent navMeshAgent;
-    private Main main;
     private EnemySpawner es;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<Enemy>();
-        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
-        
+        es = FindObjectOfType<EnemySpawner>();
 
         waypoints = es.waypoints;
     }

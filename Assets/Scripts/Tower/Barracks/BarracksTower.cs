@@ -11,7 +11,7 @@ public class BarracksTower : MonoBehaviour
     public OutlineSelection os;
     public GameObject destinationBall;
     public DestinationBall ballComponent;
-    public BarracksRange destinationRangeObject;
+    public GameObject destinationRangeObject;
     public Vector3 destination;
     public Vector3 spawnOffset;
     public int upgradeCount;
@@ -199,7 +199,7 @@ public class BarracksTower : MonoBehaviour
         destinationRangeObject.transform.position = destinationBall.transform.position;
         destinationRangeObject.transform.localScale = new Vector3(barracksRange * 2, 0.1f, barracksRange * 2);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = true;
-        destinationRangeObject.gameObject.layer = 9;
+        destinationRangeObject.layer = 9;
         outlineSelection.ChangeLayerOfAllDescendants(transform, 9);
 
         if (runUnitsFunction)
@@ -216,7 +216,7 @@ public class BarracksTower : MonoBehaviour
         main.bus.TowerDeselected();
         destinationRangeObject.transform.localScale = new Vector3(0f, 0f, 0f);
         destinationRangeObject.GetComponent<MeshRenderer>().enabled = false;
-        destinationRangeObject.gameObject.layer = 0;
+        destinationRangeObject.layer = 0;
         outlineSelection.ChangeLayerOfAllDescendants(transform, 10);
 
         if (runUnitsFunction)

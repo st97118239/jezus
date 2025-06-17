@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int enemyAmount = 1;
     public int coins;
     public int damage;
+    public int amountOfEnemiesToSpawn;
     public float amountFactor = 1;
     public float healthFactor = 1;
     public float damageFactor = 1;
@@ -19,24 +19,23 @@ public class Enemy : MonoBehaviour
     public float tempHealth;
     public float speed;
     public float range;
-    public int amountOfEnemiesToSpawn;
     public bool isDisabled;
 
     [SerializeField] private Enemy enemyToSpawn;
     [SerializeField] private float spawnForwardMultiplier;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private float attackTimer;
+    [SerializeField] private bool isAttacking = false;
 
     private EnemySpawner es;
     private Main main;
     private bool isSelected = false;
-    [SerializeField] private bool isAttacking = false;
-    [SerializeField] private float attackTimer;
 
     private void Awake()
     {
-        es = FindObjectOfType(typeof(EnemySpawner)).GetComponent<EnemySpawner>();
-        main = FindObjectOfType(typeof(Main)).GetComponent<Main>();
+        es = FindObjectOfType<EnemySpawner>();
+        main = FindObjectOfType<Main>();
 
         nav = GetComponent<EnemyNavigation>();
         agent = GetComponent<NavMeshAgent>();
@@ -51,13 +50,9 @@ public class Enemy : MonoBehaviour
         if (isAttacking)
         {
             if (attackTimer > 0)
-            {
                 attackTimer -= Time.deltaTime;
-            }
             else if (!isDisabled)
-            {
                 Attack();
-            }
         }
     }
 
@@ -96,9 +91,7 @@ public class Enemy : MonoBehaviour
     public void ReachedDest()
     {
         if (enemyType == EnemyType.Necromancer)
-        {
             Attack();
-        }
     }
 
     private void Summon()

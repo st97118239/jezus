@@ -8,10 +8,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> activeEnemies = new();
-    public List<int> enemiesUsedInWavesAmount;
     public List<GameObject> toSpawn;
-    public Transform waypointParent;
     public List<Transform> waypoints = new List<Transform>();
+    public List<int> enemiesUsedInWavesAmount;
+    public Transform waypointParent;
     public bool canSpawn = true;
 
     [SerializeField] private List<GameObject> enemyList;
@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float nextWaveTimerBase = 10;
     [SerializeField] private float nextWaveTimerDelay;
 
-    private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Main main;
+    private Queue<EnemyToSpawn> enemiesToSpawn = new();
     private Vector3 spawnPos;
     private Vector3 spawnRot;
     private float nextWaveTimer;
@@ -38,9 +38,7 @@ public class EnemySpawner : MonoBehaviour
         {
             waypoints.Clear();
             foreach (Transform child in waypointParent)
-            {
                 waypoints.Add(child);
-            }
 
             waypoints = waypointParent
             .GetComponentsInChildren<Transform>()
@@ -65,9 +63,7 @@ public class EnemySpawner : MonoBehaviour
         nextWaveTimer = nextWaveTimerDelay;
 
         foreach (GameObject enemy in enemyList)
-        {
             enemiesUsedInWavesAmount.Add(0);
-        }
 
         nextWave = true;
     }
@@ -97,9 +93,7 @@ public class EnemySpawner : MonoBehaviour
             if (spawnTimer < 0)
             {
                 if (activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
-                {
                     nextWave = true;
-                }
                 else if (enemiesToSpawn.Count > 0)
                 {
                     spawnTimer = spawnTimerBase;
@@ -122,7 +116,6 @@ public class EnemySpawner : MonoBehaviour
 
                     main.ip.RedrawWaveText(currentWave, activeEnemies.Count, enemiesToSpawn.Count);
                 }
-
 
                 spawnTimer = spawnTimerBase;
             }
@@ -161,9 +154,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log(amountOfEnemyType + " " + enemyType + " spawned with " + health + " HP and " + damage + " damage.");
 
             for (int i = 0; i < amountOfEnemyType; i++)
-            {
                 enemiesToSpawn.Enqueue(new EnemyToSpawn(enemyType.enemyType, health, damage));
-            }
 
             index++;
         }

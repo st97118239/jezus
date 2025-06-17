@@ -323,10 +323,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   barracksTower: {fileID: 0}
+  bomberTower: {fileID: 0}
   mesh: {fileID: 0}
   shooter: {fileID: 0}
   rangeObject: {fileID: 7703737532493971370}
-  barracksRangeObject: {fileID: 5755696141740821638}
   price: 500
   reloadSpeed: 0
   reloadSpeedBase: 0
@@ -359,16 +359,18 @@ MonoBehaviour:
   - {fileID: 4962567922434315430}
   - {fileID: 8027849248696338292}
   - {fileID: 5936393712609463270}
+  os: {fileID: 0}
   destinationBall: {fileID: 6594104312601092800, guid: bcc68901da9d1304290e9ae6e4f77b5e,
     type: 3}
   ballComponent: {fileID: 0}
-  destinationRangeObject: {fileID: 5755696141740821638}
+  destinationRangeObject: {fileID: 9106492301163555574}
   destination: {x: 0, y: 0, z: 0}
   spawnOffset: {x: 1, y: 0, z: 0}
   upgradeCount: 0
   maxUnits: 15
   spawnCount: 1
   unitRange: 5
+  isDisabled: 0
   unitsUpgradePrice: 0000000064000000fa000000
   upgradePrice: 0
   spawnPrice: 25
@@ -1010,21 +1012,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c18f1c33ae399224e84f39f540a69886, type: 3}
---- !u!114 &5755696141740821638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4890836552527595495, guid: c18f1c33ae399224e84f39f540a69886,
-    type: 3}
-  m_PrefabInstance: {fileID: 882682213285170017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8dd2c7fc303dbb4da14f00048598f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6551259739826157213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6256954322287656444, guid: c18f1c33ae399224e84f39f540a69886,
+    type: 3}
+  m_PrefabInstance: {fileID: 882682213285170017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9106492301163555574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241350597555904919, guid: c18f1c33ae399224e84f39f540a69886,
     type: 3}
   m_PrefabInstance: {fileID: 882682213285170017}
   m_PrefabAsset: {fileID: 0}
