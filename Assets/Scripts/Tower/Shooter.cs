@@ -6,12 +6,12 @@ using UnityEngine.AI;
 
 public class Shooter : MonoBehaviour
 {
+    public AudioSource shootSound;
     public GameObject projectileSpawner;
     public bool canShoot;
 
     [SerializeField] private TargetType targetType;
     [SerializeField] private GameObject currentTarget;
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool arcedProjectiles;
     [SerializeField] private int waypointsToLookAhead = 5;
     [SerializeField] private float rotationSpeed;
@@ -29,7 +29,7 @@ public class Shooter : MonoBehaviour
     
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        shootSound = GetComponent<AudioSource>();
         es = FindObjectOfType<EnemySpawner>();
         tower = transform.parent.GetComponent<Tower>();
         predict = tower.GetComponent<Predict>();
@@ -54,7 +54,7 @@ public class Shooter : MonoBehaviour
         {
             if (canShoot)
             {
-                FindEnemiesInRange(); // Vult shootableEnemies
+                FindEnemiesInRange();
                 if (shootableEnemies.Count > 0)
                 {
                     bool isFired = false;
@@ -221,7 +221,7 @@ public class Shooter : MonoBehaviour
 
     public void PlayShootSoundEffect()
     {
-        if (audioSource && audioSource.clip)
-            audioSource.Play();
+        if (shootSound && shootSound.clip)
+            shootSound.Play();
     }
 }

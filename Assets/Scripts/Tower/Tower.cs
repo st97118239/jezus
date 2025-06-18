@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     public MeshRenderer mesh;
     public Shooter shooter;
     public Range rangeObject;
+    public AudioSource placeSound;
     public int price;
     public float reloadSpeed;
     public float reloadSpeedBase;
