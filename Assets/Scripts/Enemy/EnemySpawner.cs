@@ -76,7 +76,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 if (currentWave >= lastWave && activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
                 {
-                    Debug.Log("All enemies are killed and it's the last wave.");
                     main.Win();
                     return;
                 }
