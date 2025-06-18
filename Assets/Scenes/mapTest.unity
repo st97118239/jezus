@@ -31353,15 +31353,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285d0c5cbe446924c8867efed1a4c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music:
+  - {fileID: 2061718672}
   soundEffects:
   - {fileID: 251538718}
   - {fileID: 951688619}
-  music:
-  - {fileID: 2061718672}
+  backgroundMusic: {fileID: 2061718672}
   winSound: {fileID: 951688619}
   loseSound: {fileID: 0}
-  backgroundMusic: {fileID: 2061718672}
   clickSound: {fileID: 251538718}
+  castleBellSound: {fileID: 0}
+  DestinationChosenSound: {fileID: 0}
 --- !u!1001 &678222471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81102,7 +81104,7 @@ MonoBehaviour:
   defaultHealth: 5000
   musicVolume: 10
   soundVolume: 10
-  isFinished: 1
+  isFinished: 0
   winCanvas: {fileID: 290358261}
   loseCanvas: {fileID: 1390568879}
 --- !u!114 &1826458280
