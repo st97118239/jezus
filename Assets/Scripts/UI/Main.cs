@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Main : MonoBehaviour
 {
@@ -13,16 +12,17 @@ public class Main : MonoBehaviour
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
     public SuicideUpgradeSystem sus;
+    public AudioManager am;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
+    public float musicVolume = 10;
+    public float soundVolume = 10;
     public bool isFinished = false;
 
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseCanvas;
-    [SerializeField] private AudioSource winSound;
-    [SerializeField] private AudioSource loseSound;
 
     private TowerPlacement tp;
     private Movement movement;
@@ -36,6 +36,7 @@ public class Main : MonoBehaviour
         tus = FindObjectOfType<TowerUpgradeSystem>();
         bus = FindObjectOfType<BarracksUpgradeSystem>();
         sus = FindObjectOfType<SuicideUpgradeSystem>();
+        am = FindObjectOfType<AudioManager>();
         tp = FindObjectOfType<TowerPlacement>();
         ep = FindObjectOfType<EnemyPanel>();
         up = FindObjectOfType<UnitPanel>();
@@ -54,6 +55,7 @@ public class Main : MonoBehaviour
         health = defaultHealth;
         ip.RedrawHealthBar(health);
         ip.RedrawWaveText(0, 0, 0);
+        LoadSettings();
         Time.timeScale = 1;
     }
 
@@ -103,8 +105,8 @@ public class Main : MonoBehaviour
         DisableGame();
 
         winCanvas.SetActive(true);
-        if (winSound)
-            winSound.Play();
+        if (am.winSound)
+            am.winSound.Play();
     }
 
     public void Lose()
@@ -112,8 +114,8 @@ public class Main : MonoBehaviour
         DisableGame();
 
         loseCanvas.SetActive(true);
-        if (loseSound)
-            loseSound.Play();
+        if (am.loseSound)
+            am.loseSound.Play();
     }
 
     public void DisableGame()
@@ -129,5 +131,11 @@ public class Main : MonoBehaviour
             tower.DisableTower();
 
         Time.timeScale = 0;
+    }
+
+    public void LoadSettings()
+    {
+        FindObjectOfType<Settings>().LoadIntoGame();
+        am.LoadVolumeSettings(musicVolume / 10, soundVolume / 10);
     }
 }
