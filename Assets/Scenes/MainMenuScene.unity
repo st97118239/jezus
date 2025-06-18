@@ -771,8 +771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e984494b746856547ba3e292fb7ea6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolume: 5
-  soundVolume: 3
+  musicVolume: 10
+  soundVolume: 10
 --- !u!4 &327131270
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,12 +1630,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285d0c5cbe446924c8867efed1a4c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects: []
   music: []
+  soundEffects: []
+  backgroundMusic: {fileID: 0}
   winSound: {fileID: 0}
   loseSound: {fileID: 0}
-  backgroundMusic: {fileID: 0}
   clickSound: {fileID: 512862227}
+  castleBellSound: {fileID: 0}
+  DestinationChosenSound: {fileID: 0}
 --- !u!1 &673074641
 GameObject:
   m_ObjectHideFlags: 0
