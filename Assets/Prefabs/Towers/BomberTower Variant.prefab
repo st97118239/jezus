@@ -242,7 +242,7 @@ MonoBehaviour:
   shooter: {fileID: 0}
   rangeObject: {fileID: 2591006807369452912}
   price: 1000
-  reloadSpeed: 1
+  reloadSpeed: 10
   reloadSpeedBase: 0
   range: 75
   rangeBase: 0
