@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 7395749516403003180}
   m_Layer: 0
   m_Name: DemonBrute
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1322,6 +1322,7 @@ MonoBehaviour:
   enemyAmount: 15
   coins: 10
   damage: 200
+  amountOfEnemiesToSpawn: 0
   amountFactor: 10
   healthFactor: 3
   damageFactor: 1
@@ -1329,14 +1330,13 @@ MonoBehaviour:
   tempHealth: 0
   speed: 3.5
   range: 0
-  amountOfEnemiesToSpawn: 0
   isDisabled: 0
   enemyToSpawn: {fileID: 0}
   spawnForwardMultiplier: 0
   attackSpeed: 3
   projectileSpeed: 0
-  isAttacking: 0
   attackTimer: 0
+  isAttacking: 0
 --- !u!114 &2288923249152925001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,8 +1351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   waypoints: []
-  canMove: 1
   currentWPIndex: 0
+  canMove: 1
   waypointToStopAt: 0
 --- !u!114 &7395749516403003180
 MonoBehaviour:

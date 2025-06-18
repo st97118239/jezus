@@ -5037,7 +5037,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 5ff6f6c1bec7b7e469c5a285b06a5527, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5af596e8c0cb3054b8230aeb1253aed8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &106085408
 MonoBehaviour:
@@ -5068,7 +5068,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 83ebf7c61a285014e9e80ba827caa91b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1d763aa87c54a5e4db6bfa2420df355e, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &106085409
 MonoBehaviour:
@@ -5099,7 +5099,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 69050270b432a441b85eb21ea7d28f00, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8b6169254d6b23d4d985186fe5c366c9, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &106357609
 GameObject:
@@ -31323,7 +31323,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 474123067}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 951089737063850762, guid: 4c30e1b6ade53a945a83fa6f18096796,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 678166720}
   m_SourcePrefab: {fileID: 100100000, guid: 4c30e1b6ade53a945a83fa6f18096796, type: 3}
 --- !u!4 &678166718 stripped
 Transform:
@@ -31331,6 +31335,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 678166717}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &678166719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951089737063850762, guid: 4c30e1b6ade53a945a83fa6f18096796,
+    type: 3}
+  m_PrefabInstance: {fileID: 678166717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &678166720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678166719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285d0c5cbe446924c8867efed1a4c6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - {fileID: 251538718}
+  - {fileID: 951688619}
+  music:
+  - {fileID: 2061718672}
+  winSound: {fileID: 951688619}
+  loseSound: {fileID: 0}
+  backgroundMusic: {fileID: 2061718672}
+  clickSound: {fileID: 251538718}
 --- !u!1001 &678222471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81064,15 +81095,16 @@ MonoBehaviour:
   tus: {fileID: 0}
   bus: {fileID: 0}
   sus: {fileID: 0}
+  am: {fileID: 0}
   coinsAmount: 0
   defaultCoinsAmount: 5000
   health: 0
   defaultHealth: 5000
+  musicVolume: 10
+  soundVolume: 10
   isFinished: 1
   winCanvas: {fileID: 290358261}
   loseCanvas: {fileID: 1390568879}
-  winSound: {fileID: 951688619}
-  loseSound: {fileID: 0}
 --- !u!114 &1826458280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91548,13 +91580,19 @@ PrefabInstance:
     - target: {fileID: 8202470429359906880, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aaf5dc8cb4877a4eab90d7caad239d5, type: 3}
+--- !u!82 &2061718672 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8202470429359906880, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2061718671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2063563519
 PrefabInstance:
   m_ObjectHideFlags: 0
