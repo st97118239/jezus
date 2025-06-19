@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    public List<int> timeScaleList;
     public OutlineSelection os;
     public EnemySpawner es;
     public ClickDetection clickDetec;
@@ -12,6 +15,7 @@ public class Main : MonoBehaviour
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
     public SuicideUpgradeSystem sus;
+    public TMP_Text timeScaleButtonText;
     public AudioManager am;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
@@ -28,6 +32,7 @@ public class Main : MonoBehaviour
 
     private TowerPlacement tp;
     private Movement movement;
+    private int timeScaleIndex;
     private float bellStopTimer;
     private bool bellIsRinging;
 
@@ -65,8 +70,6 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = timeScale;
-
         if (!isFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (mb.gameObject.activeSelf == true)
@@ -162,5 +165,15 @@ public class Main : MonoBehaviour
             settings.LoadIntoGame();
         
         am.LoadVolumeSettings(musicVolume, soundVolume);
+    }
+
+    public void ChangeTimeScale()
+    {
+        timeScaleIndex = (timeScaleIndex + 1) % timeScaleList.Count;
+
+        timeScale = timeScaleList[timeScaleIndex];
+        Time.timeScale = timeScale;
+
+        timeScaleButtonText.text = "x" + Time.timeScale;
     }
 }
