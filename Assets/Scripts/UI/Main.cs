@@ -17,13 +17,14 @@ public class Main : MonoBehaviour
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
+    public int timeScale;
     public float musicVolume = 1;
     public float soundVolume = 1;
     public bool isFinished = false;
 
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseCanvas;
-    [SerializeField] private float bellStopTimerBase;
+    [SerializeField] private float bellStopTimerBase = 1;
 
     private TowerPlacement tp;
     private Movement movement;
@@ -32,6 +33,7 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = timeScale;
         movement = FindObjectOfType<Movement>();
         os = FindObjectOfType<OutlineSelection>();
         clickDetec = FindObjectOfType<ClickDetection>();
@@ -59,17 +61,18 @@ public class Main : MonoBehaviour
         ip.RedrawHealthBar(health);
         ip.RedrawWaveText(0, 0, 0);
         LoadSettings();
-        Time.timeScale = 1;
     }
 
     private void Update()
     {
+        Time.timeScale = timeScale;
+
         if (!isFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (mb.gameObject.activeSelf == true)
             {
                 mb.gameObject.SetActive(false);
-                Time.timeScale = 1;
+                Time.timeScale = timeScale;
             }
             else
             {

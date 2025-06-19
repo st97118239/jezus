@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
+    public Main main;
+
     public void LoadScene(int level)
     {
         SceneManager.LoadScene(level);
@@ -11,7 +13,7 @@ public class MenuButtons : MonoBehaviour
     public void ContinueButton()
     {
         gameObject.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = main.timeScale;
     }
 
     public void QuitButton()

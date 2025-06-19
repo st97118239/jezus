@@ -1,7 +1,10 @@
 using UnityEngine;
 
 public class Movement : MonoBehaviour
-{   
+{
+    public Main main;
+    public bool canMove = true;
+
     [SerializeField] private Vector3 minBoundsZoomedIn;
     [SerializeField] private Vector3 maxBoundsZoomedIn;
     [SerializeField] private Vector3 minBoundsZoomedOut;
@@ -9,26 +12,28 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool cursorLock;
     [SerializeField] private Vector3 moveDir;
     [SerializeField] private float speed;
-    [SerializeField] private float zoomSpeed;
+    [SerializeField] private float zoomSpeedBase;
     [SerializeField] private Vector3 velocity;
     [SerializeField] private float zoomTime;
     [SerializeField] private Vector3 lowestZoomPos;
     [SerializeField] private Vector3 highestZoomPos;
     [SerializeField] private float shiftSpeedFactor = 2;
 
-    public bool canMove = true;
+    private float zoomSpeed;
 
     private void Start()
     {
+        main = FindAnyObjectByType<Main>();
+
         if (cursorLock)
-        {
             Cursor.lockState = CursorLockMode.Confined;
-        }
     }
 
     void Update()
     {
-        if(canMove)
+        zoomSpeed = zoomSpeedBase / main.timeScale;
+
+        if (canMove)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -43,7 +48,7 @@ public class Movement : MonoBehaviour
 
             moveDir.z = Input.GetAxis("Vertical");
             moveDir.x = Input.GetAxis("Horizontal");
-            transform.Translate(moveDir * Time.deltaTime * speed);
+            transform.Translate(moveDir * (Time.deltaTime / main.timeScale) * speed);
 
             moveDir.z = 0;
             moveDir.x = 0;
