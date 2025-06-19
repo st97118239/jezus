@@ -23,9 +23,12 @@ public class Main : MonoBehaviour
 
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseCanvas;
+    [SerializeField] private float bellStopTimerBase;
 
     private TowerPlacement tp;
     private Movement movement;
+    private float bellStopTimer;
+    private bool bellIsRinging;
 
     private void Start()
     {
@@ -74,6 +77,14 @@ public class Main : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+
+        if (bellIsRinging)
+        {
+            if (bellStopTimer > 0)
+                bellStopTimer -= Time.deltaTime;
+            else
+                bellIsRinging = false;
+        }
     }
 
     public void ReceiveDmg(int dmg)
@@ -83,9 +94,17 @@ public class Main : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("Castle got destroyed, 0 hp left.");
             Lose();
         }
+
+        if (!bellIsRinging)
+        {
+            bellIsRinging = true;
+            bellStopTimer = bellStopTimerBase;
+            am.castleBellSound1.Play();
+        }
+        else
+            am.castleBellSound2.Play();
 
         ip.RedrawHealthBar(health);
     }

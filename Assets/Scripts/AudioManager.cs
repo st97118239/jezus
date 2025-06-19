@@ -10,8 +10,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource winSound;
     public AudioSource loseSound;
     public AudioSource clickSound;
-    public AudioSource castleBellSound;
-    public AudioSource DestinationChosenSound;
+    public AudioSource castleBellSound1;
+    public AudioSource castleBellSound2;
 
     public float musicVolume;
     public float soundVolume;
