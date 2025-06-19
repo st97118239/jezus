@@ -70,6 +70,7 @@ public class TowerPlacement : MonoBehaviour
             tower.TurnShooterOn();
         towersPlaced.Add(tower);
         main.os.ChangeLayerOfAllDescendants(tower.transform, 10);
-        tower.shooter.shootSound.volume = main.soundVolume;
+        if (tower.shooter)
+            tower.shooter.shootSound.volume = main.soundVolume;
     }
 }

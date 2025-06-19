@@ -9,6 +9,7 @@ public abstract class BaseUnit : MonoBehaviour
     public BoxCollider boxCollider;
     public Range rangeObject;
     public MeshRenderer rangeRenderer;
+    public AudioSource hitSound;
     public Vector3 destination;
     public bool atDestination;
     public bool hasReachedDestination;

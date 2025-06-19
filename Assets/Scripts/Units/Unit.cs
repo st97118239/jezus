@@ -16,7 +16,7 @@ public class Unit : BaseUnit
 
     private void Update()
     {
-        if (!canMove && hasReachedDestination)
+        if (canMove && hasReachedDestination)
         {
             if (isAttacking)
             {
@@ -44,7 +44,7 @@ public class Unit : BaseUnit
         if (isSelected)
             rangeObject.transform.position = transform.position;
 
-        if (!canMove && isFollowingEnemy)
+        if (canMove && isFollowingEnemy)
             FollowEnemy();
     }
 
@@ -64,6 +64,7 @@ public class Unit : BaseUnit
         if (Vector3.Distance(transform.position, currentTarget.transform.position) > range)
             return;
 
+        hitSound.Play();
         enemy.GotHit(damage);
         reachableEnemies.Clear();
         attackTimer = attackSpeed;

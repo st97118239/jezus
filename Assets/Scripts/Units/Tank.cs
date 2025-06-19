@@ -39,6 +39,8 @@ public class Tank : BaseUnit
                 if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
                     enemy.GotHit(damage);
             }
+
+            hitSound.Play();
         }
         
         attackTimer = attackSpeed;
