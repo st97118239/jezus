@@ -328,7 +328,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   shooter: {fileID: 0}
   rangeObject: {fileID: 3566824266563964288}
-  barracksRangeObject: {fileID: 0}
+  placeSound: {fileID: 0}
   price: 100
   reloadSpeed: 2
   reloadSpeedBase: 0
@@ -578,11 +578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729a7abe812abb847b7d591b8739a18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSound: {fileID: 2166582606818026313}
   projectileSpawner: {fileID: 0}
   canShoot: 0
   targetType: 0
   currentTarget: {fileID: 0}
-  audioSource: {fileID: 0}
   arcedProjectiles: 1
   waypointsToLookAhead: 5
   rotationSpeed: 10
@@ -597,7 +597,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b17930984177d944f981a694d25d9857, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d32ed2b215fd8c74abc18a49b6d7f77b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -608,9 +608,9 @@ AudioSource:
   Priority: 125
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 80
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -618,23 +618,68 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.02
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.002551461
+      outSlope: -0.002551461
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.30691043
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.013893911
+      outSlope: 0.013893911
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.40199858
+      value: 0.27738953
+      inSlope: -3.126245
+      outSlope: -3.126245
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.50984585
+      value: 0.08848572
+      inSlope: -0.78156126
+      outSlope: -0.78156126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6419986
+      value: 0.03514099
+      inSlope: -0.19539031
+      outSlope: -0.19539031
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.8164755
+      value: 0.022140503
+      inSlope: -0.042720646
+      outSlope: -0.042720646
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.020007975
+      outSlope: -0.020007975
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

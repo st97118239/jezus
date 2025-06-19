@@ -9,8 +9,8 @@ public class Settings : MonoBehaviour
     {
         Main main = FindObjectOfType<Main>();
 
-        main.musicVolume = musicVolume;
-        main.soundVolume = soundVolume;
+        main.musicVolume = musicVolume / 10;
+        main.soundVolume = soundVolume / 10;
     }
 
     public void LoadIntoSettingsMenu()

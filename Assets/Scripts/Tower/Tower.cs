@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public Shooter shooter;
     public Range rangeObject;
     public AudioSource placeSound;
+    public Main main;
     public int price;
     public float reloadSpeed;
     public float reloadSpeedBase;
@@ -21,7 +22,6 @@ public class Tower : MonoBehaviour
     public float damageBase;
     public bool hasNoShooter;
 
-    private Main main;
 
     private void Awake()
     {

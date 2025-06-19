@@ -1,8 +1,8 @@
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private AudioClip hitSound;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float hitRange;
 
@@ -65,7 +65,6 @@ public class Projectile : MonoBehaviour
             timer = -1;
             rb.velocity = Vector3.zero;
             rb.useGravity = false;
-
         }
     }
 
@@ -85,11 +84,14 @@ public class Projectile : MonoBehaviour
         foreach (Collider collider in hitColliders)
         {
             if (currentTarget && collider.gameObject == currentTarget.gameObject)
+            {
                 currentTarget.GotHit(damage);
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, shooter.tower.main.am.soundVolume);
+            }
             else if (currentTarget && !collision.gameObject.GetComponent<Tower>())
                 currentTarget.tempHealth += damage;
         }
-
+        
         Destroy(gameObject);
     }
 }

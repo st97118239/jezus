@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Shooter : MonoBehaviour
 {
+    public Tower tower;
     public AudioSource shootSound;
     public GameObject projectileSpawner;
     public bool canShoot;
@@ -19,7 +20,6 @@ public class Shooter : MonoBehaviour
     
     private readonly List<KeyValuePair<GameObject, NavMeshAgent>> shootableEnemies = new();
     private EnemySpawner es;
-    private Tower tower;
     private Predict predict;
     private bool reloading;
     private float projectileSpeed;

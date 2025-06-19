@@ -31364,6 +31364,8 @@ MonoBehaviour:
   clickSound: {fileID: 251538718}
   castleBellSound: {fileID: 0}
   DestinationChosenSound: {fileID: 0}
+  musicVolume: 0
+  soundVolume: 0
 --- !u!1001 &678222471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81102,8 +81104,8 @@ MonoBehaviour:
   defaultCoinsAmount: 5000
   health: 0
   defaultHealth: 5000
-  musicVolume: 10
-  soundVolume: 10
+  musicVolume: 1
+  soundVolume: 1
   isFinished: 0
   winCanvas: {fileID: 290358261}
   loseCanvas: {fileID: 1390568879}
@@ -91512,7 +91514,7 @@ PrefabInstance:
     - target: {fileID: 128599532084098856, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8040394618327504193, guid: 6aaf5dc8cb4877a4eab90d7caad239d5,
         type: 3}

@@ -17,8 +17,8 @@ public class Main : MonoBehaviour
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
-    public float musicVolume = 10;
-    public float soundVolume = 10;
+    public float musicVolume = 1;
+    public float soundVolume = 1;
     public bool isFinished = false;
 
     [SerializeField] private GameObject winCanvas;
@@ -135,7 +135,10 @@ public class Main : MonoBehaviour
 
     public void LoadSettings()
     {
-        FindObjectOfType<Settings>().LoadIntoGame();
-        am.LoadVolumeSettings(musicVolume / 10, soundVolume / 10);
+        Settings settings = FindObjectOfType<Settings>();
+        if (settings)
+            settings.LoadIntoGame();
+        
+        am.LoadVolumeSettings(musicVolume, soundVolume);
     }
 }
