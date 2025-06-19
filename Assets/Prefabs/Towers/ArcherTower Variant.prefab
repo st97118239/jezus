@@ -329,6 +329,7 @@ MonoBehaviour:
   shooter: {fileID: 0}
   rangeObject: {fileID: 3566824266563964288}
   placeSound: {fileID: 0}
+  main: {fileID: 0}
   price: 100
   reloadSpeed: 2
   reloadSpeedBase: 0
@@ -578,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729a7abe812abb847b7d591b8739a18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 0}
   shootSound: {fileID: 2166582606818026313}
   projectileSpawner: {fileID: 0}
   canShoot: 0
@@ -597,7 +599,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d32ed2b215fd8c74abc18a49b6d7f77b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 48dbce45209a2f247b0f8b197cfcca49, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
