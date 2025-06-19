@@ -26,5 +26,13 @@ public class AudioManager : MonoBehaviour
 
         foreach (AudioSource sound in soundEffects)
             sound.volume = soundVolume;
+
+        if (musicVolume > 0)
+            backgroundMusic.Play();
+    }
+
+    public void PlayUIClickSound()
+    {
+        clickSound.Play();
     }
 }

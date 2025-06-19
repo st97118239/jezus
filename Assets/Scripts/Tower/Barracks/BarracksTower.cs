@@ -12,6 +12,7 @@ public class BarracksTower : MonoBehaviour
     public DestinationBall ballComponent;
     public GameObject destinationBall;
     public GameObject destinationRangeObject;
+    public AudioSource locationChooseSound;
     public Vector3 destination;
     public Vector3 spawnOffset;
     public int upgradeCount;
@@ -44,6 +45,7 @@ public class BarracksTower : MonoBehaviour
         destinationBall = newBall;
         HideOtherModels();
         maxUnits = units[upgradeCount].maxUnits;
+        locationChooseSound.volume = main.am.soundVolume;
     }
 
     void Update()
@@ -133,6 +135,8 @@ public class BarracksTower : MonoBehaviour
         ballComponent.NewLocation();
 
         main.bus.destinationButton.interactable = true;
+
+        locationChooseSound.Play();
     }
 
     public void RecalculateUpgradePrice()

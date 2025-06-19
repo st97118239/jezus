@@ -13,6 +13,7 @@ public class BomberTower : MonoBehaviour
     public GameObject destinationRangeObject;
     public MeshRenderer ballRenderer;
     public Collider maxHeightCollider;
+    public AudioSource locationChooseSound;
     public Vector3 landingPos;
     public bool isFlyingUp;
     public bool isDisabled;
@@ -47,6 +48,7 @@ public class BomberTower : MonoBehaviour
         reloadSpeed = tower.reloadSpeed;
         reloadTimer = reloadSpeed;
         isReloading = true;
+        locationChooseSound.volume = main.am.soundVolume;
     }
 
     private void Update()
@@ -117,6 +119,8 @@ public class BomberTower : MonoBehaviour
         hasTargetPos = true;
 
         main.sus.destinationButton.interactable = true;
+
+        locationChooseSound.Play();
     }
 
     public void RecalculatePrice(int upgrade)

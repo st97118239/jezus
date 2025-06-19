@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SuicideBomber : MonoBehaviour
 {
+    public AudioSource explosionSound;
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private MeshRenderer rend;
     [SerializeField] private MeshRenderer rend2;
@@ -24,6 +26,7 @@ public class SuicideBomber : MonoBehaviour
         target = landingPos;
         tower = givenTower;
         speed = givenSpeed;
+        explosionSound.volume = tower.main.am.soundVolume;
     }
 
     private void Update()
@@ -71,6 +74,7 @@ public class SuicideBomber : MonoBehaviour
         rend.enabled = false;
         rend2.enabled = false;
         Destroy(rb);
+        explosionSound.Play();
         
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
