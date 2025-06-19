@@ -73,6 +73,8 @@ public class Tower : MonoBehaviour
     public void WhenPlaced()
     {
         rangeObject.GetComponent<MeshRenderer>().enabled = false;
+        placeSound.volume = main.am.soundVolume;
+        placeSound.Play();
     }
 
     public void Deselect()
