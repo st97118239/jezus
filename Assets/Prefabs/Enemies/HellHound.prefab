@@ -198,21 +198,21 @@ MonoBehaviour:
   enemyAmount: 1
   coins: 500
   damage: 1000
+  amountOfEnemiesToSpawn: 0
   amountFactor: 1
   healthFactor: 2
   damageFactor: 3
-  health: 1000
+  health: 1500
   tempHealth: 0
   speed: 2.32
   range: 0
-  amountOfEnemiesToSpawn: 0
   isDisabled: 0
   enemyToSpawn: {fileID: 0}
   spawnForwardMultiplier: 0
   attackSpeed: 5
   projectileSpeed: 0
-  isAttacking: 0
   attackTimer: 0
+  isAttacking: 0
 --- !u!114 &6325865241295404089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   waypoints: []
-  canMove: 1
   currentWPIndex: 0
+  canMove: 1
   waypointToStopAt: 0
 --- !u!114 &2999636042916922844
 MonoBehaviour:
