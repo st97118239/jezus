@@ -18,14 +18,10 @@ public class TowerPlacement : MonoBehaviour
     {
         main = FindObjectOfType<Main>();
 
-        for (int i = 0; i < towers.Length; i++)
-        {
-            int index = i;
-            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[index]));
-        }
-
         for (int i = 0; i < buttons.Length; i++)
         {
+            buttons[i].onClick.AddListener(() => CheckIfCanBuyTower(towers[i]));
+
             TMP_Text buttonText = buttons[i].transform.Find("Text").GetComponent<TMP_Text>();
             if (towers[i] != null)
                 buttonText.text = towers[i].type.ToReadableString() + "\n$" + towers[i].price;
