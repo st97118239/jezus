@@ -48,8 +48,11 @@ public class OutlineSelection : MonoBehaviour
                 return;
             }
 
+            List<Transform> selectionsCopy = new();
+
             if (highlight)
             {
+
                 if (selections.Count > 0)
                 {
                     foreach (var selection in selections)
@@ -70,13 +73,23 @@ public class OutlineSelection : MonoBehaviour
                 foreach (Transform obj in toAdd)
                     selections.Add(obj);
 
-                foreach (var selection in selections)
+                foreach (Transform selection in selections)
+                    selectionsCopy.Add(selection);
+
+                foreach (var selection in selectionsCopy)
                 {
-                    if (selection.gameObject.GetComponent<Outline>() == null)
+                    if (selection != null)
                     {
-                        selection.gameObject.AddComponent<Outline>();
+                        if (selection.gameObject.GetComponent<Outline>() == null)
+                        {
+                            selection.gameObject.AddComponent<Outline>();
+                        }
+                        selection.gameObject.GetComponent<Outline>().enabled = true;
                     }
-                    selection.gameObject.GetComponent<Outline>().enabled = true;
+                    else
+                    { 
+                        selections.Remove(selection);
+                    }    
                 }
 
                 highlight = null;
@@ -86,10 +99,25 @@ public class OutlineSelection : MonoBehaviour
             {
                 if (selections.Count > 0)
                 {
+                    selectionsCopy.Clear();
+
                     foreach (Transform selection in selections)
+                        selectionsCopy.Add(selection);
+
+                    foreach (Transform selection in selectionsCopy)
                     {
-                        if (!selections.Contains(hitObject))
-                            selection.gameObject.GetComponent<Outline>().enabled = false;
+                        if (selection != null)
+                        {
+                            if (!selections.Contains(hitObject))
+                                selection.gameObject.GetComponent<Outline>().enabled = false;
+                        }
+                        else 
+                        {
+                            selections.Remove(selection);
+                            if (toAdd.Contains(selection))
+                                toAdd.Remove(selection);
+                        }
+                        
                     }
                     if (!selections.Contains(hitObject))
                     {
