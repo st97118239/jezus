@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bc68e2e993b633546beee6f1d3a320eb,
         type: 3}
       propertyPath: m_Name
-      value: CrawlerNew
+      value: Crawler
       objectReference: {fileID: 0}
     - target: {fileID: 6745302439343835087, guid: bc68e2e993b633546beee6f1d3a320eb,
         type: 3}
@@ -111,5 +111,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc68e2e993b633546beee6f1d3a320eb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3298439175457549776}
   m_SourcePrefab: {fileID: 100100000, guid: bc68e2e993b633546beee6f1d3a320eb, type: 3}
+--- !u!1 &7524223630674088384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bc68e2e993b633546beee6f1d3a320eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 7253610523644718225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &-3298439175457549776
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524223630674088384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a82757359cc65445ba3a41c9bd2b7b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
