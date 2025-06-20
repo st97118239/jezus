@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    public List<int> timeScaleList;
     public OutlineSelection os;
     public EnemySpawner es;
     public ClickDetection clickDetec;
@@ -12,23 +15,30 @@ public class Main : MonoBehaviour
     public TowerUpgradeSystem tus;
     public BarracksUpgradeSystem bus;
     public SuicideUpgradeSystem sus;
+    public TMP_Text timeScaleButtonText;
     public AudioManager am;
     public int coinsAmount;
     public int defaultCoinsAmount = 50;
     public int health;
     public int defaultHealth = 100;
+    public int timeScale;
     public float musicVolume = 1;
     public float soundVolume = 1;
     public bool isFinished = false;
 
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseCanvas;
+    [SerializeField] private float bellStopTimerBase = 1;
 
     private TowerPlacement tp;
     private Movement movement;
+    private int timeScaleIndex;
+    private float bellStopTimer;
+    private bool bellIsRinging;
 
     private void Start()
     {
+        Time.timeScale = timeScale;
         movement = FindObjectOfType<Movement>();
         os = FindObjectOfType<OutlineSelection>();
         clickDetec = FindObjectOfType<ClickDetection>();
@@ -56,7 +66,6 @@ public class Main : MonoBehaviour
         ip.RedrawHealthBar(health);
         ip.RedrawWaveText(0, 0, 0);
         LoadSettings();
-        Time.timeScale = 1;
     }
 
     private void Update()
@@ -66,13 +75,21 @@ public class Main : MonoBehaviour
             if (mb.gameObject.activeSelf == true)
             {
                 mb.gameObject.SetActive(false);
-                Time.timeScale = 1;
+                Time.timeScale = timeScale;
             }
             else
             {
                 mb.gameObject.SetActive(true);
                 Time.timeScale = 0;
             }
+        }
+
+        if (bellIsRinging)
+        {
+            if (bellStopTimer > 0)
+                bellStopTimer -= Time.deltaTime;
+            else
+                bellIsRinging = false;
         }
     }
 
@@ -83,9 +100,17 @@ public class Main : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("Castle got destroyed, 0 hp left.");
             Lose();
         }
+
+        if (!bellIsRinging)
+        {
+            bellIsRinging = true;
+            bellStopTimer = bellStopTimerBase;
+            am.castleBellSound1.Play();
+        }
+        else
+            am.castleBellSound2.Play();
 
         ip.RedrawHealthBar(health);
     }
@@ -140,5 +165,15 @@ public class Main : MonoBehaviour
             settings.LoadIntoGame();
         
         am.LoadVolumeSettings(musicVolume, soundVolume);
+    }
+
+    public void ChangeTimeScale()
+    {
+        timeScaleIndex = (timeScaleIndex + 1) % timeScaleList.Count;
+
+        timeScale = timeScaleList[timeScaleIndex];
+        Time.timeScale = timeScale;
+
+        timeScaleButtonText.text = "x" + Time.timeScale;
     }
 }
