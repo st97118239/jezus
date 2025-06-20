@@ -335,11 +335,11 @@ MonoBehaviour:
   placeSound: {fileID: -171411987029310975}
   main: {fileID: 0}
   price: 100
-  reloadSpeed: 2
+  reloadSpeed: 1.7
   reloadSpeedBase: 0
-  range: 25
+  range: 30
   rangeBase: 0
-  projectileSpeed: 15
+  projectileSpeed: 23
   projectileSpeedBase: 0
   projectileDespawnTime: 0.1
   damage: 50
@@ -731,7 +731,7 @@ MonoBehaviour:
   targetType: 0
   currentTarget: {fileID: 0}
   arcedProjectiles: 1
-  waypointsToLookAhead: 5
+  waypointsToLookAhead: 7
   rotationSpeed: 10
   verticalArcFactor: 0.6
 --- !u!82 &2166582606818026313

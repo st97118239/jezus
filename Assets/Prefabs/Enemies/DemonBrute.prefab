@@ -1319,16 +1319,16 @@ MonoBehaviour:
   enemyType: 1
   startingWave: 5
   waveModulo: 2
-  enemyAmount: 15
-  coins: 10
+  enemyAmount: 10
+  coins: 5
   damage: 200
   amountOfEnemiesToSpawn: 0
   amountFactor: 10
-  healthFactor: 3
-  damageFactor: 1
-  health: 250
+  healthFactor: 25
+  damageFactor: 200
+  health: 200
   tempHealth: 0
-  speed: 3.5
+  speed: 6
   range: 0
   isDisabled: 0
   enemyToSpawn: {fileID: 0}

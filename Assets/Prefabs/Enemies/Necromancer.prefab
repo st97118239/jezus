@@ -175,18 +175,18 @@ MonoBehaviour:
   agent: {fileID: 0}
   nav: {fileID: 0}
   enemyType: 2
-  startingWave: 5
+  startingWave: 9
   waveModulo: 3
   enemyAmount: 1
-  coins: 5
+  coins: 7
   damage: 10
   amountOfEnemiesToSpawn: 3
-  amountFactor: 1
-  healthFactor: 1
+  amountFactor: 5
+  healthFactor: 50
   damageFactor: 1
-  health: 50
+  health: 500
   tempHealth: 0
-  speed: 3.5
+  speed: 5
   range: 1
   isDisabled: 0
   enemyToSpawn: {fileID: -295141106082875804, guid: cf643136c4e43fc4da31152b808d3b17,
@@ -212,7 +212,7 @@ MonoBehaviour:
   waypoints: []
   currentWPIndex: 0
   canMove: 1
-  waypointToStopAt: 538
+  waypointToStopAt: 480
 --- !u!114 &1211507876269984647
 MonoBehaviour:
   m_ObjectHideFlags: 0

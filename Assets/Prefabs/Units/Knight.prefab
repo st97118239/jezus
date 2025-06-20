@@ -196,8 +196,8 @@ MonoBehaviour:
   atDestination: 0
   hasReachedDestination: 0
   canMove: 1
-  damage: 150
-  price: 100
+  damage: 50
+  price: 75
   maxUnits: 10
   health: 300
   speed: 3.25

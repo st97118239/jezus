@@ -59296,11 +59296,11 @@ MonoBehaviour:
   - {fileID: 8392847934564319618, guid: 2860d4dc1618046588dfec96b9fc434c, type: 3}
   spawnRotOffset: {x: 0, y: -90, z: 0}
   currentWave: 0
-  lastWave: 100
+  lastWave: 15
   startingWaypoint: 0
-  groupSpawnCount: 1
-  spawnTimerBase: 1
-  nextWaveTimerBase: 1
+  groupSpawnCount: 7
+  spawnTimerBase: 2.5
+  nextWaveTimerBase: 5
   nextWaveTimerDelay: 5
 --- !u!4 &1093990629
 Transform:
@@ -96564,9 +96564,9 @@ MonoBehaviour:
   timeScaleButtonText: {fileID: 1861057894}
   am: {fileID: 0}
   coinsAmount: 0
-  defaultCoinsAmount: 250
+  defaultCoinsAmount: 350
   health: 0
-  defaultHealth: 5000
+  defaultHealth: 1000
   timeScale: 1
   musicVolume: 1
   soundVolume: 1
