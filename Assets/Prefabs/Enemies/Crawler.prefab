@@ -8,14 +8,39 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 164207604673176866, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 965536655374123118, guid: 84d21407dd157814599255f4226adc72,
         type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1086043222619115136, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1181801946197142900, guid: 84d21407dd157814599255f4226adc72,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188673831938573807, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314816940138695516, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502920310540153642, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1851238761340292866, guid: 84d21407dd157814599255f4226adc72,
@@ -31,6 +56,21 @@ PrefabInstance:
     - target: {fileID: 2102411239610929141, guid: 84d21407dd157814599255f4226adc72,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122518258589543262, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748059493456710871, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605166309223283294, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7142912601035213690, guid: 84d21407dd157814599255f4226adc72,
@@ -102,6 +142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Selectable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661109720017809587, guid: 84d21407dd157814599255f4226adc72,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009198779798576885, guid: 84d21407dd157814599255f4226adc72,
         type: 3}

@@ -90,6 +90,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 709147887789901989, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2787052204532919759, guid: acabc254c826dca4299b95d273c7f23c,
         type: 3}
       propertyPath: m_Layer
@@ -99,6 +104,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874094490763268046, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433918124266461952, guid: acabc254c826dca4299b95d273c7f23c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5961221512605012110, guid: acabc254c826dca4299b95d273c7f23c,
         type: 3}
